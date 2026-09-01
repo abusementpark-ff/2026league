@@ -1,0 +1,2542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPR Draft Tiers & Rank Spread Analysis</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #38bdf8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 2rem;
+            line-height: 1.5;
+        }
+
+        header {
+            max-width: 1200px;
+            margin: 0 auto 2rem auto;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-card h2 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .chart-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            max-height: 400px;
+            margin-top: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #0f172a;
+            color: var(--accent-color);
+            position: sticky;
+            top: 0;
+        }
+
+        tr:hover {
+            background-color: #283548;
+        }
+
+        .pos-badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .pos-WR { background-color: #1f77b4; color: white; }
+        .pos-RB { background-color: #ff7f0e; color: white; }
+        .pos-TE { background-color: #2ca02c; color: white; }
+        .pos-QB { background-color: #d62728; color: white; }
+        .pos-DST { background-color: #9467bd; color: white; }
+        .pos-K { background-color: #8c564b; color: white; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Boris Chen PPR Draft Tiers Analysis</h1>
+        <p class="subtitle">Expert Rank Consensus & Range Evaluation (Ranks 1–200)</p>
+    </header>
+
+    <div class="container">
+
+        <div class="section-card">
+            <h2>Ranks 1–25 Visual Spread</h2>
+            <img class="chart-img" src="gantt_ranks_1_25.png" alt="Gantt Chart Ranks 1-25">
+            
+            <h3 style="margin-top: 1.5rem; color: var(--text-main);">Data Breakdown</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player Name</th>
+                            <th>Pos</th>
+                            <th>Tier</th>
+                            <th>Best Rank</th>
+                            <th>Worst Rank</th>
+                            <th>Spread</th>
+                            <th>Avg Rank</th>
+                            <th>Std Dev</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+        <tr>
+            <td>#1</td>
+            <td><strong>Ja'Marr Chase</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 1</td>
+            <td>1</td>
+            <td>4</td>
+            <td>3</td>
+            <td>1.45</td>
+            <td>0.86</td>
+        </tr>
+        <tr>
+            <td>#2</td>
+            <td><strong>Jahmyr Gibbs</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 1</td>
+            <td>1</td>
+            <td>5</td>
+            <td>4</td>
+            <td>2.55</td>
+            <td>1.32</td>
+        </tr>
+        <tr>
+            <td>#3</td>
+            <td><strong>Puka Nacua</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 1</td>
+            <td>1</td>
+            <td>9</td>
+            <td>8</td>
+            <td>3.35</td>
+            <td>1.5</td>
+        </tr>
+        <tr>
+            <td>#4</td>
+            <td><strong>Bijan Robinson</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 1</td>
+            <td>2</td>
+            <td>7</td>
+            <td>5</td>
+            <td>4.09</td>
+            <td>1.39</td>
+        </tr>
+        <tr>
+            <td>#5</td>
+            <td><strong>Jaxon Smith-Njigba</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 1</td>
+            <td>3</td>
+            <td>9</td>
+            <td>6</td>
+            <td>4.6</td>
+            <td>1.31</td>
+        </tr>
+        <tr>
+            <td>#6</td>
+            <td><strong>Amon-Ra St. Brown</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 1</td>
+            <td>3</td>
+            <td>9</td>
+            <td>6</td>
+            <td>5.45</td>
+            <td>1.19</td>
+        </tr>
+        <tr>
+            <td>#7</td>
+            <td><strong>CeeDee Lamb</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 2</td>
+            <td>6</td>
+            <td>16</td>
+            <td>10</td>
+            <td>8.96</td>
+            <td>1.97</td>
+        </tr>
+        <tr>
+            <td>#8</td>
+            <td><strong>Justin Jefferson</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 2</td>
+            <td>4</td>
+            <td>28</td>
+            <td>24</td>
+            <td>9.35</td>
+            <td>2.65</td>
+        </tr>
+        <tr>
+            <td>#9</td>
+            <td><strong>Christian McCaffrey</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 2</td>
+            <td>5</td>
+            <td>23</td>
+            <td>18</td>
+            <td>9.58</td>
+            <td>4.43</td>
+        </tr>
+        <tr>
+            <td>#10</td>
+            <td><strong>Jonathan Taylor</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 2</td>
+            <td>6</td>
+            <td>31</td>
+            <td>25</td>
+            <td>11.8</td>
+            <td>4.93</td>
+        </tr>
+        <tr>
+            <td>#11</td>
+            <td><strong>Drake London</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 2</td>
+            <td>8</td>
+            <td>26</td>
+            <td>18</td>
+            <td>13.23</td>
+            <td>3.64</td>
+        </tr>
+        <tr>
+            <td>#12</td>
+            <td><strong>A.J. Brown</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 2</td>
+            <td>6</td>
+            <td>38</td>
+            <td>32</td>
+            <td>14.26</td>
+            <td>5.75</td>
+        </tr>
+        <tr>
+            <td>#13</td>
+            <td><strong>James Cook III</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 3</td>
+            <td>7</td>
+            <td>31</td>
+            <td>24</td>
+            <td>15.52</td>
+            <td>6.17</td>
+        </tr>
+        <tr>
+            <td>#14</td>
+            <td><strong>Nico Collins</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 3</td>
+            <td>9</td>
+            <td>29</td>
+            <td>20</td>
+            <td>16.05</td>
+            <td>3.85</td>
+        </tr>
+        <tr>
+            <td>#15</td>
+            <td><strong>Chris Olave</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 3</td>
+            <td>9</td>
+            <td>35</td>
+            <td>26</td>
+            <td>17.42</td>
+            <td>5.36</td>
+        </tr>
+        <tr>
+            <td>#16</td>
+            <td><strong>Chase Brown</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 3</td>
+            <td>7</td>
+            <td>39</td>
+            <td>32</td>
+            <td>17.6</td>
+            <td>6.57</td>
+        </tr>
+        <tr>
+            <td>#17</td>
+            <td><strong>Trey McBride</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 3</td>
+            <td>16</td>
+            <td>57</td>
+            <td>41</td>
+            <td>19.69</td>
+            <td>6.69</td>
+        </tr>
+        <tr>
+            <td>#18</td>
+            <td><strong>George Pickens</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 3</td>
+            <td>9</td>
+            <td>40</td>
+            <td>31</td>
+            <td>20.49</td>
+            <td>6.4</td>
+        </tr>
+        <tr>
+            <td>#19</td>
+            <td><strong>Brock Bowers</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 3</td>
+            <td>11</td>
+            <td>57</td>
+            <td>46</td>
+            <td>20.71</td>
+            <td>6.12</td>
+        </tr>
+        <tr>
+            <td>#20</td>
+            <td><strong>De'Von Achane</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 3</td>
+            <td>11</td>
+            <td>43</td>
+            <td>32</td>
+            <td>21.29</td>
+            <td>6.88</td>
+        </tr>
+        <tr>
+            <td>#21</td>
+            <td><strong>DeVonta Smith</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 4</td>
+            <td>8</td>
+            <td>45</td>
+            <td>37</td>
+            <td>23.67</td>
+            <td>7.19</td>
+        </tr>
+        <tr>
+            <td>#22</td>
+            <td><strong>Saquon Barkley</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 4</td>
+            <td>10</td>
+            <td>41</td>
+            <td>31</td>
+            <td>24.07</td>
+            <td>6.53</td>
+        </tr>
+        <tr>
+            <td>#23</td>
+            <td><strong>Malik Nabers</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 4</td>
+            <td>11</td>
+            <td>51</td>
+            <td>40</td>
+            <td>24.45</td>
+            <td>9.11</td>
+        </tr>
+        <tr>
+            <td>#24</td>
+            <td><strong>Kenneth Walker III</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 4</td>
+            <td>11</td>
+            <td>50</td>
+            <td>39</td>
+            <td>24.73</td>
+            <td>7.82</td>
+        </tr>
+        <tr>
+            <td>#25</td>
+            <td><strong>Omarion Hampton</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 4</td>
+            <td>7</td>
+            <td>43</td>
+            <td>36</td>
+            <td>25.22</td>
+            <td>7.23</td>
+        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="section-card">
+            <h2>Ranks 26–50 Visual Spread</h2>
+            <img class="chart-img" src="gantt_ranks_26_50.png" alt="Gantt Chart Ranks 26-50">
+            
+            <h3 style="margin-top: 1.5rem; color: var(--text-main);">Data Breakdown</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player Name</th>
+                            <th>Pos</th>
+                            <th>Tier</th>
+                            <th>Best Rank</th>
+                            <th>Worst Rank</th>
+                            <th>Spread</th>
+                            <th>Avg Rank</th>
+                            <th>Std Dev</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+        <tr>
+            <td>#26</td>
+            <td><strong>Josh Allen</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 4</td>
+            <td>21</td>
+            <td>43</td>
+            <td>22</td>
+            <td>25.99</td>
+            <td>3.47</td>
+        </tr>
+        <tr>
+            <td>#27</td>
+            <td><strong>Rashee Rice</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 4</td>
+            <td>11</td>
+            <td>48</td>
+            <td>37</td>
+            <td>26.71</td>
+            <td>9.61</td>
+        </tr>
+        <tr>
+            <td>#28</td>
+            <td><strong>Ashton Jeanty</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 4</td>
+            <td>7</td>
+            <td>53</td>
+            <td>46</td>
+            <td>27.76</td>
+            <td>9.8</td>
+        </tr>
+        <tr>
+            <td>#29</td>
+            <td><strong>Zay Flowers</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 4</td>
+            <td>14</td>
+            <td>48</td>
+            <td>34</td>
+            <td>28.65</td>
+            <td>7.71</td>
+        </tr>
+        <tr>
+            <td>#30</td>
+            <td><strong>Garrett Wilson</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 5</td>
+            <td>12</td>
+            <td>47</td>
+            <td>35</td>
+            <td>30.44</td>
+            <td>7.38</td>
+        </tr>
+        <tr>
+            <td>#31</td>
+            <td><strong>Lamar Jackson</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 5</td>
+            <td>25</td>
+            <td>63</td>
+            <td>38</td>
+            <td>32.49</td>
+            <td>9.75</td>
+        </tr>
+        <tr>
+            <td>#32</td>
+            <td><strong>Ladd McConkey</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 5</td>
+            <td>15</td>
+            <td>48</td>
+            <td>33</td>
+            <td>33.07</td>
+            <td>7.66</td>
+        </tr>
+        <tr>
+            <td>#33</td>
+            <td><strong>Jaylen Waddle</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 5</td>
+            <td>18</td>
+            <td>55</td>
+            <td>37</td>
+            <td>33.86</td>
+            <td>7.75</td>
+        </tr>
+        <tr>
+            <td>#34</td>
+            <td><strong>Tetairoa McMillan</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 6</td>
+            <td>18</td>
+            <td>52</td>
+            <td>34</td>
+            <td>36.1</td>
+            <td>6.6</td>
+        </tr>
+        <tr>
+            <td>#35</td>
+            <td><strong>Colston Loveland</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 6</td>
+            <td>22</td>
+            <td>95</td>
+            <td>73</td>
+            <td>36.26</td>
+            <td>13.27</td>
+        </tr>
+        <tr>
+            <td>#36</td>
+            <td><strong>Tee Higgins</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 6</td>
+            <td>19</td>
+            <td>51</td>
+            <td>32</td>
+            <td>36.56</td>
+            <td>6.99</td>
+        </tr>
+        <tr>
+            <td>#37</td>
+            <td><strong>Drake Maye</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 6</td>
+            <td>27</td>
+            <td>79</td>
+            <td>52</td>
+            <td>37.86</td>
+            <td>12.99</td>
+        </tr>
+        <tr>
+            <td>#38</td>
+            <td><strong>Derrick Henry</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 6</td>
+            <td>16</td>
+            <td>50</td>
+            <td>34</td>
+            <td>38.14</td>
+            <td>7.99</td>
+        </tr>
+        <tr>
+            <td>#39</td>
+            <td><strong>Breece Hall</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 6</td>
+            <td>30</td>
+            <td>56</td>
+            <td>26</td>
+            <td>39.67</td>
+            <td>5.5</td>
+        </tr>
+        <tr>
+            <td>#40</td>
+            <td><strong>Jeremiyah Love</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 6</td>
+            <td>23</td>
+            <td>65</td>
+            <td>42</td>
+            <td>40.6</td>
+            <td>8.16</td>
+        </tr>
+        <tr>
+            <td>#41</td>
+            <td><strong>Emeka Egbuka</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 6</td>
+            <td>18</td>
+            <td>64</td>
+            <td>46</td>
+            <td>41.04</td>
+            <td>7.89</td>
+        </tr>
+        <tr>
+            <td>#42</td>
+            <td><strong>Kyren Williams</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 7</td>
+            <td>24</td>
+            <td>58</td>
+            <td>34</td>
+            <td>42.14</td>
+            <td>6.38</td>
+        </tr>
+        <tr>
+            <td>#43</td>
+            <td><strong>Javonte Williams</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 7</td>
+            <td>24</td>
+            <td>61</td>
+            <td>37</td>
+            <td>43.49</td>
+            <td>6.72</td>
+        </tr>
+        <tr>
+            <td>#44</td>
+            <td><strong>Joe Burrow</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 7</td>
+            <td>27</td>
+            <td>74</td>
+            <td>47</td>
+            <td>44.99</td>
+            <td>13.75</td>
+        </tr>
+        <tr>
+            <td>#45</td>
+            <td><strong>Travis Etienne Jr.</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 7</td>
+            <td>33</td>
+            <td>61</td>
+            <td>28</td>
+            <td>45.63</td>
+            <td>6.58</td>
+        </tr>
+        <tr>
+            <td>#46</td>
+            <td><strong>Luther Burden III</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 7</td>
+            <td>20</td>
+            <td>64</td>
+            <td>44</td>
+            <td>46.05</td>
+            <td>7.58</td>
+        </tr>
+        <tr>
+            <td>#47</td>
+            <td><strong>Terry McLaurin</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 7</td>
+            <td>26</td>
+            <td>69</td>
+            <td>43</td>
+            <td>47.7</td>
+            <td>6.72</td>
+        </tr>
+        <tr>
+            <td>#48</td>
+            <td><strong>Davante Adams</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 8</td>
+            <td>36</td>
+            <td>74</td>
+            <td>38</td>
+            <td>50.48</td>
+            <td>7.49</td>
+        </tr>
+        <tr>
+            <td>#49</td>
+            <td><strong>DJ Moore</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 8</td>
+            <td>28</td>
+            <td>90</td>
+            <td>62</td>
+            <td>51.94</td>
+            <td>10.76</td>
+        </tr>
+        <tr>
+            <td>#50</td>
+            <td><strong>D'Andre Swift</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 8</td>
+            <td>34</td>
+            <td>77</td>
+            <td>43</td>
+            <td>52.43</td>
+            <td>7.81</td>
+        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="section-card">
+            <h2>Ranks 51–75 Visual Spread</h2>
+            <img class="chart-img" src="gantt_ranks_51_75.png" alt="Gantt Chart Ranks 51-75">
+            
+            <h3 style="margin-top: 1.5rem; color: var(--text-main);">Data Breakdown</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player Name</th>
+                            <th>Pos</th>
+                            <th>Tier</th>
+                            <th>Best Rank</th>
+                            <th>Worst Rank</th>
+                            <th>Spread</th>
+                            <th>Avg Rank</th>
+                            <th>Std Dev</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+        <tr>
+            <td>#51</td>
+            <td><strong>Tyler Warren</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 8</td>
+            <td>22</td>
+            <td>73</td>
+            <td>51</td>
+            <td>53.55</td>
+            <td>10.28</td>
+        </tr>
+        <tr>
+            <td>#52</td>
+            <td><strong>Jameson Williams</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 8</td>
+            <td>36</td>
+            <td>96</td>
+            <td>60</td>
+            <td>53.94</td>
+            <td>10.1</td>
+        </tr>
+        <tr>
+            <td>#53</td>
+            <td><strong>Jayden Daniels</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 8</td>
+            <td>27</td>
+            <td>101</td>
+            <td>74</td>
+            <td>54.57</td>
+            <td>16.46</td>
+        </tr>
+        <tr>
+            <td>#54</td>
+            <td><strong>Christian Watson</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 9</td>
+            <td>42</td>
+            <td>83</td>
+            <td>41</td>
+            <td>56.19</td>
+            <td>9.39</td>
+        </tr>
+        <tr>
+            <td>#55</td>
+            <td><strong>Bucky Irving</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 9</td>
+            <td>39</td>
+            <td>89</td>
+            <td>50</td>
+            <td>56.77</td>
+            <td>9.36</td>
+        </tr>
+        <tr>
+            <td>#56</td>
+            <td><strong>Cam Skattebo</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 9</td>
+            <td>41</td>
+            <td>78</td>
+            <td>37</td>
+            <td>57.43</td>
+            <td>8.31</td>
+        </tr>
+        <tr>
+            <td>#57</td>
+            <td><strong>Jalen Hurts</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 9</td>
+            <td>30</td>
+            <td>81</td>
+            <td>51</td>
+            <td>58.0</td>
+            <td>12.26</td>
+        </tr>
+        <tr>
+            <td>#58</td>
+            <td><strong>Rome Odunze</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 9</td>
+            <td>40</td>
+            <td>91</td>
+            <td>51</td>
+            <td>58.3</td>
+            <td>9.19</td>
+        </tr>
+        <tr>
+            <td>#59</td>
+            <td><strong>Mike Evans</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 9</td>
+            <td>35</td>
+            <td>109</td>
+            <td>74</td>
+            <td>59.21</td>
+            <td>12.36</td>
+        </tr>
+        <tr>
+            <td>#60</td>
+            <td><strong>David Montgomery</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 9</td>
+            <td>41</td>
+            <td>78</td>
+            <td>37</td>
+            <td>60.48</td>
+            <td>8.63</td>
+        </tr>
+        <tr>
+            <td>#61</td>
+            <td><strong>Quinshon Judkins</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 9</td>
+            <td>43</td>
+            <td>80</td>
+            <td>37</td>
+            <td>60.99</td>
+            <td>9.03</td>
+        </tr>
+        <tr>
+            <td>#62</td>
+            <td><strong>Parker Washington</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 9</td>
+            <td>38</td>
+            <td>136</td>
+            <td>98</td>
+            <td>61.23</td>
+            <td>17.35</td>
+        </tr>
+        <tr>
+            <td>#63</td>
+            <td><strong>Caleb Williams</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 10</td>
+            <td>37</td>
+            <td>98</td>
+            <td>61</td>
+            <td>65.72</td>
+            <td>11.58</td>
+        </tr>
+        <tr>
+            <td>#64</td>
+            <td><strong>Bhayshul Tuten</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 10</td>
+            <td>43</td>
+            <td>89</td>
+            <td>46</td>
+            <td>65.89</td>
+            <td>10.22</td>
+        </tr>
+        <tr>
+            <td>#65</td>
+            <td><strong>Jadarian Price</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 10</td>
+            <td>43</td>
+            <td>99</td>
+            <td>56</td>
+            <td>68.58</td>
+            <td>10.93</td>
+        </tr>
+        <tr>
+            <td>#66</td>
+            <td><strong>Carnell Tate</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 10</td>
+            <td>45</td>
+            <td>123</td>
+            <td>78</td>
+            <td>68.59</td>
+            <td>15.57</td>
+        </tr>
+        <tr>
+            <td>#67</td>
+            <td><strong>Marvin Harrison Jr.</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 10</td>
+            <td>40</td>
+            <td>110</td>
+            <td>70</td>
+            <td>69.01</td>
+            <td>13.56</td>
+        </tr>
+        <tr>
+            <td>#68</td>
+            <td><strong>Justin Herbert</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 11</td>
+            <td>37</td>
+            <td>102</td>
+            <td>65</td>
+            <td>70.55</td>
+            <td>13.25</td>
+        </tr>
+        <tr>
+            <td>#69</td>
+            <td><strong>TreVeyon Henderson</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 11</td>
+            <td>50</td>
+            <td>96</td>
+            <td>46</td>
+            <td>71.41</td>
+            <td>10.66</td>
+        </tr>
+        <tr>
+            <td>#70</td>
+            <td><strong>Rhamondre Stevenson</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 11</td>
+            <td>53</td>
+            <td>118</td>
+            <td>65</td>
+            <td>74.64</td>
+            <td>11.34</td>
+        </tr>
+        <tr>
+            <td>#71</td>
+            <td><strong>Chris Godwin Jr.</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 11</td>
+            <td>45</td>
+            <td>123</td>
+            <td>78</td>
+            <td>74.88</td>
+            <td>13.91</td>
+        </tr>
+        <tr>
+            <td>#72</td>
+            <td><strong>Jaylen Warren</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 11</td>
+            <td>64</td>
+            <td>102</td>
+            <td>38</td>
+            <td>75.58</td>
+            <td>8.43</td>
+        </tr>
+        <tr>
+            <td>#73</td>
+            <td><strong>Harold Fannin Jr.</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 11</td>
+            <td>57</td>
+            <td>112</td>
+            <td>55</td>
+            <td>76.2</td>
+            <td>12.65</td>
+        </tr>
+        <tr>
+            <td>#74</td>
+            <td><strong>Trevor Lawrence</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 11</td>
+            <td>54</td>
+            <td>114</td>
+            <td>60</td>
+            <td>77.59</td>
+            <td>13.09</td>
+        </tr>
+        <tr>
+            <td>#75</td>
+            <td><strong>Dak Prescott</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 11</td>
+            <td>37</td>
+            <td>105</td>
+            <td>68</td>
+            <td>77.79</td>
+            <td>13.06</td>
+        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="section-card">
+            <h2>Ranks 76–100 Visual Spread</h2>
+            <img class="chart-img" src="gantt_ranks_76_100.png" alt="Gantt Chart Ranks 76-100">
+            
+            <h3 style="margin-top: 1.5rem; color: var(--text-main);">Data Breakdown</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player Name</th>
+                            <th>Pos</th>
+                            <th>Tier</th>
+                            <th>Best Rank</th>
+                            <th>Worst Rank</th>
+                            <th>Spread</th>
+                            <th>Avg Rank</th>
+                            <th>Std Dev</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+        <tr>
+            <td>#76</td>
+            <td><strong>Kyle Pitts Sr.</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 11</td>
+            <td>60</td>
+            <td>97</td>
+            <td>37</td>
+            <td>78.31</td>
+            <td>10.86</td>
+        </tr>
+        <tr>
+            <td>#77</td>
+            <td><strong>Tucker Kraft</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 11</td>
+            <td>32</td>
+            <td>111</td>
+            <td>79</td>
+            <td>80.1</td>
+            <td>15.41</td>
+        </tr>
+        <tr>
+            <td>#78</td>
+            <td><strong>DK Metcalf</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 11</td>
+            <td>52</td>
+            <td>116</td>
+            <td>64</td>
+            <td>80.19</td>
+            <td>13.28</td>
+        </tr>
+        <tr>
+            <td>#79</td>
+            <td><strong>Michael Pittman Jr.</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 11</td>
+            <td>49</td>
+            <td>109</td>
+            <td>60</td>
+            <td>80.3</td>
+            <td>12.67</td>
+        </tr>
+        <tr>
+            <td>#80</td>
+            <td><strong>Brian Thomas Jr.</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 11</td>
+            <td>51</td>
+            <td>126</td>
+            <td>75</td>
+            <td>81.05</td>
+            <td>14.23</td>
+        </tr>
+        <tr>
+            <td>#81</td>
+            <td><strong>Sam LaPorta</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 12</td>
+            <td>57</td>
+            <td>131</td>
+            <td>74</td>
+            <td>84.7</td>
+            <td>14.56</td>
+        </tr>
+        <tr>
+            <td>#82</td>
+            <td><strong>Wan'Dale Robinson</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 12</td>
+            <td>48</td>
+            <td>128</td>
+            <td>80</td>
+            <td>85.06</td>
+            <td>13.28</td>
+        </tr>
+        <tr>
+            <td>#83</td>
+            <td><strong>Tony Pollard</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 12</td>
+            <td>65</td>
+            <td>120</td>
+            <td>55</td>
+            <td>85.53</td>
+            <td>10.49</td>
+        </tr>
+        <tr>
+            <td>#84</td>
+            <td><strong>Courtland Sutton</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 12</td>
+            <td>55</td>
+            <td>116</td>
+            <td>61</td>
+            <td>86.37</td>
+            <td>15.04</td>
+        </tr>
+        <tr>
+            <td>#85</td>
+            <td><strong>Rico Dowdle</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 12</td>
+            <td>67</td>
+            <td>122</td>
+            <td>55</td>
+            <td>86.92</td>
+            <td>11.7</td>
+        </tr>
+        <tr>
+            <td>#86</td>
+            <td><strong>Jonathon Brooks</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 12</td>
+            <td>56</td>
+            <td>159</td>
+            <td>103</td>
+            <td>87.27</td>
+            <td>17.56</td>
+        </tr>
+        <tr>
+            <td>#87</td>
+            <td><strong>Josh Downs</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 12</td>
+            <td>52</td>
+            <td>128</td>
+            <td>76</td>
+            <td>87.34</td>
+            <td>14.48</td>
+        </tr>
+        <tr>
+            <td>#88</td>
+            <td><strong>Michael Wilson</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 12</td>
+            <td>55</td>
+            <td>131</td>
+            <td>76</td>
+            <td>88.64</td>
+            <td>16.29</td>
+        </tr>
+        <tr>
+            <td>#89</td>
+            <td><strong>Quentin Johnston</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 13</td>
+            <td>68</td>
+            <td>126</td>
+            <td>58</td>
+            <td>93.39</td>
+            <td>13.97</td>
+        </tr>
+        <tr>
+            <td>#90</td>
+            <td><strong>RJ Harvey</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 13</td>
+            <td>67</td>
+            <td>143</td>
+            <td>76</td>
+            <td>96.49</td>
+            <td>16.63</td>
+        </tr>
+        <tr>
+            <td>#91</td>
+            <td><strong>Brock Purdy</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 13</td>
+            <td>63</td>
+            <td>119</td>
+            <td>56</td>
+            <td>96.88</td>
+            <td>10.48</td>
+        </tr>
+        <tr>
+            <td>#92</td>
+            <td><strong>Stefon Diggs</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 13</td>
+            <td>55</td>
+            <td>224</td>
+            <td>169</td>
+            <td>93.77</td>
+            <td>27.47</td>
+        </tr>
+        <tr>
+            <td>#93</td>
+            <td><strong>Travis Kelce</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 13</td>
+            <td>57</td>
+            <td>138</td>
+            <td>81</td>
+            <td>97.57</td>
+            <td>15.16</td>
+        </tr>
+        <tr>
+            <td>#94</td>
+            <td><strong>Bo Nix</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 13</td>
+            <td>70</td>
+            <td>119</td>
+            <td>49</td>
+            <td>97.9</td>
+            <td>10.23</td>
+        </tr>
+        <tr>
+            <td>#95</td>
+            <td><strong>Jaxson Dart</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 13</td>
+            <td>70</td>
+            <td>125</td>
+            <td>55</td>
+            <td>98.08</td>
+            <td>12.55</td>
+        </tr>
+        <tr>
+            <td>#96</td>
+            <td><strong>Kenny Gainwell</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 13</td>
+            <td>67</td>
+            <td>135</td>
+            <td>68</td>
+            <td>98.3</td>
+            <td>14.1</td>
+        </tr>
+        <tr>
+            <td>#97</td>
+            <td><strong>George Kittle</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 13</td>
+            <td>66</td>
+            <td>154</td>
+            <td>88</td>
+            <td>98.38</td>
+            <td>13.21</td>
+        </tr>
+        <tr>
+            <td>#98</td>
+            <td><strong>Chuba Hubbard</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 13</td>
+            <td>67</td>
+            <td>143</td>
+            <td>76</td>
+            <td>101.27</td>
+            <td>17.85</td>
+        </tr>
+        <tr>
+            <td>#99</td>
+            <td><strong>Alec Pierce</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 13</td>
+            <td>52</td>
+            <td>149</td>
+            <td>97</td>
+            <td>101.62</td>
+            <td>20.54</td>
+        </tr>
+        <tr>
+            <td>#100</td>
+            <td><strong>Patrick Mahomes II</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 13</td>
+            <td>70</td>
+            <td>139</td>
+            <td>69</td>
+            <td>102.45</td>
+            <td>11.43</td>
+        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="section-card">
+            <h2>Ranks 101–125 Visual Spread</h2>
+            <img class="chart-img" src="gantt_ranks_101_125.png" alt="Gantt Chart Ranks 101-125">
+            
+            <h3 style="margin-top: 1.5rem; color: var(--text-main);">Data Breakdown</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player Name</th>
+                            <th>Pos</th>
+                            <th>Tier</th>
+                            <th>Best Rank</th>
+                            <th>Worst Rank</th>
+                            <th>Spread</th>
+                            <th>Avg Rank</th>
+                            <th>Std Dev</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+        <tr>
+            <td>#101</td>
+            <td><strong>MarShawn Lloyd</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 13</td>
+            <td>61</td>
+            <td>275</td>
+            <td>214</td>
+            <td>103.18</td>
+            <td>45.34</td>
+        </tr>
+        <tr>
+            <td>#102</td>
+            <td><strong>J.K. Dobbins</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 13</td>
+            <td>72</td>
+            <td>127</td>
+            <td>55</td>
+            <td>103.2</td>
+            <td>15.36</td>
+        </tr>
+        <tr>
+            <td>#103</td>
+            <td><strong>Jayden Reed</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 13</td>
+            <td>69</td>
+            <td>142</td>
+            <td>73</td>
+            <td>103.89</td>
+            <td>15.94</td>
+        </tr>
+        <tr>
+            <td>#104</td>
+            <td><strong>Jared Goff</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 14</td>
+            <td>63</td>
+            <td>131</td>
+            <td>68</td>
+            <td>106.1</td>
+            <td>10.61</td>
+        </tr>
+        <tr>
+            <td>#105</td>
+            <td><strong>Matthew Stafford</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 14</td>
+            <td>74</td>
+            <td>129</td>
+            <td>55</td>
+            <td>106.27</td>
+            <td>10.38</td>
+        </tr>
+        <tr>
+            <td>#106</td>
+            <td><strong>Jakobi Meyers</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 14</td>
+            <td>68</td>
+            <td>150</td>
+            <td>82</td>
+            <td>107.16</td>
+            <td>17.99</td>
+        </tr>
+        <tr>
+            <td>#107</td>
+            <td><strong>Jordan Addison</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 14</td>
+            <td>68</td>
+            <td>165</td>
+            <td>97</td>
+            <td>108.28</td>
+            <td>17.22</td>
+        </tr>
+        <tr>
+            <td>#108</td>
+            <td><strong>Makai Lemon</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 14</td>
+            <td>68</td>
+            <td>195</td>
+            <td>127</td>
+            <td>109.08</td>
+            <td>21.49</td>
+        </tr>
+        <tr>
+            <td>#109</td>
+            <td><strong>Blake Corum</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 14</td>
+            <td>79</td>
+            <td>141</td>
+            <td>62</td>
+            <td>110.46</td>
+            <td>14.75</td>
+        </tr>
+        <tr>
+            <td>#110</td>
+            <td><strong>Dalton Kincaid</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 14</td>
+            <td>87</td>
+            <td>155</td>
+            <td>68</td>
+            <td>111.3</td>
+            <td>14.32</td>
+        </tr>
+        <tr>
+            <td>#111</td>
+            <td><strong>KC Concepcion</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 14</td>
+            <td>71</td>
+            <td>232</td>
+            <td>161</td>
+            <td>111.99</td>
+            <td>25.24</td>
+        </tr>
+        <tr>
+            <td>#112</td>
+            <td><strong>Rachaad White</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 14</td>
+            <td>75</td>
+            <td>148</td>
+            <td>73</td>
+            <td>112.32</td>
+            <td>16.53</td>
+        </tr>
+        <tr>
+            <td>#113</td>
+            <td><strong>Kyler Murray</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 14</td>
+            <td>98</td>
+            <td>147</td>
+            <td>49</td>
+            <td>113.16</td>
+            <td>9.58</td>
+        </tr>
+        <tr>
+            <td>#114</td>
+            <td><strong>Jordan Mason</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 14</td>
+            <td>75</td>
+            <td>157</td>
+            <td>82</td>
+            <td>113.73</td>
+            <td>17.94</td>
+        </tr>
+        <tr>
+            <td>#115</td>
+            <td><strong>Jacory Croskey-Merritt</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 15</td>
+            <td>67</td>
+            <td>141</td>
+            <td>74</td>
+            <td>114.04</td>
+            <td>16.91</td>
+        </tr>
+        <tr>
+            <td>#116</td>
+            <td><strong>Jordan Love</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 15</td>
+            <td>98</td>
+            <td>144</td>
+            <td>46</td>
+            <td>117.26</td>
+            <td>9.68</td>
+        </tr>
+        <tr>
+            <td>#117</td>
+            <td><strong>Jake Ferguson</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 15</td>
+            <td>81</td>
+            <td>179</td>
+            <td>98</td>
+            <td>117.37</td>
+            <td>18.5</td>
+        </tr>
+        <tr>
+            <td>#118</td>
+            <td><strong>Aaron Jones Sr.</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 15</td>
+            <td>86</td>
+            <td>152</td>
+            <td>66</td>
+            <td>117.51</td>
+            <td>16.37</td>
+        </tr>
+        <tr>
+            <td>#119</td>
+            <td><strong>Baker Mayfield</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 15</td>
+            <td>98</td>
+            <td>141</td>
+            <td>43</td>
+            <td>118.95</td>
+            <td>8.59</td>
+        </tr>
+        <tr>
+            <td>#120</td>
+            <td><strong>Kyle Monangai</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 15</td>
+            <td>86</td>
+            <td>160</td>
+            <td>74</td>
+            <td>119.1</td>
+            <td>14.01</td>
+        </tr>
+        <tr>
+            <td>#121</td>
+            <td><strong>Dallas Goedert</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 15</td>
+            <td>95</td>
+            <td>158</td>
+            <td>63</td>
+            <td>120.12</td>
+            <td>16.81</td>
+        </tr>
+        <tr>
+            <td>#122</td>
+            <td><strong>Isaiah Likely</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 15</td>
+            <td>87</td>
+            <td>236</td>
+            <td>149</td>
+            <td>120.84</td>
+            <td>29.21</td>
+        </tr>
+        <tr>
+            <td>#123</td>
+            <td><strong>Khalil Shakir</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 16</td>
+            <td>69</td>
+            <td>168</td>
+            <td>99</td>
+            <td>123.2</td>
+            <td>16.93</td>
+        </tr>
+        <tr>
+            <td>#124</td>
+            <td><strong>Jalen Coker</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 16</td>
+            <td>88</td>
+            <td>176</td>
+            <td>88</td>
+            <td>123.55</td>
+            <td>14.63</td>
+        </tr>
+        <tr>
+            <td>#125</td>
+            <td><strong>Romeo Doubs</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 16</td>
+            <td>76</td>
+            <td>184</td>
+            <td>108</td>
+            <td>125.39</td>
+            <td>15.75</td>
+        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="section-card">
+            <h2>Ranks 126–150 Visual Spread</h2>
+            <img class="chart-img" src="gantt_ranks_126_150.png" alt="Gantt Chart Ranks 126-150">
+            
+            <h3 style="margin-top: 1.5rem; color: var(--text-main);">Data Breakdown</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player Name</th>
+                            <th>Pos</th>
+                            <th>Tier</th>
+                            <th>Best Rank</th>
+                            <th>Worst Rank</th>
+                            <th>Spread</th>
+                            <th>Avg Rank</th>
+                            <th>Std Dev</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+        <tr>
+            <td>#126</td>
+            <td><strong>Matthew Golden</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 16</td>
+            <td>81</td>
+            <td>184</td>
+            <td>103</td>
+            <td>125.59</td>
+            <td>19.29</td>
+        </tr>
+        <tr>
+            <td>#127</td>
+            <td><strong>Tyler Shough</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 16</td>
+            <td>98</td>
+            <td>207</td>
+            <td>109</td>
+            <td>125.85</td>
+            <td>14.56</td>
+        </tr>
+        <tr>
+            <td>#128</td>
+            <td><strong>Malik Willis</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 16</td>
+            <td>104</td>
+            <td>179</td>
+            <td>75</td>
+            <td>127.69</td>
+            <td>15.81</td>
+        </tr>
+        <tr>
+            <td>#129</td>
+            <td><strong>De'Zhaun Stribling</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 16</td>
+            <td>62</td>
+            <td>316</td>
+            <td>254</td>
+            <td>129.14</td>
+            <td>48.04</td>
+        </tr>
+        <tr>
+            <td>#130</td>
+            <td><strong>Juwan Johnson</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 16</td>
+            <td>87</td>
+            <td>181</td>
+            <td>94</td>
+            <td>129.56</td>
+            <td>19.69</td>
+        </tr>
+        <tr>
+            <td>#131</td>
+            <td><strong>Xavier Worthy</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 16</td>
+            <td>92</td>
+            <td>184</td>
+            <td>92</td>
+            <td>129.79</td>
+            <td>15.87</td>
+        </tr>
+        <tr>
+            <td>#132</td>
+            <td><strong>Mark Andrews</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 17</td>
+            <td>95</td>
+            <td>226</td>
+            <td>131</td>
+            <td>133.71</td>
+            <td>23.88</td>
+        </tr>
+        <tr>
+            <td>#133</td>
+            <td><strong>Woody Marks</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 17</td>
+            <td>102</td>
+            <td>175</td>
+            <td>73</td>
+            <td>136.31</td>
+            <td>12.9</td>
+        </tr>
+        <tr>
+            <td>#134</td>
+            <td><strong>Tyler Allgeier</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 17</td>
+            <td>102</td>
+            <td>182</td>
+            <td>80</td>
+            <td>138.4</td>
+            <td>14.37</td>
+        </tr>
+        <tr>
+            <td>#135</td>
+            <td><strong>Chris Rodriguez Jr.</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 18</td>
+            <td>102</td>
+            <td>219</td>
+            <td>117</td>
+            <td>139.18</td>
+            <td>16.54</td>
+        </tr>
+        <tr>
+            <td>#136</td>
+            <td><strong>Jordyn Tyson</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 18</td>
+            <td>91</td>
+            <td>241</td>
+            <td>150</td>
+            <td>139.51</td>
+            <td>28.92</td>
+        </tr>
+        <tr>
+            <td>#137</td>
+            <td><strong>Sam Darnold</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 18</td>
+            <td>113</td>
+            <td>208</td>
+            <td>95</td>
+            <td>139.89</td>
+            <td>14.07</td>
+        </tr>
+        <tr>
+            <td>#138</td>
+            <td><strong>Tyjae Spears</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 18</td>
+            <td>89</td>
+            <td>182</td>
+            <td>93</td>
+            <td>140.1</td>
+            <td>16.32</td>
+        </tr>
+        <tr>
+            <td>#139</td>
+            <td><strong>C.J. Stroud</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 18</td>
+            <td>108</td>
+            <td>236</td>
+            <td>128</td>
+            <td>143.96</td>
+            <td>17.22</td>
+        </tr>
+        <tr>
+            <td>#140</td>
+            <td><strong>Rashid Shaheed</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 18</td>
+            <td>116</td>
+            <td>205</td>
+            <td>89</td>
+            <td>146.91</td>
+            <td>17.25</td>
+        </tr>
+        <tr>
+            <td>#141</td>
+            <td><strong>Daniel Jones</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 18</td>
+            <td>119</td>
+            <td>255</td>
+            <td>136</td>
+            <td>147.12</td>
+            <td>23.54</td>
+        </tr>
+        <tr>
+            <td>#142</td>
+            <td><strong>Deebo Samuel Sr.</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 18</td>
+            <td>90</td>
+            <td>241</td>
+            <td>151</td>
+            <td>142.77</td>
+            <td>32.67</td>
+        </tr>
+        <tr>
+            <td>#143</td>
+            <td><strong>Keaton Mitchell</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 19</td>
+            <td>102</td>
+            <td>251</td>
+            <td>149</td>
+            <td>150.57</td>
+            <td>23.46</td>
+        </tr>
+        <tr>
+            <td>#144</td>
+            <td><strong>Dylan Sampson</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 19</td>
+            <td>89</td>
+            <td>228</td>
+            <td>139</td>
+            <td>150.6</td>
+            <td>21.26</td>
+        </tr>
+        <tr>
+            <td>#145</td>
+            <td><strong>Jonah Coleman</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 19</td>
+            <td>117</td>
+            <td>234</td>
+            <td>117</td>
+            <td>151.19</td>
+            <td>21.94</td>
+        </tr>
+        <tr>
+            <td>#146</td>
+            <td><strong>Josh Jacobs</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 18</td>
+            <td>39</td>
+            <td>359</td>
+            <td>320</td>
+            <td>141.31</td>
+            <td>61.96</td>
+        </tr>
+        <tr>
+            <td>#147</td>
+            <td><strong>Denzel Boston</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 19</td>
+            <td>107</td>
+            <td>303</td>
+            <td>196</td>
+            <td>153.27</td>
+            <td>30.75</td>
+        </tr>
+        <tr>
+            <td>#148</td>
+            <td><strong>Zach Charbonnet</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 19</td>
+            <td>118</td>
+            <td>292</td>
+            <td>174</td>
+            <td>156.16</td>
+            <td>28.6</td>
+        </tr>
+        <tr>
+            <td>#149</td>
+            <td><strong>Mike Washington Jr.</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 19</td>
+            <td>86</td>
+            <td>257</td>
+            <td>171</td>
+            <td>156.73</td>
+            <td>31.48</td>
+        </tr>
+        <tr>
+            <td>#150</td>
+            <td><strong>Cam Ward</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 19</td>
+            <td>119</td>
+            <td>255</td>
+            <td>136</td>
+            <td>156.95</td>
+            <td>23.61</td>
+        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="section-card">
+            <h2>Ranks 151–175 Visual Spread</h2>
+            <img class="chart-img" src="gantt_ranks_151_175.png" alt="Gantt Chart Ranks 151-175">
+            
+            <h3 style="margin-top: 1.5rem; color: var(--text-main);">Data Breakdown</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player Name</th>
+                            <th>Pos</th>
+                            <th>Tier</th>
+                            <th>Best Rank</th>
+                            <th>Worst Rank</th>
+                            <th>Spread</th>
+                            <th>Avg Rank</th>
+                            <th>Std Dev</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+        <tr>
+            <td>#151</td>
+            <td><strong>Dalton Schultz</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 20</td>
+            <td>111</td>
+            <td>226</td>
+            <td>115</td>
+            <td>160.47</td>
+            <td>24.11</td>
+        </tr>
+        <tr>
+            <td>#152</td>
+            <td><strong>Chig Okonkwo</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 20</td>
+            <td>112</td>
+            <td>209</td>
+            <td>97</td>
+            <td>160.62</td>
+            <td>22.66</td>
+        </tr>
+        <tr>
+            <td>#153</td>
+            <td><strong>Tre Tucker</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 20</td>
+            <td>116</td>
+            <td>247</td>
+            <td>131</td>
+            <td>160.74</td>
+            <td>26.81</td>
+        </tr>
+        <tr>
+            <td>#154</td>
+            <td><strong>Houston Texans</strong></td>
+            <td><span class="pos-badge pos-DST">DST</span></td>
+            <td>Tier 19</td>
+            <td>143</td>
+            <td>175</td>
+            <td>32</td>
+            <td>153.27</td>
+            <td>5.7</td>
+        </tr>
+        <tr>
+            <td>#155</td>
+            <td><strong>Brenton Strange</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 20</td>
+            <td>124</td>
+            <td>236</td>
+            <td>112</td>
+            <td>163.79</td>
+            <td>25.92</td>
+        </tr>
+        <tr>
+            <td>#156</td>
+            <td><strong>Hunter Henry</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 21</td>
+            <td>112</td>
+            <td>236</td>
+            <td>124</td>
+            <td>166.57</td>
+            <td>24.69</td>
+        </tr>
+        <tr>
+            <td>#157</td>
+            <td><strong>Adonai Mitchell</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 21</td>
+            <td>110</td>
+            <td>258</td>
+            <td>148</td>
+            <td>169.27</td>
+            <td>27.47</td>
+        </tr>
+        <tr>
+            <td>#158</td>
+            <td><strong>Tank Bigsby</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 21</td>
+            <td>133</td>
+            <td>257</td>
+            <td>124</td>
+            <td>169.88</td>
+            <td>26.54</td>
+        </tr>
+        <tr>
+            <td>#159</td>
+            <td><strong>Bryce Young</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 21</td>
+            <td>139</td>
+            <td>326</td>
+            <td>187</td>
+            <td>172.0</td>
+            <td>29.83</td>
+        </tr>
+        <tr>
+            <td>#160</td>
+            <td><strong>Alvin Kamara</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 21</td>
+            <td>127</td>
+            <td>317</td>
+            <td>190</td>
+            <td>172.04</td>
+            <td>37.63</td>
+        </tr>
+        <tr>
+            <td>#161</td>
+            <td><strong>Tyrone Tracy Jr.</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 21</td>
+            <td>117</td>
+            <td>311</td>
+            <td>194</td>
+            <td>171.46</td>
+            <td>39.86</td>
+        </tr>
+        <tr>
+            <td>#162</td>
+            <td><strong>Denver Broncos</strong></td>
+            <td><span class="pos-badge pos-DST">DST</span></td>
+            <td>Tier 20</td>
+            <td>149</td>
+            <td>209</td>
+            <td>60</td>
+            <td>164.18</td>
+            <td>7.29</td>
+        </tr>
+        <tr>
+            <td>#163</td>
+            <td><strong>Kayshon Boutte</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 21</td>
+            <td>116</td>
+            <td>264</td>
+            <td>148</td>
+            <td>172.56</td>
+            <td>27.49</td>
+        </tr>
+        <tr>
+            <td>#164</td>
+            <td><strong>Jerry Jeudy</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 21</td>
+            <td>115</td>
+            <td>272</td>
+            <td>157</td>
+            <td>170.86</td>
+            <td>28.32</td>
+        </tr>
+        <tr>
+            <td>#165</td>
+            <td><strong>Los Angeles Rams</strong></td>
+            <td><span class="pos-badge pos-DST">DST</span></td>
+            <td>Tier 20</td>
+            <td>144</td>
+            <td>186</td>
+            <td>42</td>
+            <td>166.08</td>
+            <td>7.39</td>
+        </tr>
+        <tr>
+            <td>#166</td>
+            <td><strong>Isiah Pacheco</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 21</td>
+            <td>130</td>
+            <td>281</td>
+            <td>151</td>
+            <td>173.97</td>
+            <td>34.83</td>
+        </tr>
+        <tr>
+            <td>#167</td>
+            <td><strong>Seattle Seahawks</strong></td>
+            <td><span class="pos-badge pos-DST">DST</span></td>
+            <td>Tier 21</td>
+            <td>148</td>
+            <td>194</td>
+            <td>46</td>
+            <td>167.02</td>
+            <td>6.34</td>
+        </tr>
+        <tr>
+            <td>#168</td>
+            <td><strong>Jalen McMillan</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 21</td>
+            <td>136</td>
+            <td>299</td>
+            <td>163</td>
+            <td>173.55</td>
+            <td>24.74</td>
+        </tr>
+        <tr>
+            <td>#169</td>
+            <td><strong>Braelon Allen</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 21</td>
+            <td>127</td>
+            <td>301</td>
+            <td>174</td>
+            <td>176.22</td>
+            <td>32.2</td>
+        </tr>
+        <tr>
+            <td>#170</td>
+            <td><strong>Jauan Jennings</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 21</td>
+            <td>109</td>
+            <td>285</td>
+            <td>176</td>
+            <td>173.88</td>
+            <td>32.55</td>
+        </tr>
+        <tr>
+            <td>#171</td>
+            <td><strong>Brian Robinson Jr.</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 22</td>
+            <td>134</td>
+            <td>266</td>
+            <td>132</td>
+            <td>179.53</td>
+            <td>23.37</td>
+        </tr>
+        <tr>
+            <td>#172</td>
+            <td><strong>Tre' Harris</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 22</td>
+            <td>115</td>
+            <td>272</td>
+            <td>157</td>
+            <td>181.65</td>
+            <td>30.55</td>
+        </tr>
+        <tr>
+            <td>#173</td>
+            <td><strong>Dontayvion Wicks</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 22</td>
+            <td>110</td>
+            <td>269</td>
+            <td>159</td>
+            <td>184.39</td>
+            <td>33.01</td>
+        </tr>
+        <tr>
+            <td>#174</td>
+            <td><strong>Philadelphia Eagles</strong></td>
+            <td><span class="pos-badge pos-DST">DST</span></td>
+            <td>Tier 21</td>
+            <td>156</td>
+            <td>235</td>
+            <td>79</td>
+            <td>175.35</td>
+            <td>9.37</td>
+        </tr>
+        <tr>
+            <td>#175</td>
+            <td><strong>Omar Cooper Jr.</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 22</td>
+            <td>123</td>
+            <td>315</td>
+            <td>192</td>
+            <td>185.66</td>
+            <td>38.52</td>
+        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="section-card">
+            <h2>Ranks 176–200 Visual Spread</h2>
+            <img class="chart-img" src="gantt_ranks_176_200.png" alt="Gantt Chart Ranks 176-200">
+            
+            <h3 style="margin-top: 1.5rem; color: var(--text-main);">Data Breakdown</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player Name</th>
+                            <th>Pos</th>
+                            <th>Tier</th>
+                            <th>Best Rank</th>
+                            <th>Worst Rank</th>
+                            <th>Spread</th>
+                            <th>Avg Rank</th>
+                            <th>Std Dev</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+        <tr>
+            <td>#176</td>
+            <td><strong>Ryan Flournoy</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 22</td>
+            <td>126</td>
+            <td>329</td>
+            <td>203</td>
+            <td>184.15</td>
+            <td>29.93</td>
+        </tr>
+        <tr>
+            <td>#177</td>
+            <td><strong>T.J. Hockenson</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 23</td>
+            <td>131</td>
+            <td>298</td>
+            <td>167</td>
+            <td>191.13</td>
+            <td>26.65</td>
+        </tr>
+        <tr>
+            <td>#178</td>
+            <td><strong>Emmett Johnson</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 22</td>
+            <td>132</td>
+            <td>352</td>
+            <td>220</td>
+            <td>189.21</td>
+            <td>42.23</td>
+        </tr>
+        <tr>
+            <td>#179</td>
+            <td><strong>Pat Bryant</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 22</td>
+            <td>133</td>
+            <td>293</td>
+            <td>160</td>
+            <td>188.41</td>
+            <td>27.99</td>
+        </tr>
+        <tr>
+            <td>#180</td>
+            <td><strong>Malik Washington</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 22</td>
+            <td>90</td>
+            <td>296</td>
+            <td>206</td>
+            <td>189.52</td>
+            <td>36.73</td>
+        </tr>
+        <tr>
+            <td>#181</td>
+            <td><strong>Brandon Aubrey</strong></td>
+            <td><span class="pos-badge pos-K">K</span></td>
+            <td>Tier 22</td>
+            <td>129</td>
+            <td>193</td>
+            <td>64</td>
+            <td>185.51</td>
+            <td>8.48</td>
+        </tr>
+        <tr>
+            <td>#182</td>
+            <td><strong>Pittsburgh Steelers</strong></td>
+            <td><span class="pos-badge pos-DST">DST</span></td>
+            <td>Tier 22</td>
+            <td>161</td>
+            <td>238</td>
+            <td>77</td>
+            <td>186.56</td>
+            <td>8.67</td>
+        </tr>
+        <tr>
+            <td>#183</td>
+            <td><strong>Jacoby Brissett</strong></td>
+            <td><span class="pos-badge pos-QB">QB</span></td>
+            <td>Tier 23</td>
+            <td>138</td>
+            <td>338</td>
+            <td>200</td>
+            <td>194.13</td>
+            <td>39.31</td>
+        </tr>
+        <tr>
+            <td>#184</td>
+            <td><strong>Ray Davis</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 23</td>
+            <td>135</td>
+            <td>263</td>
+            <td>128</td>
+            <td>194.15</td>
+            <td>33.43</td>
+        </tr>
+        <tr>
+            <td>#185</td>
+            <td><strong>New England Patriots</strong></td>
+            <td><span class="pos-badge pos-DST">DST</span></td>
+            <td>Tier 22</td>
+            <td>160</td>
+            <td>356</td>
+            <td>196</td>
+            <td>187.95</td>
+            <td>21.67</td>
+        </tr>
+        <tr>
+            <td>#186</td>
+            <td><strong>Jalen Nailor</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 23</td>
+            <td>123</td>
+            <td>302</td>
+            <td>179</td>
+            <td>193.34</td>
+            <td>32.88</td>
+        </tr>
+        <tr>
+            <td>#187</td>
+            <td><strong>Minnesota Vikings</strong></td>
+            <td><span class="pos-badge pos-DST">DST</span></td>
+            <td>Tier 22</td>
+            <td>162</td>
+            <td>251</td>
+            <td>89</td>
+            <td>186.66</td>
+            <td>13.27</td>
+        </tr>
+        <tr>
+            <td>#188</td>
+            <td><strong>Keenan Allen</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 23</td>
+            <td>94</td>
+            <td>293</td>
+            <td>199</td>
+            <td>192.08</td>
+            <td>56.25</td>
+        </tr>
+        <tr>
+            <td>#189</td>
+            <td><strong>Jacksonville Jaguars</strong></td>
+            <td><span class="pos-badge pos-DST">DST</span></td>
+            <td>Tier 22</td>
+            <td>151</td>
+            <td>280</td>
+            <td>129</td>
+            <td>189.9</td>
+            <td>17.06</td>
+        </tr>
+        <tr>
+            <td>#190</td>
+            <td><strong>Cameron Dicker</strong></td>
+            <td><span class="pos-badge pos-K">K</span></td>
+            <td>Tier 23</td>
+            <td>150</td>
+            <td>333</td>
+            <td>183</td>
+            <td>194.99</td>
+            <td>15.96</td>
+        </tr>
+        <tr>
+            <td>#191</td>
+            <td><strong>Ka'imi Fairbairn</strong></td>
+            <td><span class="pos-badge pos-K">K</span></td>
+            <td>Tier 23</td>
+            <td>134</td>
+            <td>211</td>
+            <td>77</td>
+            <td>192.28</td>
+            <td>7.49</td>
+        </tr>
+        <tr>
+            <td>#192</td>
+            <td><strong>Los Angeles Chargers</strong></td>
+            <td><span class="pos-badge pos-DST">DST</span></td>
+            <td>Tier 23</td>
+            <td>171</td>
+            <td>280</td>
+            <td>109</td>
+            <td>191.66</td>
+            <td>14.1</td>
+        </tr>
+        <tr>
+            <td>#193</td>
+            <td><strong>Terrance Ferguson</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 24</td>
+            <td>112</td>
+            <td>287</td>
+            <td>175</td>
+            <td>203.96</td>
+            <td>44.32</td>
+        </tr>
+        <tr>
+            <td>#194</td>
+            <td><strong>Baltimore Ravens</strong></td>
+            <td><span class="pos-badge pos-DST">DST</span></td>
+            <td>Tier 23</td>
+            <td>171</td>
+            <td>356</td>
+            <td>185</td>
+            <td>198.08</td>
+            <td>21.8</td>
+        </tr>
+        <tr>
+            <td>#195</td>
+            <td><strong>Kimani Vidal</strong></td>
+            <td><span class="pos-badge pos-RB">RB</span></td>
+            <td>Tier 24</td>
+            <td>157</td>
+            <td>294</td>
+            <td>137</td>
+            <td>204.67</td>
+            <td>35.27</td>
+        </tr>
+        <tr>
+            <td>#196</td>
+            <td><strong>Cam Little</strong></td>
+            <td><span class="pos-badge pos-K">K</span></td>
+            <td>Tier 23</td>
+            <td>168</td>
+            <td>253</td>
+            <td>85</td>
+            <td>199.05</td>
+            <td>8.82</td>
+        </tr>
+        <tr>
+            <td>#197</td>
+            <td><strong>Calvin Ridley</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 24</td>
+            <td>133</td>
+            <td>303</td>
+            <td>170</td>
+            <td>206.77</td>
+            <td>31.88</td>
+        </tr>
+        <tr>
+            <td>#198</td>
+            <td><strong>Jason Myers</strong></td>
+            <td><span class="pos-badge pos-K">K</span></td>
+            <td>Tier 24</td>
+            <td>171</td>
+            <td>253</td>
+            <td>82</td>
+            <td>200.85</td>
+            <td>8.48</td>
+        </tr>
+        <tr>
+            <td>#199</td>
+            <td><strong>Travis Hunter</strong></td>
+            <td><span class="pos-badge pos-WR">WR</span></td>
+            <td>Tier 23</td>
+            <td>133</td>
+            <td>347</td>
+            <td>214</td>
+            <td>196.67</td>
+            <td>41.15</td>
+        </tr>
+        <tr>
+            <td>#200</td>
+            <td><strong>AJ Barner</strong></td>
+            <td><span class="pos-badge pos-TE">TE</span></td>
+            <td>Tier 24</td>
+            <td>144</td>
+            <td>268</td>
+            <td>124</td>
+            <td>211.52</td>
+            <td>24.55</td>
+        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
