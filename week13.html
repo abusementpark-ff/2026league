@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>[LEAGUE NAME] Weekly Debrief — Week 13</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #14160f; }
+  .ffn-nav {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    gap: 4px;
+    padding: 16px 24px 0;
+  }
+  .ffn-nav a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    color: #a79f8d;
+    padding: 8px 14px;
+    border: 1px solid #3a3d33;
+    border-radius: 3px 3px 0 0;
+    border-bottom: none;
+  }
+  .ffn-nav a.active {
+    color: #14160f;
+    background: #e0a72e;
+    border-color: #e0a72e;
+  }
+  .ffn-week-select {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 12px 24px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .ffn-week-select label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #e0a72e;
+  }
+  .ffn-week-select select {
+    background: #1c1f1a;
+    color: #eee7d8;
+    border: 1px solid #3a3d33;
+    padding: 6px 12px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    outline: none;
+  }
+  .ffn-week-select select:focus {
+    border-color: #e0a72e;
+  }
+  .ffn-wrap {
+    --ink: #eee7d8;
+    --ink-dim: #a79f8d;
+    --panel: #1c1f1a;
+    --panel-2: #23271f;
+    --gold: #e0a72e;
+    --crimson: #b8342b;
+    --green: #4f7a4a;
+    --rule: #3a3d33;
+    max-width: 760px;
+    margin: 0 auto;
+    background: #14160f;
+    color: var(--ink);
+    font-family: 'Barlow', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    padding: 0 0 40px;
+  }
+  .ffn-wrap * { box-sizing: border-box; }
+  .ffn-band {
+    background: var(--gold);
+    color: #14160f;
+    text-align: center;
+    padding: 6px 0;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+  .ffn-header {
+    padding: 28px 24px 20px;
+    border-bottom: 4px solid var(--gold);
+  }
+  .ffn-header h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 1.1;
+    margin: 0 0 6px;
+    color: var(--ink);
+  }
+  .ffn-header p {
+    margin: 0;
+    color: var(--ink-dim);
+    font-style: italic;
+    font-size: 15px;
+  }
+  .ffn-section {
+    padding: 30px 24px 6px;
+  }
+  .ffn-section h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--gold);
+    margin: 0 0 4px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .ffn-section .sub {
+    color: var(--ink-dim);
+    font-style: italic;
+    font-size: 14px;
+    margin: 10px 0 20px;
+  }
+  table.ffn-standings {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  table.ffn-standings th {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 12px;
+    text-align: left;
+    color: var(--gold);
+    padding: 8px 10px;
+    border-bottom: 2px solid var(--gold);
+  }
+  table.ffn-standings td {
+    padding: 9px 10px;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink);
+  }
+  table.ffn-standings tr:nth-child(even) td { background: var(--panel-2); }
+  .ffn-matchup {
+    background: var(--panel);
+    border-left: 4px solid var(--gold);
+    border-radius: 3px;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+  }
+  .ffn-matchup .score {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .ffn-matchup .score .win { color: var(--gold); }
+  .ffn-matchup .score .lose { color: var(--ink-dim); }
+  .ffn-matchup p { margin: 8px 0 12px; }
+  .ffn-gif {
+    display: block;
+    background: #0e0f0a;
+    border: 1px dashed var(--rule);
+    color: var(--ink-dim);
+    font-size: 13px;
+    text-align: center;
+    padding: 26px 12px;
+    border-radius: 3px;
+    font-style: italic;
+  }
+  .ffn-awards {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .ffn-awards li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 15px;
+  }
+  .ffn-awards li:last-child { border-bottom: none; }
+  .ffn-awards .tag {
+    font-family: 'Oswald', sans-serif;
+    color: var(--gold);
+    font-weight: 700;
+    margin-right: 6px;
+  }
+  .ffn-quote {
+    background: var(--panel-2);
+    border-left: 4px solid var(--crimson);
+    padding: 16px 20px;
+    font-style: italic;
+    font-size: 15px;
+    margin: 10px 0 6px;
+  }
+  .ffn-quote cite {
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+  }
+  .ffn-footer {
+    text-align: center;
+    padding: 28px 24px 6px;
+    color: var(--ink-dim);
+    font-style: italic;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="ffn-nav">
+  <a href="index.html" class="active">Newsletter</a>
+  <a href="draft-report.html">Draft Report</a>
+  <a href="weekly-grades.html">Weekly Grades</a>
+</nav>
+
+<div class="ffn-week-select">
+  <label for="week-dropdown">Select Week:</label>
+  <select id="week-dropdown" onchange="if (this.value) window.location.href=this.value;">
+    <option value="">-- Choose Matchup --</option>
+    <option value="week1.html">Week 1</option>
+    <option value="week2.html">Week 2</option>
+    <option value="week3.html">Week 3</option>
+    <option value="week4.html">Week 4</option>
+    <option value="week5.html">Week 5</option>
+    <option value="week6.html">Week 6</option>
+    <option value="week7.html">Week 7</option>
+    <option value="week8.html">Week 8</option>
+    <option value="week9.html">Week 9</option>
+    <option value="week10.html">Week 10</option>
+    <option value="week11.html">Week 11</option>
+    <option value="week12.html">Week 12</option>
+    <option value="week13.html" selected>Week 13</option>
+    <option value="week14.html">Week 14</option>
+  </select>
+</div>
+
+<div class="ffn-wrap">
+  <div class="ffn-band">[League Name] · Week 13 Debrief</div>
+
+  <div class="ffn-header">
+    <h1>Weekly Debrief</h1>
+    <p>Published every Tuesday because Monday you're all still crying</p>
+  </div>
+
+  <div class="ffn-section">
+    <h2>The Standings</h2>
+    <p class="sub">aka the Hall of Shame</p>
+    <table class="ffn-standings">
+      <thead>
+        <tr><th>Rank</th><th>Team</th><th>Record</th><th>PF</th><th>Vibe</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>AB's 3rd Quarter Uber</td><td>[X-X]</td><td>[XXX.X]</td><td>🔥</td></tr>
+        <tr><td>2</td><td>Covfefe is for Closers</td><td>[X-X]</td><td>[XXX.X]</td><td>🔥</td></tr>
+        <tr><td>3</td><td>Kenz VishusLicks</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
+        <tr><td>4</td><td>Joydip's Scary Team</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
+        <tr><td>5</td><td>Catchy Football Name</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
+        <tr><td>6</td><td>Nabers ate my Zomb...</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
+        <tr><td>7</td><td>Donuts All Day 24/7</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
+        <tr><td>8</td><td>Herbert's Heros</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
+        <tr><td>9</td><td>Lucas's Loud Team</td><td>[X-X]</td><td>[XXX.X]</td><td>💀</td></tr>
+        <tr><td>10</td><td>Texas Determined Do...</td><td>[X-X]</td><td>[XXX.X]</td><td>💀</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ffn-section">
+    <h2>Last Week's Recap</h2>
+    <p class="sub">Here's what happened while you were pretending to work</p>
+
+    <div class="ffn-matchup">
+      <div class="score"><span class="win">AB's 3rd Quarter Uber [Score A]</span> — <span class="lose">[Score B] Covfefe is for Closers</span></div>
+      <p>[2-4 sentences roasting the loser, praising or mocking the winner's questionable start/sit decisions, calling out anyone who lost by a bench player's points.]</p>
+      <span class="ffn-gif">[GIF: replace this block with a Giphy/Tenor embed — search "devastated" or "blowout"]</span>
+    </div>
+
+    <div class="ffn-matchup">
+      <div class="score"><span class="win">Kenz VishusLicks [Score C]</span> — <span class="lose">[Score D] Joydip's Scary Team</span></div>
+      <p>[Recap]</p>
+      <span class="ffn-gif">[GIF: search "nail biter" / "sweating" for close games]</span>
+    </div>
+
+    <div class="ffn-matchup">
+      <div class="score"><span class="win">Catchy Football Name [Score E]</span> — <span class="lose">[Score F] Nabers ate my Zomb...</span></div>
+      <p>[Recap]</p>
+      <span class="ffn-gif">[GIF: search a reaction fitting this game's outcome]</span>
+    </div>
+
+    <div class="ffn-matchup">
+      <div class="score"><span class="win">Donuts All Day 24/7 [Score G]</span> — <span class="lose">[Score H] Herbert's Heros</span></div>
+      <p>[Recap]</p>
+      <span class="ffn-gif">[GIF: search a reaction fitting this game's outcome]</span>
+    </div>
+
+    <div class="ffn-matchup">
+      <div class="score"><span class="win">Lucas's Loud Team [Score I]</span> — <span class="lose">[Score J] Texas Determined Do...</span></div>
+      <p>[Recap]</p>
+      <span class="ffn-gif">[GIF: search a reaction fitting this game's outcome]</span>
+    </div>
+  </div>
+
+  <div class="ffn-section">
+    <h2>Weekly Awards</h2>
+    <ul class="ffn-awards">
+      <li><span class="tag">🚽 Toilet Bowl MVP:</span>[Manager who lost despite highest bench points]</li>
+      <li><span class="tag">🧠 Big Brain Move:</span>[Best waiver pickup or start/sit call]</li>
+      <li><span class="tag">🤡 Clown of the Week:</span>[Worst decision — started a bye week guy, etc.]</li>
+      <li><span class="tag">💰 Should've Bet On It:</span>[Biggest blowout]</li>
+      <li><span class="tag">😰 Heartbreak Hotel:</span>[Closest loss]</li>
+    </ul>
+  </div>
+
+  <div class="ffn-section">
+    <h2>This Week's Preview</h2>
+    <p class="sub">Predictions nobody asked for, delivered anyway</p>
+
+        <div class="ffn-matchup">
+      <div class="score">Donuts All Day 24/7 <span style="color:var(--ink-dim)">vs</span> Catchy Football Name</div>
+      <p><strong>Projected:</strong> [Donuts All Day 24/7 proj] – [Catchy Football Name proj]<br>[Preview]</p>
+      <span class="ffn-gif">[GIF: search a reaction fitting the storyline]</span>
+    </div>
+
+    <div class="ffn-matchup">
+      <div class="score">Kenz VishusLicks <span style="color:var(--ink-dim)">vs</span> AB's 3rd Quarter Uber</div>
+      <p><strong>Projected:</strong> [Kenz VishusLicks proj] – [AB's 3rd Quarter Uber proj]<br>[Preview]</p>
+      <span class="ffn-gif">[GIF: search a reaction fitting the storyline]</span>
+    </div>
+
+    <div class="ffn-matchup">
+      <div class="score">Lucas's Loud Team <span style="color:var(--ink-dim)">vs</span> Texas Determined Domination</div>
+      <p><strong>Projected:</strong> [Lucas's Loud Team proj] – [Texas Determined Domination proj]<br>[Preview]</p>
+      <span class="ffn-gif">[GIF: search a reaction fitting the storyline]</span>
+    </div>
+
+    <div class="ffn-matchup">
+      <div class="score">Covfefe is for Closers <span style="color:var(--ink-dim)">vs</span> Nabers ate my Zombies</div>
+      <p><strong>Projected:</strong> [Covfefe is for Closers proj] – [Nabers ate my Zombies proj]<br>[Preview]</p>
+      <span class="ffn-gif">[GIF: search a reaction fitting the storyline]</span>
+    </div>
+
+    <div class="ffn-matchup">
+      <div class="score">Joydip's Scary Team <span style="color:var(--ink-dim)">vs</span> Herbert's Heros</div>
+      <p><strong>Projected:</strong> [Joydip's Scary Team proj] – [Herbert's Heros proj]<br>[Preview]</p>
+      <span class="ffn-gif">[GIF: search a reaction fitting the storyline]</span>
+    </div>
+  
+
+  <div class="ffn-section">
+    <h2>League Business</h2>
+    <ul class="ffn-awards">
+      <li><span class="tag">Waiver wire watch:</span>[Names to grab]</li>
+      <li><span class="tag">Trade rumors:</span>[Any brewing deals]</li>
+      <li><span class="tag">Reminder:</span>[Lineup lock times, dues owed, punishment tracker]</li>
+    </ul>
+  </div>
+
+  <div class="ffn-section">
+    <h2>Quote of the Week</h2>
+    <div class="ffn-quote">
+      "[Something dumb someone said in the group chat, screenshotted and immortalized]"
+      <cite>— [Manager name], probably drunk</cite>
+    </div>
+  </div>
+
+  <div class="ffn-footer">See you next week. Set your lineups, you absolute clowns.</div>
+</div>
+
+</body>
+</html>
