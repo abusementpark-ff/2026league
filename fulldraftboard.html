@@ -11,9 +11,8 @@
     .custom-scroll::-webkit-scrollbar-track { background: #1e293b; }
     .custom-scroll::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
     
-    /* Grid cell styling */
     .draft-cell {
-      min-width: 110px;
+      min-width: 120px;
       height: 75px;
       transition: all 0.2s ease;
     }
@@ -31,13 +30,17 @@
       <h1 class="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">
         PPR Fantasy Draft Board
       </h1>
-      <p class="text-slate-400 text-sm mt-0.5">Serpentine Draft Grid · Real-time Roster Projections · CSV Export</p>
+      <p class="text-slate-400 text-sm mt-0.5">Serpentine Draft Grid · Real-time Roster Projections · Editable Teams · CSV Export</p>
     </div>
     
     <!-- Global Actions -->
     <div class="flex items-center gap-3">
+      <button onclick="openSettingsModal()" class="bg-slate-700 hover:bg-slate-600 text-slate-200 border border-slate-600 px-3.5 py-2 rounded-xl text-sm font-semibold transition flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 012.828 0L20 4.828a2 2 0 010 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+        Edit Team Names
+      </button>
       <button onclick="exportDraftCSV()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-sm font-bold transition shadow-lg flex items-center gap-2">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h55.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
         Export Draft (Spreadsheet)
       </button>
       <button onclick="undoPick()" class="bg-amber-600/20 text-amber-300 border border-amber-500/30 hover:bg-amber-600/30 px-3.5 py-2 rounded-xl text-sm font-semibold transition">
@@ -64,7 +67,7 @@
 
         <div>
           <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Selecting Team</label>
-          <div id="clockTeamName" class="text-lg font-bold text-white bg-slate-900 px-3 py-2 rounded-xl border border-slate-800">Team 1</div>
+          <div id="clockTeamName" class="text-lg font-bold text-white bg-slate-900 px-3 py-2 rounded-xl border border-slate-800 truncate">Team 1</div>
         </div>
 
         <!-- Position Dropdown Filter -->
@@ -86,6 +89,25 @@
           <select id="playerDropdown" onchange="updatePreviewCard()" class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none">
             <!-- Populated Dynamically -->
           </select>
+        </div>
+
+        <!-- Recommended Draft Pick Card -->
+        <div id="recommendedCard" class="bg-gradient-to-br from-indigo-950/80 to-slate-900 border border-indigo-500/30 rounded-xl p-3.5 space-y-1.5 shadow-md">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] font-bold tracking-wider uppercase text-indigo-400 flex items-center gap-1">
+              <svg class="w-3 h-3 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              Recommended Pick
+            </span>
+            <span id="recPos" class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">WR</span>
+          </div>
+          <div class="flex items-center justify-between gap-2">
+            <h4 id="recName" class="text-sm font-bold text-white truncate">Ja'Marr Chase</h4>
+            <span id="recPts" class="text-xs font-extrabold text-emerald-400 whitespace-nowrap">356.6 pts</span>
+          </div>
+          <div class="flex items-center justify-between text-[11px] text-slate-400">
+            <span id="recSub">Rank #1 | Tier 1</span>
+            <button onclick="selectRecommendedPlayer()" class="text-xs text-sky-400 hover:text-sky-300 font-semibold underline underline-offset-2">Select</button>
+          </div>
         </div>
 
         <!-- Selected Player Preview -->
@@ -117,16 +139,14 @@
     <div class="xl:col-span-9 bg-slate-800/40 border border-slate-800 rounded-2xl p-4 shadow-xl flex flex-col min-h-0 overflow-hidden">
       <div class="overflow-x-auto overflow-y-auto custom-scroll max-h-[720px] rounded-xl border border-slate-700/60">
         <table class="w-full text-left border-collapse bg-slate-900">
-          <!-- Team Header Row (Clickable) -->
           <thead>
             <tr id="tableHeader" class="bg-slate-800 sticky top-0 z-20 border-b border-slate-700">
               <th class="p-3 text-center text-xs font-bold text-slate-400 border-r border-slate-700/60 min-w-[65px]">Rnd</th>
-              <!-- Teams 1 to 10 dynamically injected -->
+              <!-- Teams dynamically injected -->
             </tr>
           </thead>
-          <!-- Round Rows (Y-Axis) -->
           <tbody id="boardBody" class="divide-y divide-slate-800 text-xs">
-            <!-- Dynamically injected round rows -->
+            <!-- Round rows dynamically injected -->
           </tbody>
         </table>
       </div>
@@ -139,7 +159,7 @@
     <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4">
       <div class="flex items-center justify-between border-b border-slate-800 pb-3">
         <div>
-          <h2 id="modalTeamTitle" class="text-xl font-bold text-white">Team 1 Roster</h2>
+          <h2 id="modalTeamTitle" class="text-xl font-bold text-white">Team Roster</h2>
           <p id="modalRosterCount" class="text-xs text-slate-400">0 Players Drafted</p>
         </div>
         <div class="text-right bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-xl">
@@ -148,7 +168,6 @@
         </div>
       </div>
 
-      <!-- Roster Player Items -->
       <div id="modalRosterList" class="space-y-2 max-h-72 overflow-y-auto custom-scroll pr-1">
         <!-- Injected dynamically -->
       </div>
@@ -161,13 +180,36 @@
     </div>
   </div>
 
+  <!-- Edit Team Names Modal -->
+  <div id="settingsModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h2 class="text-xl font-bold text-white">Customize Team Names</h2>
+        <button onclick="closeSettingsModal()" class="text-slate-400 hover:text-slate-200">✕</button>
+      </div>
+
+      <div id="teamInputsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-80 overflow-y-auto custom-scroll pr-1">
+        <!-- Team input fields generated dynamically -->
+      </div>
+
+      <div class="pt-2 flex justify-end gap-3">
+        <button onclick="closeSettingsModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm font-semibold px-4 py-2 rounded-xl transition">
+          Cancel
+        </button>
+        <button onclick="saveTeamNames()" class="bg-sky-600 hover:bg-sky-500 text-white text-sm font-bold px-4 py-2 rounded-xl transition shadow-lg">
+          Save Changes
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Configuration Constants
     const TOTAL_TEAMS = 10;
     const TOTAL_ROUNDS = 12;
     const TOTAL_PICKS = TOTAL_TEAMS * TOTAL_ROUNDS;
 
-    // Sample player dataset sorted by Consensus Rank with PPR Projections
+    // Master dataset sorted by Consensus Rank with PPR Projections
     const masterPlayers = [
       { id: 1, name: "Ja'Marr Chase", pos: "WR", tier: 1, rank: 1, pts: 356.6 },
       { id: 2, name: "Jahmyr Gibbs", pos: "RB", tier: 1, rank: 2, pts: 353.1 },
@@ -198,17 +240,16 @@
 
     // State Variables
     let availablePool = [];
-    let draftHistory = []; // Array of picks made
+    let draftHistory = [];
     let teams = {}; // teamId -> array of drafted players
+    let teamNames = {}; // teamId -> Custom Name String
 
-    // Helper: Compute Serpentine Draft Pick Order
+    // Helper: Serpentine Pick Order
     function getPickInfo(overallPickNumber) {
       if (overallPickNumber > TOTAL_PICKS) return null;
       
       const round = Math.ceil(overallPickNumber / TOTAL_TEAMS);
       const pickInRound = ((overallPickNumber - 1) % TOTAL_TEAMS) + 1;
-      
-      // Snake draft logic: odd rounds go left-to-right (1->10), even rounds right-to-left (10->1)
       const teamId = (round % 2 === 1) ? pickInRound : (TOTAL_TEAMS - pickInRound + 1);
       
       return { pickNumber: overallPickNumber, round, pickInRound, teamId };
@@ -220,9 +261,11 @@
       headerRow.innerHTML = `<th class="p-3 text-center text-xs font-bold text-slate-400 border-r border-slate-700/60 min-w-[60px]">Rnd</th>`;
       
       for (let t = 1; t <= TOTAL_TEAMS; t++) {
+        const name = teamNames[t] || `Team ${t}`;
         headerRow.innerHTML += `
-          <th onclick="openTeamModal(${t})" class="p-3 text-center text-xs font-bold text-sky-400 hover:text-sky-300 bg-slate-800/90 hover:bg-slate-700/80 cursor-pointer border-r border-slate-700/60 transition min-w-[125px]">
-            Team ${t} <span class="block text-[10px] font-normal text-slate-400">View Roster</span>
+          <th onclick="openTeamModal(${t})" class="p-3 text-center text-xs font-bold text-sky-400 hover:text-sky-300 bg-slate-800/90 hover:bg-slate-700/80 cursor-pointer border-r border-slate-700/60 transition min-w-[130px]">
+            <div class="truncate max-w-[120px] mx-auto">${name}</div>
+            <span class="block text-[10px] font-normal text-slate-400">View Roster</span>
           </th>
         `;
       }
@@ -240,7 +283,7 @@
       }
     }
 
-    // Render Dropdown Options
+    // Render Dropdown Options & Update Recommended Object
     function renderPlayerDropdown() {
       const posFilter = document.getElementById('posFilter').value;
       const dropdown = document.getElementById('playerDropdown');
@@ -257,11 +300,42 @@
         dropdown.innerHTML = `<option value="">No players available</option>`;
       }
 
+      updateRecommendedPick();
       updatePreviewCard();
       renderTopAvailable();
     }
 
-    // Update Player Detail Box
+    // Update Recommended Draft Pick Card (Highest Projected Points)
+    function updateRecommendedPick() {
+      if (availablePool.length === 0) {
+        document.getElementById('recName').textContent = "None Available";
+        document.getElementById('recPos').textContent = "-";
+        document.getElementById('recPts').textContent = "0.0 pts";
+        document.getElementById('recSub').textContent = "-";
+        return;
+      }
+
+      // Find player with highest projected points in current pool
+      const topPick = availablePool.reduce((max, p) => p.pts > max.pts ? p : max, availablePool[0]);
+
+      document.getElementById('recName').textContent = topPick.name;
+      document.getElementById('recPos').textContent = topPick.pos;
+      document.getElementById('recPts').textContent = `${topPick.pts.toFixed(1)} pts`;
+      document.getElementById('recSub').textContent = `Rank #${topPick.rank} | Tier ${topPick.tier}`;
+      document.getElementById('recommendedCard').setAttribute('data-rec-id', topPick.id);
+    }
+
+    function selectRecommendedPlayer() {
+      const recId = document.getElementById('recommendedCard').getAttribute('data-rec-id');
+      if (recId) {
+        document.getElementById('posFilter').value = "ALL";
+        renderPlayerDropdown();
+        document.getElementById('playerDropdown').value = recId;
+        updatePreviewCard();
+      }
+    }
+
+    // Update Detail Box
     function updatePreviewCard() {
       const selectedId = parseInt(document.getElementById('playerDropdown').value);
       const player = availablePool.find(p => p.id === selectedId);
@@ -280,7 +354,7 @@
       document.getElementById('prevPts').textContent = `${player.pts.toFixed(1)} PPR Pts`;
     }
 
-    // Perform Draft Pick in Order
+    // Execute Draft Pick
     function draftNextPick() {
       const currentPickNum = draftHistory.length + 1;
       const pickInfo = getPickInfo(currentPickNum);
@@ -319,7 +393,10 @@
       availablePool = [...masterPlayers];
       draftHistory = [];
       teams = {};
-      for (let t = 1; t <= TOTAL_TEAMS; t++) teams[t] = [];
+      for (let t = 1; t <= TOTAL_TEAMS; t++) {
+        teams[t] = [];
+        if (!teamNames[t]) teamNames[t] = `Team ${t}`;
+      }
       buildGridBoard();
       updateBoardUI();
     }
@@ -329,7 +406,7 @@
       // Clear cells
       document.querySelectorAll('.draft-cell').forEach(cell => {
         cell.innerHTML = '';
-        cell.classList.remove('current-pick-cell', 'bg-slate-900');
+        cell.classList.remove('current-pick-cell');
       });
 
       // Render made picks
@@ -360,13 +437,13 @@
         }
       });
 
-      // Highlight current pick on the clock
+      // Highlight current pick on clock
       const nextPickNum = draftHistory.length + 1;
       const nextPick = getPickInfo(nextPickNum);
 
       if (nextPick) {
         document.getElementById('pickBanner').textContent = `Round ${nextPick.round}, Pick ${nextPick.pickInRound} (#${nextPick.pickNumber})`;
-        document.getElementById('clockTeamName').textContent = `Team ${nextPick.teamId}`;
+        document.getElementById('clockTeamName').textContent = teamNames[nextPick.teamId] || `Team ${nextPick.teamId}`;
         
         const currentCell = document.getElementById(`cell-${nextPick.round}-${nextPick.teamId}`);
         if (currentCell) {
@@ -380,7 +457,6 @@
       renderPlayerDropdown();
     }
 
-    // Top Available List Render
     function renderTopAvailable() {
       const list = document.getElementById('topAvailableList');
       const top5 = availablePool.slice(0, 5);
@@ -392,16 +468,17 @@
 
       list.innerHTML = top5.map(p => `
         <div class="flex items-center justify-between bg-slate-900/50 p-2 rounded-lg border border-slate-800/80 text-xs">
-          <span class="text-slate-300 font-medium">#${p.rank} ${p.name} <span class="text-slate-500">(${p.pos})</span></span>
-          <span class="text-emerald-400 font-bold">${p.pts.toFixed(1)} pts</span>
+          <span class="text-slate-300 font-medium truncate">#${p.rank} ${p.name} <span class="text-slate-500">(${p.pos})</span></span>
+          <span class="text-emerald-400 font-bold ml-2">${p.pts.toFixed(1)} pts</span>
         </div>
       `).join('');
     }
 
-    // Team Modal Overlay View
+    // Modal Operations
     function openTeamModal(teamId) {
       const roster = teams[teamId] || [];
-      document.getElementById('modalTeamTitle').textContent = `Team ${teamId} Roster`;
+      const tName = teamNames[teamId] || `Team ${teamId}`;
+      document.getElementById('modalTeamTitle').textContent = `${tName} Roster`;
       document.getElementById('modalRosterCount').textContent = `${roster.length} Players Drafted`;
 
       const totalPts = roster.reduce((sum, p) => sum + p.pts, 0);
@@ -410,7 +487,7 @@
       const container = document.getElementById('modalRosterList');
 
       if (roster.length === 0) {
-        container.innerHTML = `<p class="text-center py-8 text-slate-500 text-sm italic">No picks made yet for Team ${teamId}.</p>`;
+        container.innerHTML = `<p class="text-center py-8 text-slate-500 text-sm italic">No picks made yet for ${tName}.</p>`;
       } else {
         container.innerHTML = roster.map(p => `
           <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex items-center justify-between text-xs">
@@ -433,6 +510,36 @@
       document.getElementById('teamModal').classList.add('hidden');
     }
 
+    // Team Customization Modal
+    function openSettingsModal() {
+      const container = document.getElementById('teamInputsContainer');
+      container.innerHTML = '';
+      for (let t = 1; t <= TOTAL_TEAMS; t++) {
+        const val = teamNames[t] || `Team ${t}`;
+        container.innerHTML += `
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-400 mb-1">Team ${t}</label>
+            <input type="text" id="inputTeamName-${t}" value="${val}" class="w-full bg-slate-950 border border-slate-700 text-slate-200 rounded-lg px-3 py-1.5 text-xs focus:ring-1 focus:ring-sky-500 focus:outline-none" />
+          </div>
+        `;
+      }
+      document.getElementById('settingsModal').classList.remove('hidden');
+    }
+
+    function closeSettingsModal() {
+      document.getElementById('settingsModal').classList.add('hidden');
+    }
+
+    function saveTeamNames() {
+      for (let t = 1; t <= TOTAL_TEAMS; t++) {
+        const inputVal = document.getElementById(`inputTeamName-${t}`).value.trim();
+        teamNames[t] = inputVal !== '' ? inputVal : `Team ${t}`;
+      }
+      buildGridBoard();
+      updateBoardUI();
+      closeSettingsModal();
+    }
+
     // Export Draft Results to CSV
     function exportDraftCSV() {
       if (draftHistory.length === 0) {
@@ -443,11 +550,12 @@
       let csvContent = "data:text/csv;charset=utf-8,Pick Number,Round,Pick In Round,Team Name,Player Name,Position,Tier,Overall Rank,Projected PPR Points\n";
 
       draftHistory.forEach(p => {
+        const tName = teamNames[p.teamId] || `Team ${p.teamId}`;
         const row = [
           p.pickNumber,
           p.round,
           p.pickInRound,
-          `"Team ${p.teamId}"`,
+          `"${tName}"`,
           `"${p.player.name}"`,
           p.player.pos,
           p.player.tier,
@@ -466,7 +574,7 @@
       document.body.removeChild(link);
     }
 
-    // Initial Start Call
+    // Initial Launch
     resetBoard();
   </script>
 </body>
