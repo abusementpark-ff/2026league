@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>[LEAGUE NAME] Draft Report Card — [YEAR]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #14160f; }
+  .ffn-nav {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    gap: 4px;
+    padding: 16px 24px 0;
+  }
+  .ffn-nav a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    color: #a79f8d;
+    padding: 8px 14px;
+    border: 1px solid #3a3d33;
+    border-radius: 3px 3px 0 0;
+    border-bottom: none;
+  }
+  .ffn-nav a.active {
+    color: #14160f;
+    background: #e0a72e;
+    border-color: #e0a72e;
+  }
+  .ffn-wrap {
+    --ink: #eee7d8;
+    --ink-dim: #a79f8d;
+    --panel: #1c1f1a;
+    --panel-2: #23271f;
+    --gold: #e0a72e;
+    --crimson: #b8342b;
+    --green: #4f7a4a;
+    --rule: #3a3d33;
+    max-width: 760px;
+    margin: 0 auto;
+    background: #14160f;
+    color: var(--ink);
+    font-family: 'Barlow', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    padding: 0 0 40px;
+  }
+  .ffn-wrap * { box-sizing: border-box; }
+  .ffn-band {
+    background: var(--gold);
+    color: #14160f;
+    text-align: center;
+    padding: 6px 0;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+  .ffn-header {
+    padding: 28px 24px 20px;
+    border-bottom: 4px solid var(--gold);
+  }
+  .ffn-header h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 1.1;
+    margin: 0 0 6px;
+    color: var(--ink);
+  }
+  .ffn-header p {
+    margin: 0;
+    color: var(--ink-dim);
+    font-style: italic;
+    font-size: 15px;
+  }
+  .ffn-section { padding: 30px 24px 6px; }
+  .ffn-section h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--gold);
+    margin: 0 0 4px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .ffn-section .sub {
+    color: var(--ink-dim);
+    font-style: italic;
+    font-size: 14px;
+    margin: 10px 0 20px;
+  }
+  table.ffn-standings {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  table.ffn-standings th {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 12px;
+    text-align: left;
+    color: var(--gold);
+    padding: 8px 10px;
+    border-bottom: 2px solid var(--gold);
+  }
+  table.ffn-standings td {
+    padding: 9px 10px;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink);
+  }
+  table.ffn-standings tr:nth-child(even) td { background: var(--panel-2); }
+  .grade-pill {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background: var(--green);
+    color: #0e0f0a;
+  }
+  .ffn-highlight {
+    background: var(--panel);
+    border-left: 4px solid var(--gold);
+    border-radius: 3px;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+  }
+  .ffn-highlight.shame { border-left-color: var(--crimson); }
+  .ffn-highlight .title-line {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+    margin-bottom: 6px;
+  }
+  .ffn-highlight .meta {
+    color: var(--ink-dim);
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .ffn-highlight p { margin: 8px 0 12px; }
+  .ffn-gif {
+    display: block;
+    background: #0e0f0a;
+    border: 1px dashed var(--rule);
+    color: var(--ink-dim);
+    font-size: 13px;
+    text-align: center;
+    padding: 26px 12px;
+    border-radius: 3px;
+    font-style: italic;
+  }
+  .ffn-team-card {
+    background: var(--panel-2);
+    border-radius: 3px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+  }
+  .ffn-team-card h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 17px;
+    margin: 0 0 4px;
+    color: var(--ink);
+  }
+  .ffn-team-card .grade-line {
+    color: var(--gold);
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+  .ffn-team-card dl {
+    margin: 0 0 10px;
+    font-size: 14px;
+  }
+  .ffn-team-card dt {
+    color: var(--ink-dim);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-top: 8px;
+  }
+  .ffn-team-card dd { margin: 2px 0 0; }
+  .ffn-awards { list-style: none; margin: 0; padding: 0; }
+  .ffn-awards li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 15px;
+  }
+  .ffn-awards li:last-child { border-bottom: none; }
+  .ffn-awards .tag {
+    font-family: 'Oswald', sans-serif;
+    color: var(--gold);
+    font-weight: 700;
+    margin-right: 6px;
+  }
+  .ffn-quote {
+    background: var(--panel-2);
+    border-left: 4px solid var(--crimson);
+    padding: 16px 20px;
+    font-style: italic;
+    font-size: 15px;
+    margin: 10px 0 6px;
+  }
+  .ffn-quote cite {
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+  }
+  .ffn-footer {
+    text-align: center;
+    padding: 28px 24px 6px;
+    color: var(--ink-dim);
+    font-style: italic;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="ffn-nav">
+  <a href="index.html">Newsletter</a>
+  <a href="draft-report.html" class="active">Draft Report</a>
+  <a href="weekly-grades.html">Weekly Grades</a>
+</nav>
+
+<div class="ffn-wrap">
+  <div class="ffn-band">[League Name] · Draft Report Card — [Year]</div>
+
+  <div class="ffn-header">
+    <h1>Draft Report Card</h1>
+    <p>We watched. We judged. Some of you should be ashamed.</p>
+  </div>
+
+  <div class="ffn-section">
+    <h2>The Grades</h2>
+    <p class="sub">Sorted by projected points — or by grade, if you want to bury the lede on someone</p>
+    <table class="ffn-standings">
+      <thead>
+        <tr><th>Team</th><th>Manager</th><th>Proj. Pts</th><th>Grade</th><th>Verdict</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>AB's 3rd Quarter Uber</td><td>Ryan Guest</td><td>[XXX.X]</td><td><span class="grade-pill">[A+]</span></td><td>[one-line roast/praise]</td></tr>
+        <tr><td>Covfefe is for Closers</td><td>David Pannell</td><td>[XXX.X]</td><td><span class="grade-pill">[A]</span></td><td>[one-liner]</td></tr>
+        <tr><td>Kenz VishusLicks</td><td>Ken Glover</td><td>[XXX.X]</td><td><span class="grade-pill">[A-]</span></td><td>[one-liner]</td></tr>
+        <tr><td>Joydip's Scary Team</td><td>Joydip Joy</td><td>[XXX.X]</td><td><span class="grade-pill">[B+]</span></td><td>[one-liner]</td></tr>
+        <tr><td>Catchy Football Name</td><td>Ryan McCarty</td><td>[XXX.X]</td><td><span class="grade-pill">[B]</span></td><td>[one-liner]</td></tr>
+        <tr><td>Nabers ate my Zomb...</td><td>Jonathan Jaramillo</td><td>[XXX.X]</td><td><span class="grade-pill">[B-]</span></td><td>[one-liner]</td></tr>
+        <tr><td>Donuts All Day 24/7</td><td>Jonathan Albarado</td><td>[XXX.X]</td><td><span class="grade-pill">[C+]</span></td><td>[one-liner]</td></tr>
+        <tr><td>Herbert's Heros</td><td>Kevin Guest</td><td>[XXX.X]</td><td><span class="grade-pill">[C]</span></td><td>[one-liner]</td></tr>
+        <tr><td>Lucas's Loud Team</td><td>Lucas McMahon</td><td>[XXX.X]</td><td><span class="grade-pill">[C-]</span></td><td>[one-liner]</td></tr>
+        <tr><td>Texas Determined Do...</td><td>Kolby Gilseth</td><td>[XXX.X]</td><td><span class="grade-pill">[D]</span></td><td>[one-line roast]</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ffn-section">
+    <h2>Best Draft</h2>
+    <div class="ffn-highlight">
+      <div class="title-line">[Team Name]</div>
+      <div class="meta">Projected: [XXX.X] pts · Grade: [A+/A]</div>
+      <p>[3-5 sentences on why this draft worked — value picks, positional balance, a guy who fell to them in a spot they shouldn't have. Give real credit here, crude tone aside.]</p>
+      <span class="ffn-gif">[GIF: search "flawless victory" / "mic drop" / "genius"]</span>
+    </div>
+  </div>
+
+  <div class="ffn-section">
+    <h2>Worst Draft</h2>
+    <div class="ffn-highlight shame">
+      <div class="title-line">[Team Name]</div>
+      <div class="meta">Projected: [XXX.X] pts · Grade: [D/F]</div>
+      <p>[3-5 sentences on what went wrong — reached picks, ignored RB early, drafted a kicker in round 9, etc. This is where the crude tone earns its keep.]</p>
+      <span class="ffn-gif">[GIF: search "dumpster fire" / "clown car" / "facepalm"]</span>
+    </div>
+  </div>
+
+  <div class="ffn-section">
+    <h2>Team-by-Team Breakdown</h2>
+
+    <div class="ffn-team-card">
+      <h3>AB's 3rd Quarter Uber</h3>
+      <div class="grade-line">Grade: [X] · [XXX.X] projected pts · Manager: Ryan Guest</div>
+      <dl>
+        <dt>Best Pick</dt><dd>[Player, round] — [why]</dd>
+        <dt>Worst Pick</dt><dd>[Player, round] — [why]</dd>
+        <dt>Sleeper Bet</dt><dd>[Player they're banking on]</dd>
+      </dl>
+      <p>[2-3 sentence roast, as crude as you want.]</p>
+      <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
+    </div>
+
+    <div class="ffn-team-card">
+      <h3>Covfefe is for Closers</h3>
+      <div class="grade-line">Grade: [X] · [XXX.X] projected pts · Manager: David Pannell</div>
+      <dl>
+        <dt>Best Pick</dt><dd>[Player, round] — [why]</dd>
+        <dt>Worst Pick</dt><dd>[Player, round] — [why]</dd>
+        <dt>Sleeper Bet</dt><dd>[Player they're banking on]</dd>
+      </dl>
+      <p>[2-3 sentence roast, as crude as you want.]</p>
+      <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
+    </div>
+
+    <div class="ffn-team-card">
+      <h3>Kenz VishusLicks</h3>
+      <div class="grade-line">Grade: [X] · [XXX.X] projected pts · Manager: Ken Glover</div>
+      <dl>
+        <dt>Best Pick</dt><dd>[Player, round] — [why]</dd>
+        <dt>Worst Pick</dt><dd>[Player, round] — [why]</dd>
+        <dt>Sleeper Bet</dt><dd>[Player they're banking on]</dd>
+      </dl>
+      <p>[2-3 sentence roast, as crude as you want.]</p>
+      <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
+    </div>
+
+    <div class="ffn-team-card">
+      <h3>Joydip's Scary Team</h3>
+      <div class="grade-line">Grade: [X] · [XXX.X] projected pts · Manager: Joydip Joy</div>
+      <dl>
+        <dt>Best Pick</dt><dd>[Player, round] — [why]</dd>
+        <dt>Worst Pick</dt><dd>[Player, round] — [why]</dd>
+        <dt>Sleeper Bet</dt><dd>[Player they're banking on]</dd>
+      </dl>
+      <p>[2-3 sentence roast, as crude as you want.]</p>
+      <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
+    </div>
+
+    <div class="ffn-team-card">
+      <h3>Catchy Football Name</h3>
+      <div class="grade-line">Grade: [X] · [XXX.X] projected pts · Manager: Ryan McCarty</div>
+      <dl>
+        <dt>Best Pick</dt><dd>[Player, round] — [why]</dd>
+        <dt>Worst Pick</dt><dd>[Player, round] — [why]</dd>
+        <dt>Sleeper Bet</dt><dd>[Player they're banking on]</dd>
+      </dl>
+      <p>[2-3 sentence roast, as crude as you want.]</p>
+      <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
+    </div>
+
+    <div class="ffn-team-card">
+      <h3>Nabers ate my Zomb...</h3>
+      <div class="grade-line">Grade: [X] · [XXX.X] projected pts · Manager: Jonathan Jaramillo</div>
+      <dl>
+        <dt>Best Pick</dt><dd>[Player, round] — [why]</dd>
+        <dt>Worst Pick</dt><dd>[Player, round] — [why]</dd>
+        <dt>Sleeper Bet</dt><dd>[Player they're banking on]</dd>
+      </dl>
+      <p>[2-3 sentence roast, as crude as you want.]</p>
+      <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
+    </div>
+
+    <div class="ffn-team-card">
+      <h3>Donuts All Day 24/7</h3>
+      <div class="grade-line">Grade: [X] · [XXX.X] projected pts · Manager: Jonathan Albarado</div>
+      <dl>
+        <dt>Best Pick</dt><dd>[Player, round] — [why]</dd>
+        <dt>Worst Pick</dt><dd>[Player, round] — [why]</dd>
+        <dt>Sleeper Bet</dt><dd>[Player they're banking on]</dd>
+      </dl>
+      <p>[2-3 sentence roast, as crude as you want.]</p>
+      <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
+    </div>
+
+    <div class="ffn-team-card">
+      <h3>Herbert's Heros</h3>
+      <div class="grade-line">Grade: [X] · [XXX.X] projected pts · Manager: Kevin Guest</div>
+      <dl>
+        <dt>Best Pick</dt><dd>[Player, round] — [why]</dd>
+        <dt>Worst Pick</dt><dd>[Player, round] — [why]</dd>
+        <dt>Sleeper Bet</dt><dd>[Player they're banking on]</dd>
+      </dl>
+      <p>[2-3 sentence roast, as crude as you want.]</p>
+      <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
+    </div>
+
+    <div class="ffn-team-card">
+      <h3>Lucas's Loud Team</h3>
+      <div class="grade-line">Grade: [X] · [XXX.X] projected pts · Manager: Lucas McMahon</div>
+      <dl>
+        <dt>Best Pick</dt><dd>[Player, round] — [why]</dd>
+        <dt>Worst Pick</dt><dd>[Player, round] — [why]</dd>
+        <dt>Sleeper Bet</dt><dd>[Player they're banking on]</dd>
+      </dl>
+      <p>[2-3 sentence roast, as crude as you want.]</p>
+      <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
+    </div>
+
+    <div class="ffn-team-card">
+      <h3>Texas Determined Do...</h3>
+      <div class="grade-line">Grade: [X] · [XXX.X] projected pts · Manager: Kolby Gilseth</div>
+      <dl>
+        <dt>Best Pick</dt><dd>[Player, round] — [why]</dd>
+        <dt>Worst Pick</dt><dd>[Player, round] — [why]</dd>
+        <dt>Sleeper Bet</dt><dd>[Player they're banking on]</dd>
+      </dl>
+      <p>[2-3 sentence roast, as crude as you want.]</p>
+      <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
+    </div>
+  </div>
+
+  <div class="ffn-section">
+    <h2>Superlatives</h2>
+    <ul class="ffn-awards">
+      <li><span class="tag">📈 Best Value:</span>[Player] to [Team] in round [X]</li>
+      <li><span class="tag">🚩 Biggest Reach:</span>[Player] to [Team] in round [X]</li>
+      <li><span class="tag">🎯 Most Predictable Pick:</span>[Team] — saw it coming from a mile away</li>
+      <li><span class="tag">🎲 Biggest Gamble:</span>[Team] on [Player/strategy]</li>
+      <li><span class="tag">🧊 Coldest Draft Room Read:</span>[Team] — [what they misjudged]</li>
+      <li><span class="tag">⏰ Slowest Picker:</span>[Manager] — timer abuse award</li>
+    </ul>
+  </div>
+
+  <div class="ffn-section">
+    <h2>League Business</h2>
+    <ul class="ffn-awards">
+      <li><span class="tag">Waiver priority set by:</span>[draft order / reverse standings / etc.]</li>
+      <li><span class="tag">Trade block forming:</span>[any deals being floated]</li>
+      <li><span class="tag">Next up:</span>Week 1 lineups lock [date] — get your act together</li>
+    </ul>
+  </div>
+
+  <div class="ffn-section">
+    <h2>Quote of the Draft</h2>
+    <div class="ffn-quote">
+      "[Something dumb someone said on the draft call, immortalized forever]"
+      <cite>— [Manager name], regretting it already</cite>
+    </div>
+  </div>
+
+  <div class="ffn-footer">Grades are final. Crying is allowed but won't change them.</div>
+</div>
+
+</body>
+</html>
