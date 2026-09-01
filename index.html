@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>[LEAGUE NAME] Weekly Debrief — Week [X]</title>
+<title>Abusement Park Weekly Debrief — Week [X]</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -29,6 +29,35 @@
   .ffn-nav a.active {
     color: #14160f;
     background: #e0a72e;
+    border-color: #e0a72e;
+  }
+  .ffn-week-select {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 12px 24px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .ffn-week-select label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #e0a72e;
+  }
+  .ffn-week-select select {
+    background: #1c1f1a;
+    color: #eee7d8;
+    border: 1px solid #3a3d33;
+    padding: 6px 12px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    outline: none;
+  }
+  .ffn-week-select select:focus {
     border-color: #e0a72e;
   }
   .ffn-wrap {
@@ -198,8 +227,29 @@
   <a href="weekly-grades.html">Weekly Grades</a>
 </nav>
 
+<div class="ffn-week-select">
+  <label for="week-dropdown">Select Week:</label>
+  <select id="week-dropdown" onchange="if (this.value) window.location.href=this.value;">
+    <option value="">-- Choose Matchup --</option>
+    <option value="week1.html">Week 1</option>
+    <option value="week2.html">Week 2</option>
+    <option value="week3.html">Week 3</option>
+    <option value="week4.html">Week 4</option>
+    <option value="week5.html">Week 5</option>
+    <option value="week6.html">Week 6</option>
+    <option value="week7.html">Week 7</option>
+    <option value="week8.html">Week 8</option>
+    <option value="week9.html">Week 9</option>
+    <option value="week10.html">Week 10</option>
+    <option value="week11.html">Week 11</option>
+    <option value="week12.html">Week 12</option>
+    <option value="week13.html">Week 13</option>
+    <option value="week14.html">Week 14</option>
+  </select>
+</div>
+
 <div class="ffn-wrap">
-  <div class="ffn-band">[League Name] · Week [X] Debrief</div>
+  <div class="ffn-band">Abusement Park · Week [X] Debrief</div>
 
   <div class="ffn-header">
     <h1>Weekly Debrief</h1>
