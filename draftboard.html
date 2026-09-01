@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Fantasy Draft Assistant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #0f172a; color: #f8fafc; font-family: ui-sans-serif, system-ui, sans-serif; }
+    .custom-scroll::-webkit-scrollbar { width: 6px; }
+    .custom-scroll::-webkit-scrollbar-track { background: #1e293b; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col p-4 md:p-8">
+
+  <!-- Header Section -->
+  <header class="max-w-7xl w-full mx-auto mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+    <div>
+      <h1 class="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">
+        PPR Fantasy Draft Assistant
+      </h1>
+      <p class="text-slate-400 text-sm mt-1">Track available players, manage your roster, and project team total points in real-time.</p>
+    </div>
+    <div class="flex items-center gap-3">
+      <button onclick="undoAction()" class="bg-amber-600/20 text-amber-300 border border-amber-500/30 hover:bg-amber-600/30 px-4 py-2 rounded-xl text-sm font-semibold transition">
+        Undo Last
+      </button>
+      <button onclick="resetDraft()" class="bg-rose-600/20 text-rose-300 border border-rose-500/30 hover:bg-rose-600/30 px-4 py-2 rounded-xl text-sm font-semibold transition">
+        Reset Draft
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Grid Layout -->
+  <div class="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 flex-1">
+    
+    <!-- Left Panel: Draft Control Center -->
+    <div class="lg:col-span-7 space-y-6">
+      
+      <!-- Filter & Selection Card -->
+      <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-6 shadow-xl space-y-5">
+        <h2 class="text-lg font-bold text-slate-200">Select Player</h2>
+        
+        <!-- Filter Controls -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Filter Position</label>
+            <select id="posFilter" onchange="renderPlayerDropdown()" class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-xl px-3 py-2.5 text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none">
+              <option value="ALL">All Positions</option>
+              <option value="WR">Wide Receivers (WR)</option>
+              <option value="RB">Running Backs (RB)</option>
+              <option value="QB">Quarterbacks (QB)</option>
+              <option value="TE">Tight Ends (TE)</option>
+              <option value="DST">Defenses (DST)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Available Players</label>
+            <select id="playerDropdown" onchange="updatePlayerPreview()" class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-xl px-3 py-2.5 text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none">
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+        </div>
+
+        <!-- Selected Player Preview Detail Box -->
+        <div id="previewCard" class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <span id="previewPos" class="text-xs font-bold px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">WR</span>
+            <h3 id="previewName" class="text-xl font-bold text-white mt-1">Ja'Marr Chase</h3>
+            <p id="previewSub" class="text-xs text-slate-400 mt-0.5">Overall Rank: #1 | Tier 1</p>
+          </div>
+          <div class="text-right">
+            <span class="text-xs text-slate-400 block">Projected PPR Points</span>
+            <span id="previewPts" class="text-2xl font-extrabold text-emerald-400">356.6</span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="grid grid-cols-2 gap-4 pt-2">
+          <button onclick="draftSelectedPlayer()" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold py-3 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
+            Draft To My Team
+          </button>
+          <button onclick="markAlreadyDrafted()" class="w-full bg-slate-700 hover:bg-slate-600 text-slate-200 font-bold py-3 rounded-xl transition flex items-center justify-center gap-2">
+            Already Drafted
+          </button>
+        </div>
+      </div>
+
+      <!-- Undrafted Top Available Quick View -->
+      <div class="bg-slate-800/40 border border-slate-800 rounded-2xl p-6">
+        <h3 class="text-md font-bold text-slate-300 mb-3">Top Best Available</h3>
+        <div id="topAvailableList" class="space-y-2 max-h-60 overflow-y-auto custom-scroll pr-1">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel: Drafted Team Frame -->
+    <div class="lg:col-span-5">
+      <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-6 shadow-xl h-full flex flex-col justify-between">
+        <div>
+          <!-- Team Header & Projected Points Summary -->
+          <div class="flex items-center justify-between border-b border-slate-700/60 pb-4 mb-4">
+            <div>
+              <h2 class="text-lg font-bold text-white">My Roster</h2>
+              <span id="rosterCount" class="text-xs text-slate-400">0 Players Selected</span>
+            </div>
+            <div class="text-right bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-xl">
+              <span class="text-xs text-slate-400 block">Total Projected Points</span>
+              <span id="totalPts" class="text-xl font-extrabold text-emerald-400">0.0</span>
+            </div>
+          </div>
+
+          <!-- Drafted Players List -->
+          <div id="rosterList" class="space-y-2.5 max-h-[500px] overflow-y-auto custom-scroll pr-1">
+            <div class="text-center py-12 text-slate-500 text-sm italic">
+              No players drafted yet. Select players on the left to build your squad.
+            </div>
+          </div>
+        </div>
+
+        <!-- Position Breakdown Summary Bar -->
+        <div class="mt-6 pt-4 border-t border-slate-700/60 grid grid-cols-5 gap-1 text-center text-xs">
+          <div class="bg-slate-900/60 p-2 rounded-lg"><span class="text-slate-400 block">QB</span><span id="cnt-QB" class="font-bold text-sky-400">0</span></div>
+          <div class="bg-slate-900/60 p-2 rounded-lg"><span class="text-slate-400 block">RB</span><span id="cnt-RB" class="font-bold text-sky-400">0</span></div>
+          <div class="bg-slate-900/60 p-2 rounded-lg"><span class="text-slate-400 block">WR</span><span id="cnt-WR" class="font-bold text-sky-400">0</span></div>
+          <div class="bg-slate-900/60 p-2 rounded-lg"><span class="text-slate-400 block">TE</span><span id="cnt-TE" class="font-bold text-sky-400">0</span></div>
+          <div class="bg-slate-900/60 p-2 rounded-lg"><span class="text-slate-400 block">DST</span><span id="cnt-DST" class="font-bold text-sky-400">0</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Sample master dataset (ranked by consensus, calculated PPR projected points)
+    const masterPlayers = [
+      { id: 1, name: "Ja'Marr Chase", pos: "WR", tier: 1, rank: 1, pts: 356.6 },
+      { id: 2, name: "Jahmyr Gibbs", pos: "RB", tier: 1, rank: 2, pts: 353.1 },
+      { id: 3, name: "Puka Nacua", pos: "WR", tier: 1, rank: 3, pts: 353.7 },
+      { id: 4, name: "Bijan Robinson", pos: "RB", tier: 1, rank: 4, pts: 350.2 },
+      { id: 5, name: "Jaxon Smith-Njigba", pos: "WR", tier: 1, rank: 5, pts: 350.8 },
+      { id: 6, name: "Amon-Ra St. Brown", pos: "WR", tier: 1, rank: 6, pts: 349.3 },
+      { id: 7, name: "CeeDee Lamb", pos: "WR", tier: 2, rank: 7, pts: 345.9 },
+      { id: 8, name: "Justin Jefferson", pos: "WR", tier: 2, rank: 8, pts: 344.4 },
+      { id: 9, name: "Christian McCaffrey", pos: "RB", tier: 2, rank: 9, pts: 342.9 },
+      { id: 10, name: "Jonathan Taylor", pos: "RB", tier: 2, rank: 10, pts: 341.5 },
+      { id: 11, name: "Drake London", pos: "WR", tier: 2, rank: 11, pts: 340.0 },
+      { id: 12, name: "A.J. Brown", pos: "WR", tier: 2, rank: 12, pts: 338.6 },
+      { id: 13, name: "James Cook III", pos: "RB", tier: 3, rank: 13, pts: 335.1 },
+      { id: 14, name: "Nico Collins", pos: "WR", tier: 3, rank: 14, pts: 335.7 },
+      { id: 16, name: "Chase Brown", pos: "RB", tier: 3, rank: 16, pts: 330.8 },
+      { id: 17, name: "Trey McBride", pos: "TE", tier: 3, rank: 17, pts: 329.3 },
+      { id: 19, name: "Brock Bowers", pos: "TE", tier: 3, rank: 19, pts: 326.4 },
+      { id: 20, name: "De'Von Achane", pos: "RB", tier: 3, rank: 20, pts: 325.0 },
+      { id: 22, name: "Saquon Barkley", pos: "RB", tier: 4, rank: 22, pts: 320.1 },
+      { id: 26, name: "Josh Allen", pos: "QB", tier: 4, rank: 26, pts: 314.3 },
+      { id: 31, name: "Lamar Jackson", pos: "QB", tier: 5, rank: 31, pts: 305.0 },
+      { id: 35, name: "Colston Loveland", pos: "TE", tier: 6, rank: 35, pts: 297.2 },
+      { id: 37, name: "Drake Maye", pos: "QB", tier: 6, rank: 37, pts: 294.3 },
+      { id: 154, name: "Houston Texans", pos: "DST", tier: 19, rank: 154, pts: 102.7 },
+      { id: 162, name: "Denver Broncos", pos: "DST", tier: 20, rank: 162, pts: 89.1 }
+    ];
+
+    let availablePool = [...masterPlayers];
+    let myRoster = [];
+    let historyStack = [];
+
+    function renderPlayerDropdown() {
+      const posFilter = document.getElementById('posFilter').value;
+      const dropdown = document.getElementById('playerDropdown');
+      
+      const filtered = posFilter === 'ALL' 
+        ? availablePool 
+        : availablePool.filter(p => p.pos === posFilter);
+
+      dropdown.innerHTML = filtered.map(p => 
+        `<option value="${p.id}">#${p.rank} ${p.name} (${p.pos}) - Tier ${p.tier} [${p.pts} pts]</option>`
+      ).join('');
+
+      if (filtered.length === 0) {
+        dropdown.innerHTML = `<option value="">No players available</option>`;
+      }
+
+      updatePlayerPreview();
+      renderTopAvailable();
+    }
+
+    function updatePlayerPreview() {
+      const selectedId = parseInt(document.getElementById('playerDropdown').value);
+      const player = availablePool.find(p => p.id === selectedId);
+
+      if (!player) {
+        document.getElementById('previewName').textContent = "None Available";
+        document.getElementById('previewPos').textContent = "-";
+        document.getElementById('previewSub').textContent = "-";
+        document.getElementById('previewPts').textContent = "0.0";
+        return;
+      }
+
+      document.getElementById('previewName').textContent = player.name;
+      document.getElementById('previewPos').textContent = player.pos;
+      document.getElementById('previewSub').textContent = `Overall Rank: #${player.rank} | Tier ${player.tier}`;
+      document.getElementById('previewPts').textContent = player.pts.toFixed(1);
+    }
+
+    function draftSelectedPlayer() {
+      const selectedId = parseInt(document.getElementById('playerDropdown').value);
+      const idx = availablePool.findIndex(p => p.id === selectedId);
+      if (idx === -1) return;
+
+      const player = availablePool[idx];
+      availablePool.splice(idx, 1);
+      myRoster.push(player);
+      
+      historyStack.push({ type: 'DRAFT', player });
+
+      updateState();
+    }
+
+    function markAlreadyDrafted() {
+      const selectedId = parseInt(document.getElementById('playerDropdown').value);
+      const idx = availablePool.findIndex(p => p.id === selectedId);
+      if (idx === -1) return;
+
+      const player = availablePool[idx];
+      availablePool.splice(idx, 1);
+      
+      historyStack.push({ type: 'TAKEN', player });
+
+      updateState();
+    }
+
+    function undoAction() {
+      if (historyStack.length === 0) return;
+      
+      const lastAction = historyStack.pop();
+      if (lastAction.type === 'DRAFT') {
+        myRoster = myRoster.filter(p => p.id !== lastAction.player.id);
+        availablePool.push(lastAction.player);
+      } else if (lastAction.type === 'TAKEN') {
+        availablePool.push(lastAction.player);
+      }
+
+      availablePool.sort((a, b) => a.rank - b.rank);
+      updateState();
+    }
+
+    function resetDraft() {
+      availablePool = [...masterPlayers];
+      myRoster = [];
+      historyStack = [];
+      updateState();
+    }
+
+    function updateState() {
+      renderPlayerDropdown();
+      renderRoster();
+    }
+
+    function renderRoster() {
+      const rosterContainer = document.getElementById('rosterList');
+      const countLabel = document.getElementById('rosterCount');
+      const totalPtsLabel = document.getElementById('totalPts');
+
+      countLabel.textContent = `${myRoster.length} Players Selected`;
+
+      const totalPts = myRoster.reduce((sum, p) => sum + p.pts, 0);
+      totalPtsLabel.textContent = totalPts.toFixed(1);
+
+      // Positional counts
+      const counts = { QB: 0, RB: 0, WR: 0, TE: 0, DST: 0 };
+      myRoster.forEach(p => { if (counts[p.pos] !== undefined) counts[p.pos]++; });
+      Object.keys(counts).forEach(pos => {
+        document.getElementById(`cnt-${pos}`).textContent = counts[pos];
+      });
+
+      if (myRoster.length === 0) {
+        rosterContainer.innerHTML = `
+          <div class="text-center py-12 text-slate-500 text-sm italic">
+            No players drafted yet. Select players on the left to build your squad.
+          </div>`;
+        return;
+      }
+
+      rosterContainer.innerHTML = myRoster.map(p => `
+        <div class="bg-slate-900/90 border border-slate-700/80 rounded-xl p-3 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-bold px-2 py-1 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">${p.pos}</span>
+            <div>
+              <p class="font-bold text-white text-sm">${p.name}</p>
+              <p class="text-xs text-slate-400">Rank #${p.rank} · Tier ${p.tier}</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="text-sm font-extrabold text-emerald-400 block">${p.pts.toFixed(1)}</span>
+            <span class="text-[10px] text-slate-500">PPR Pts</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderTopAvailable() {
+      const list = document.getElementById('topAvailableList');
+      const top5 = availablePool.slice(0, 5);
+
+      if (top5.length === 0) {
+        list.innerHTML = `<p class="text-xs text-slate-500">No available players remaining.</p>`;
+        return;
+      }
+
+      list.innerHTML = top5.map(p => `
+        <div class="flex items-center justify-between bg-slate-900/50 p-2 rounded-lg border border-slate-800 text-xs">
+          <span class="text-slate-300 font-medium">#${p.rank} ${p.name} <span class="text-slate-500">(${p.pos})</span></span>
+          <span class="text-emerald-400 font-bold">${p.pts.toFixed(1)} pts</span>
+        </div>
+      `).join('');
+    }
+
+    // Initial setup
+    resetDraft();
+  </script>
+</body>
+</html>
