@@ -1,14 +1,4 @@
-import re
-
-# Matchup data extracted directly from your schedule screenshots
 SCHEDULE = {
-    1: [
-        ("Catchy Football Name", "Donuts All Day 24/7"),
-        ("Covfefe is for Closers", "Joydip's Scary Team"),
-        ("AB's 3rd Quarter Uber", "Texas Determined Domination"),
-        ("Kenz VishusLicks", "Herbert's Heros"),
-        ("Lucas's Loud Team", "Nabers ate my Zombies"),
-    ],
     2: [
         ("Donuts All Day 24/7", "Covfefe is for Closers"),
         ("Nabers ate my Zombies", "Joydip's Scary Team"),
@@ -102,46 +92,99 @@ SCHEDULE = {
     ]
 }
 
+WEEK1_MATCHUPS = [
+    ("Catchy Football Name", "Donuts All Day 24/7"),
+    ("Covfefe is for Closers", "Joydip's Scary Team"),
+    ("AB's 3rd Quarter Uber", "Texas Determined Domination"),
+    ("Kenz VishusLicks", "Herbert's Heros"),
+    ("Lucas's Loud Team", "Nabers ate my Zombies"),
+]
+
 def generate_html_files():
     try:
         with open("index.html", "r", encoding="utf-8") as f:
             template = f.read()
     except FileNotFoundError:
-        print("Error: index.html not found in the current directory.")
+        print("Error: index.html not found.")
         return
 
-    for week, matchups in SCHEDULE.items():
-        content = template
-        
-        # Update Week Headers & Titles
-        content = content.replace("<title>[LEAGUE NAME] Weekly Debrief — Week [X]</title>", f"<title>[LEAGUE NAME] Weekly Debrief — Week {week}</title>")
-        content = content.replace('<div class="ffn-band">[League Name] · Week [X] Debrief</div>', f'<div class="ffn-band">[League Name] · Week {week} Debrief</div>')
-        
-        # Select active option in dropdown
-        target_option = f'<option value="week{week}.html">'
-        content = content.replace(target_option, f'<option value="week{week}.html" selected>')
+    preview_start_marker = "<h2>This Week's Preview</h2>"
+    preview_end_marker = '<div class="ffn-section">\n    <h2>League Business</h2>'
 
-        # Populate "This Week's Preview" Matchups
-        # Replaces the 5 dummy matchup blocks in preview section
-        preview_blocks = []
-        for away, home in matchups:
-            block = f'''    <div class="ffn-matchup">
+    p_start = template.find(preview_start_marker)
+    p_end = template.find(preview_end_marker)
+
+    if -1 in (p_start, p_end):
+        print("Error: Could not locate preview markers in index.html.")
+        return
+
+    for week in range(2, 15):
+        # Update title and header text for current week
+        content = template.replace("Week 1", f"Week {week}")
+
+        # Ensure Week 1 option in dropdown explicitly links to index.html and is unselected
+        content = content.replace(
+            '<option value="index.html" selected>Week 1</option>',
+            '<option value="index.html">Week 1</option>'
+        )
+        
+        # Select current week in dropdown
+        target_opt = f'<option value="week{week}.html">'
+        content = content.replace(target_opt, f'<option value="week{week}.html" selected>')
+
+        # --- 1. BUILD RECAP & AWARDS BLOCKS ---
+        prev_week = week - 1
+        prev_matchups = WEEK1_MATCHUPS if prev_week == 1 else SCHEDULE[prev_week]
+
+        recap_and_awards_html = f'''<div class="ffn-section">
+    <h2>Last Week's Recap</h2>
+    <p class="sub">Here's what happened while you were pretending to work</p>\n\n'''
+        
+        for away, home in prev_matchups:
+            recap_and_awards_html += f'''    <div class="ffn-matchup">
+      <div class="score"><span class="win">{away} [Score]</span> — <span class="lose">[Score] {home}</span></div>
+      <p>[Recap of Week {prev_week} game]</p>
+      <span class="ffn-gif">[GIF: search a reaction fitting this game's outcome]</span>
+    </div>\n\n'''
+        
+        recap_and_awards_html = recap_and_awards_html.rstrip() + '''\n  </div>\n\n  <div class="ffn-section">
+    <h2>Weekly Awards</h2>
+    <ul class="ffn-awards">
+      <li><span class="tag">🚽 Toilet Bowl MVP:</span>[Manager who lost despite highest bench points]</li>
+      <li><span class="tag">🧠 Big Brain Move:</span>[Best waiver pickup or start/sit call]</li>
+      <li><span class="tag">🤡 Clown of the Week:</span>[Worst decision — started a bye week guy, etc.]</li>
+      <li><span class="tag">💰 Should've Bet On It:</span>[Biggest blowout]</li>
+      <li><span class="tag">😰 Heartbreak Hotel:</span>[Closest loss]</li>
+    </ul>
+  </div>\n\n  '''
+
+        # --- 2. BUILD THIS WEEK'S PREVIEW BLOCK ---
+        preview_html = '''<h2>This Week's Preview</h2>\n    <p class="sub">Predictions nobody asked for, delivered anyway</p>\n\n'''
+        for away, home in SCHEDULE[week]:
+            preview_html += f'''    <div class="ffn-matchup">
       <div class="score">{away} <span style="color:var(--ink-dim)">vs</span> {home}</div>
       <p><strong>Projected:</strong> [{away} proj] – [{home} proj]<br>[Preview]</p>
       <span class="ffn-gif">[GIF: search a reaction fitting the storyline]</span>
-    </div>'''
-            preview_blocks.append(block)
+    </div>\n\n'''
+        preview_html = preview_html.rstrip()
 
-        # Replace preview section content
-        preview_pattern = re.compile(r'(<h2>This Week\'s Preview</h2>\s*<p class="sub">[^<]*</p>\s*)(.*?)(?=\s*<div class="ffn-section">\s*<h2>League Business</h2>)', re.DOTALL)
-        new_preview_content = r'\1' + '\n\n'.join(preview_blocks) + '\n  '
-        content = preview_pattern.sub(new_preview_content, content)
+        # Insert Recap & Awards before Preview, then replace Preview content
+        p_start_current = content.find(preview_start_marker)
+        preview_block_start = content.rfind('<div class="ffn-section">', 0, p_start_current)
 
-        # Write out to weekX.html
+        final_content = (
+            content[:preview_block_start]
+            + recap_and_awards_html
+            + '<div class="ffn-section">\n    '
+            + preview_html
+            + '\n  </div>\n\n  '
+            + content[p_end:]
+        )
+
         filename = f"week{week}.html"
         with open(filename, "w", encoding="utf-8") as out:
-            out.write(content)
-        print(f"Created: {filename}")
+            out.write(final_content)
+        print(f"Generated: {filename}")
 
 if __name__ == "__main__":
     generate_html_files()
