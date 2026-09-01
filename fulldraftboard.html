@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fantasy Draft Grid Board & Tracker</title>
+  <title>NFL Fantasy Draft Grid Board & Roster Tracker</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { background-color: #0f172a; color: #f8fafc; font-family: ui-sans-serif, system-ui, sans-serif; }
@@ -12,7 +12,7 @@
     .custom-scroll::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
     
     .draft-cell {
-      min-width: 120px;
+      min-width: 125px;
       height: 75px;
       transition: all 0.2s ease;
     }
@@ -28,9 +28,9 @@
   <header class="max-w-[1600px] w-full mx-auto mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
     <div>
       <h1 class="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">
-        PPR Fantasy Draft Board
+        NFL PPR Fantasy Draft Board
       </h1>
-      <p class="text-slate-400 text-sm mt-0.5">Serpentine Draft Grid · Real-time Roster Projections · Editable Teams · CSV Export</p>
+      <p class="text-slate-400 text-sm mt-0.5">Expanded Roster Database · Serpentine Grid · Live PPR Projections · CSV Export</p>
     </div>
     
     <!-- Global Actions -->
@@ -83,9 +83,15 @@
           </select>
         </div>
 
+        <!-- Search Input -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Search Player Name</label>
+          <input type="text" id="searchInput" oninput="renderPlayerDropdown()" placeholder="Type player name..." class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none placeholder-slate-500" />
+        </div>
+
         <!-- Player Selection Dropdown -->
         <div>
-          <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Available Player</label>
+          <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Available Players</label>
           <select id="playerDropdown" onchange="updatePreviewCard()" class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none">
             <!-- Populated Dynamically -->
           </select>
@@ -204,12 +210,11 @@
   </div>
 
   <script>
-    // Configuration Constants
     const TOTAL_TEAMS = 10;
     const TOTAL_ROUNDS = 12;
     const TOTAL_PICKS = TOTAL_TEAMS * TOTAL_ROUNDS;
 
-    // Master dataset sorted by Consensus Rank with PPR Projections
+    // Expanded Dataset (Boris Chen consensus ranks + NFL roster players across QB, RB, WR, TE, DST)
     const masterPlayers = [
       { id: 1, name: "Ja'Marr Chase", pos: "WR", tier: 1, rank: 1, pts: 356.6 },
       { id: 2, name: "Jahmyr Gibbs", pos: "RB", tier: 1, rank: 2, pts: 353.1 },
@@ -225,37 +230,94 @@
       { id: 12, name: "A.J. Brown", pos: "WR", tier: 2, rank: 12, pts: 338.6 },
       { id: 13, name: "James Cook III", pos: "RB", tier: 3, rank: 13, pts: 335.1 },
       { id: 14, name: "Nico Collins", pos: "WR", tier: 3, rank: 14, pts: 335.7 },
+      { id: 15, name: "Garrett Wilson", pos: "WR", tier: 3, rank: 15, pts: 332.2 },
       { id: 16, name: "Chase Brown", pos: "RB", tier: 3, rank: 16, pts: 330.8 },
       { id: 17, name: "Trey McBride", pos: "TE", tier: 3, rank: 17, pts: 329.3 },
+      { id: 18, name: "Malik Nabers", pos: "WR", tier: 3, rank: 18, pts: 327.9 },
       { id: 19, name: "Brock Bowers", pos: "TE", tier: 3, rank: 19, pts: 326.4 },
       { id: 20, name: "De'Von Achane", pos: "RB", tier: 3, rank: 20, pts: 325.0 },
+      { id: 21, name: "Marvin Harrison Jr.", pos: "WR", tier: 4, rank: 21, pts: 321.5 },
       { id: 22, name: "Saquon Barkley", pos: "RB", tier: 4, rank: 22, pts: 320.1 },
+      { id: 23, name: "Kyren Williams", pos: "RB", tier: 4, rank: 23, pts: 318.6 },
+      { id: 24, name: "Breece Hall", pos: "RB", tier: 4, rank: 24, pts: 317.2 },
+      { id: 25, name: "Derrick Henry", pos: "RB", tier: 4, rank: 25, pts: 315.7 },
       { id: 26, name: "Josh Allen", pos: "QB", tier: 4, rank: 26, pts: 314.3 },
+      { id: 27, name: "Patrick Mahomes", pos: "QB", tier: 4, rank: 27, pts: 312.8 },
+      { id: 28, name: "Jalen Hurts", pos: "QB", tier: 4, rank: 28, pts: 311.4 },
+      { id: 29, name: "Jayden Daniels", pos: "QB", tier: 4, rank: 29, pts: 309.9 },
+      { id: 30, name: "Joe Burrow", pos: "QB", tier: 5, rank: 30, pts: 306.5 },
       { id: 31, name: "Lamar Jackson", pos: "QB", tier: 5, rank: 31, pts: 305.0 },
+      { id: 32, name: "C.J. Stroud", pos: "QB", tier: 5, rank: 32, pts: 303.6 },
+      { id: 33, name: "George Kittle", pos: "TE", tier: 5, rank: 33, pts: 302.1 },
+      { id: 34, name: "Travis Kelce", pos: "TE", tier: 5, rank: 34, pts: 300.7 },
       { id: 35, name: "Colston Loveland", pos: "TE", tier: 6, rank: 35, pts: 297.2 },
+      { id: 36, name: "Sam LaPorta", pos: "TE", tier: 6, rank: 36, pts: 295.8 },
       { id: 37, name: "Drake Maye", pos: "QB", tier: 6, rank: 37, pts: 294.3 },
+      { id: 38, name: "Jordan Love", pos: "QB", tier: 6, rank: 38, pts: 292.9 },
+      { id: 39, name: "Kyler Murray", pos: "QB", tier: 6, rank: 39, pts: 291.4 },
+      { id: 40, name: "Baker Mayfield", pos: "QB", tier: 6, rank: 40, pts: 290.0 },
+      { id: 41, name: "Kenneth Walker III", pos: "RB", tier: 6, rank: 41, pts: 288.5 },
+      { id: 42, name: "Josh Jacobs", pos: "RB", tier: 6, rank: 42, pts: 287.1 },
+      { id: 43, name: "Isiah Pacheco", pos: "RB", tier: 6, rank: 43, pts: 285.6 },
+      { id: 44, name: "Travis Etienne Jr.", pos: "RB", tier: 6, rank: 44, pts: 284.2 },
+      { id: 45, name: "Rhamondre Stevenson", pos: "RB", tier: 6, rank: 45, pts: 282.7 },
+      { id: 46, name: "David Montgomery", pos: "RB", tier: 7, rank: 46, pts: 279.3 },
+      { id: 47, name: "D'Andre Swift", pos: "RB", tier: 7, rank: 47, pts: 277.8 },
+      { id: 48, name: "Tony Pollard", pos: "RB", tier: 7, rank: 48, pts: 276.4 },
+      { id: 49, name: "Najee Harris", pos: "RB", tier: 7, rank: 49, pts: 274.9 },
+      { id: 50, name: "Brian Robinson Jr.", pos: "RB", tier: 7, rank: 50, pts: 273.5 },
+      { id: 51, name: "Deebo Samuel", pos: "WR", tier: 7, rank: 51, pts: 272.0 },
+      { id: 52, name: "Brandon Aiyuk", pos: "WR", tier: 7, rank: 52, pts: 270.6 },
+      { id: 53, name: "Terry McLaurin", pos: "WR", tier: 7, rank: 53, pts: 269.1 },
+      { id: 54, name: "DK Metcalf", pos: "WR", tier: 7, rank: 54, pts: 267.7 },
+      { id: 55, name: "Tee Higgins", pos: "WR", tier: 7, rank: 55, pts: 266.2 },
+      { id: 56, name: "Chris Olave", pos: "WR", tier: 8, rank: 56, pts: 262.8 },
+      { id: 57, name: "Devonta Smith", pos: "WR", tier: 8, rank: 57, pts: 261.3 },
+      { id: 58, name: "Jaylen Waddle", pos: "WR", tier: 8, rank: 58, pts: 259.9 },
+      { id: 59, name: "George Pickens", pos: "WR", tier: 8, rank: 59, pts: 258.4 },
+      { id: 60, name: "Tank Dell", pos: "WR", tier: 8, rank: 60, pts: 257.0 },
+      { id: 61, name: "Kyle Pitts", pos: "TE", tier: 8, rank: 61, pts: 255.5 },
+      { id: 62, name: "Evan Engram", pos: "TE", tier: 8, rank: 62, pts: 254.1 },
+      { id: 63, name: "Dallas Goedert", pos: "TE", tier: 8, rank: 63, pts: 252.6 },
+      { id: 64, name: "David Njoku", pos: "TE", tier: 8, rank: 64, pts: 251.2 },
+      { id: 65, name: "Dalton Kincaid", pos: "TE", tier: 8, rank: 65, pts: 249.7 },
+      { id: 66, name: "Caleb Williams", pos: "QB", tier: 9, rank: 66, pts: 246.3 },
+      { id: 67, name: "Tua Tagovailoa", pos: "QB", tier: 9, rank: 67, pts: 244.8 },
+      { id: 68, name: "Jared Goff", pos: "QB", tier: 9, rank: 68, pts: 243.4 },
+      { id: 69, name: "Dak Prescott", pos: "QB", tier: 9, rank: 69, pts: 241.9 },
+      { id: 70, name: "Justin Herbert", pos: "QB", tier: 9, rank: 70, pts: 240.5 },
+      { id: 71, name: "Brock Purdy", pos: "QB", tier: 9, rank: 71, pts: 239.0 },
+      { id: 72, name: "Trevor Lawrence", pos: "QB", tier: 9, rank: 72, pts: 237.6 },
+      { id: 73, name: "Kirk Cousins", pos: "QB", tier: 9, rank: 73, pts: 236.1 },
+      { id: 74, name: "Aaron Rodgers", pos: "QB", tier: 9, rank: 74, pts: 234.7 },
+      { id: 75, name: "Matthew Stafford", pos: "QB", tier: 9, rank: 75, pts: 233.2 },
+      { id: 76, name: "San Francisco 49ers", pos: "DST", tier: 10, rank: 76, pts: 140.0 },
+      { id: 77, name: "Baltimore Ravens", pos: "DST", tier: 10, rank: 77, pts: 138.0 },
+      { id: 78, name: "Dallas Cowboys", pos: "DST", tier: 10, rank: 78, pts: 136.0 },
+      { id: 79, name: "Buffalo Bills", pos: "DST", tier: 10, rank: 79, pts: 134.0 },
+      { id: 80, name: "Cleveland Browns", pos: "DST", tier: 10, rank: 80, pts: 132.0 },
+      { id: 81, name: "New York Jets", pos: "DST", tier: 10, rank: 81, pts: 130.0 },
+      { id: 82, name: "Pittsburgh Steelers", pos: "DST", tier: 10, rank: 82, pts: 128.0 },
+      { id: 83, name: "Philadelphia Eagles", pos: "DST", tier: 10, rank: 83, pts: 126.0 },
+      { id: 84, name: "Kansas City Chiefs", pos: "DST", tier: 10, rank: 84, pts: 124.0 },
+      { id: 85, name: "Miami Dolphins", pos: "DST", tier: 10, rank: 85, pts: 122.0 },
       { id: 154, name: "Houston Texans", pos: "DST", tier: 19, rank: 154, pts: 102.7 },
       { id: 162, name: "Denver Broncos", pos: "DST", tier: 20, rank: 162, pts: 89.1 }
     ];
 
-    // State Variables
     let availablePool = [];
     let draftHistory = [];
-    let teams = {}; // teamId -> array of drafted players
-    let teamNames = {}; // teamId -> Custom Name String
+    let teams = {};
+    let teamNames = {};
 
-    // Helper: Serpentine Pick Order
     function getPickInfo(overallPickNumber) {
       if (overallPickNumber > TOTAL_PICKS) return null;
-      
       const round = Math.ceil(overallPickNumber / TOTAL_TEAMS);
       const pickInRound = ((overallPickNumber - 1) % TOTAL_TEAMS) + 1;
       const teamId = (round % 2 === 1) ? pickInRound : (TOTAL_TEAMS - pickInRound + 1);
-      
       return { pickNumber: overallPickNumber, round, pickInRound, teamId };
     }
 
-    // Initialize Grid Table Structure
     function buildGridBoard() {
       const headerRow = document.getElementById('tableHeader');
       headerRow.innerHTML = `<th class="p-3 text-center text-xs font-bold text-slate-400 border-r border-slate-700/60 min-w-[60px]">Rnd</th>`;
@@ -283,21 +345,25 @@
       }
     }
 
-    // Render Dropdown Options & Update Recommended Object
     function renderPlayerDropdown() {
       const posFilter = document.getElementById('posFilter').value;
+      const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
       const dropdown = document.getElementById('playerDropdown');
       
-      const filtered = posFilter === 'ALL' 
+      let filtered = posFilter === 'ALL' 
         ? availablePool 
         : availablePool.filter(p => p.pos === posFilter);
+
+      if (searchVal !== "") {
+        filtered = filtered.filter(p => p.name.toLowerCase().includes(searchVal));
+      }
 
       dropdown.innerHTML = filtered.map(p => 
         `<option value="${p.id}">#${p.rank} ${p.name} (${p.pos}) - Tier ${p.tier} [${p.pts} pts]</option>`
       ).join('');
 
       if (filtered.length === 0) {
-        dropdown.innerHTML = `<option value="">No players available</option>`;
+        dropdown.innerHTML = `<option value="">No players found</option>`;
       }
 
       updateRecommendedPick();
@@ -305,7 +371,6 @@
       renderTopAvailable();
     }
 
-    // Update Recommended Draft Pick Card (Highest Projected Points)
     function updateRecommendedPick() {
       if (availablePool.length === 0) {
         document.getElementById('recName').textContent = "None Available";
@@ -315,7 +380,6 @@
         return;
       }
 
-      // Find player with highest projected points in current pool
       const topPick = availablePool.reduce((max, p) => p.pts > max.pts ? p : max, availablePool[0]);
 
       document.getElementById('recName').textContent = topPick.name;
@@ -329,13 +393,13 @@
       const recId = document.getElementById('recommendedCard').getAttribute('data-rec-id');
       if (recId) {
         document.getElementById('posFilter').value = "ALL";
+        document.getElementById('searchInput').value = "";
         renderPlayerDropdown();
         document.getElementById('playerDropdown').value = recId;
         updatePreviewCard();
       }
     }
 
-    // Update Detail Box
     function updatePreviewCard() {
       const selectedId = parseInt(document.getElementById('playerDropdown').value);
       const player = availablePool.find(p => p.id === selectedId);
@@ -354,7 +418,6 @@
       document.getElementById('prevPts').textContent = `${player.pts.toFixed(1)} PPR Pts`;
     }
 
-    // Execute Draft Pick
     function draftNextPick() {
       const currentPickNum = draftHistory.length + 1;
       const pickInfo = getPickInfo(currentPickNum);
@@ -376,7 +439,6 @@
       updateBoardUI();
     }
 
-    // Undo Last Pick
     function undoPick() {
       if (draftHistory.length === 0) return;
 
@@ -388,7 +450,6 @@
       updateBoardUI();
     }
 
-    // Reset Complete Board
     function resetBoard() {
       availablePool = [...masterPlayers];
       draftHistory = [];
@@ -401,15 +462,12 @@
       updateBoardUI();
     }
 
-    // Sync Board UI Cells & Status
     function updateBoardUI() {
-      // Clear cells
       document.querySelectorAll('.draft-cell').forEach(cell => {
         cell.innerHTML = '';
         cell.classList.remove('current-pick-cell');
       });
 
-      // Render made picks
       draftHistory.forEach(pick => {
         const cell = document.getElementById(`cell-${pick.round}-${pick.teamId}`);
         if (cell) {
@@ -437,7 +495,6 @@
         }
       });
 
-      // Highlight current pick on clock
       const nextPickNum = draftHistory.length + 1;
       const nextPick = getPickInfo(nextPickNum);
 
@@ -474,7 +531,6 @@
       `).join('');
     }
 
-    // Modal Operations
     function openTeamModal(teamId) {
       const roster = teams[teamId] || [];
       const tName = teamNames[teamId] || `Team ${teamId}`;
@@ -510,7 +566,6 @@
       document.getElementById('teamModal').classList.add('hidden');
     }
 
-    // Team Customization Modal
     function openSettingsModal() {
       const container = document.getElementById('teamInputsContainer');
       container.innerHTML = '';
@@ -540,7 +595,6 @@
       closeSettingsModal();
     }
 
-    // Export Draft Results to CSV
     function exportDraftCSV() {
       if (draftHistory.length === 0) {
         alert("No picks have been made yet to export.");
@@ -574,7 +628,6 @@
       document.body.removeChild(link);
     }
 
-    // Initial Launch
     resetBoard();
   </script>
 </body>
