@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>[LEAGUE NAME] Weekly Grades — Week [X]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #14160f; }
+  .ffn-nav {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    gap: 4px;
+    padding: 16px 24px 0;
+  }
+  .ffn-nav a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    color: #a79f8d;
+    padding: 8px 14px;
+    border: 1px solid #3a3d33;
+    border-radius: 3px 3px 0 0;
+    border-bottom: none;
+  }
+  .ffn-nav a.active {
+    color: #14160f;
+    background: #e0a72e;
+    border-color: #e0a72e;
+  }
+  .ffn-wrap {
+    --ink: #eee7d8;
+    --ink-dim: #a79f8d;
+    --panel: #1c1f1a;
+    --panel-2: #23271f;
+    --gold: #e0a72e;
+    --crimson: #b8342b;
+    --green: #4f7a4a;
+    --rule: #3a3d33;
+    max-width: 760px;
+    margin: 0 auto;
+    background: #14160f;
+    color: var(--ink);
+    font-family: 'Barlow', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    padding: 0 0 40px;
+  }
+  .ffn-wrap * { box-sizing: border-box; }
+  .ffn-band {
+    background: var(--gold);
+    color: #14160f;
+    text-align: center;
+    padding: 6px 0;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+  .ffn-header { padding: 28px 24px 20px; border-bottom: 4px solid var(--gold); }
+  .ffn-header h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 1.1;
+    margin: 0 0 6px;
+  }
+  .ffn-header p { margin: 0; color: var(--ink-dim); font-style: italic; font-size: 15px; }
+  .ffn-section { padding: 30px 24px 6px; }
+  .ffn-section h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--gold);
+    margin: 0 0 4px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .ffn-section .sub { color: var(--ink-dim); font-style: italic; font-size: 14px; margin: 10px 0 20px; }
+  table.ffn-standings {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 8px;
+    font-size: 13.5px;
+  }
+  table.ffn-standings th {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: 11px;
+    text-align: left;
+    color: var(--gold);
+    padding: 8px 8px;
+    border-bottom: 2px solid var(--gold);
+  }
+  table.ffn-standings td {
+    padding: 8px 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+  table.ffn-standings tr:nth-child(even) td { background: var(--panel-2); }
+  .diff-pos { color: var(--green); font-weight: 600; }
+  .diff-neg { color: var(--crimson); font-weight: 600; }
+  .grade-pill {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background: var(--green);
+    color: #0e0f0a;
+  }
+  .ffn-highlight {
+    background: var(--panel);
+    border-left: 4px solid var(--gold);
+    border-radius: 3px;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+  }
+  .ffn-highlight.shame { border-left-color: var(--crimson); }
+  .ffn-highlight .title-line { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 19px; margin-bottom: 6px; }
+  .ffn-highlight .meta { color: var(--ink-dim); font-size: 14px; margin-bottom: 10px; }
+  .ffn-highlight p { margin: 8px 0 12px; }
+  .ffn-matchup {
+    background: var(--panel);
+    border-left: 4px solid var(--gold);
+    border-radius: 3px;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+  }
+  .ffn-matchup .score { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 20px; margin-bottom: 4px; }
+  .ffn-matchup .grades { color: var(--ink-dim); font-size: 13px; margin-bottom: 10px; }
+  .ffn-matchup .score .win { color: var(--gold); }
+  .ffn-matchup .score .lose { color: var(--ink-dim); }
+  .ffn-matchup p { margin: 8px 0 12px; }
+  .ffn-gif {
+    display: block;
+    background: #0e0f0a;
+    border: 1px dashed var(--rule);
+    color: var(--ink-dim);
+    font-size: 13px;
+    text-align: center;
+    padding: 26px 12px;
+    border-radius: 3px;
+    font-style: italic;
+  }
+  .ffn-awards { list-style: none; margin: 0; padding: 0; }
+  .ffn-awards li { padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 15px; }
+  .ffn-awards li:last-child { border-bottom: none; }
+  .ffn-awards .tag { font-family: 'Oswald', sans-serif; color: var(--gold); font-weight: 700; margin-right: 6px; }
+  .ffn-quote {
+    background: var(--panel-2);
+    border-left: 4px solid var(--crimson);
+    padding: 16px 20px;
+    font-style: italic;
+    font-size: 15px;
+    margin: 10px 0 6px;
+  }
+  .ffn-quote cite {
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+  }
+  .ffn-footer { text-align: center; padding: 28px 24px 6px; color: var(--ink-dim); font-style: italic; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<nav class="ffn-nav">
+  <a href="index.html">Newsletter</a>
+  <a href="draft-report.html">Draft Report</a>
+  <a href="weekly-grades.html" class="active">Weekly Grades</a>
+</nav>
+
+<div class="ffn-wrap">
+  <div class="ffn-band">[League Name] · Week [X] Grades</div>
+
+  <div class="ffn-header">
+    <h1>Weekly Grades</h1>
+    <p>Projections lied to some of you. Let's see who.</p>
+  </div>
+
+  <div class="ffn-section">
+    <h2>The Grade Book</h2>
+    <p class="sub">Sorted by Diff (actual minus projected) — biggest overachievers on top, for max drama</p>
+    <table class="ffn-standings">
+      <thead>
+        <tr><th>Team</th><th>Manager</th><th>Proj</th><th>Actual</th><th>Diff</th><th>Grade</th><th>Res</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>AB's 3rd Quarter Uber</td><td>Ryan Guest</td><td>[XXX.X]</td><td>[XXX.X]</td><td class="diff-pos">[+X.X]</td><td><span class="grade-pill">[A]</span></td><td>W</td></tr>
+        <tr><td>Covfefe is for Closers</td><td>David Pannell</td><td>[XXX.X]</td><td>[XXX.X]</td><td class="diff-pos">[+X.X]</td><td><span class="grade-pill">[A-]</span></td><td>W</td></tr>
+        <tr><td>Kenz VishusLicks</td><td>Ken Glover</td><td>[XXX.X]</td><td>[XXX.X]</td><td class="diff-pos">[+X.X]</td><td><span class="grade-pill">[B+]</span></td><td>L</td></tr>
+        <tr><td>Joydip's Scary Team</td><td>Joydip Joy</td><td>[XXX.X]</td><td>[XXX.X]</td><td class="diff-pos">[+X.X]</td><td><span class="grade-pill">[B]</span></td><td>W</td></tr>
+        <tr><td>Catchy Football Name</td><td>Ryan McCarty</td><td>[XXX.X]</td><td>[XXX.X]</td><td class="diff-pos">[+X.X]</td><td><span class="grade-pill">[B-]</span></td><td>L</td></tr>
+        <tr><td>Nabers ate my Zomb...</td><td>Jonathan Jaramillo</td><td>[XXX.X]</td><td>[XXX.X]</td><td class="diff-neg">[-X.X]</td><td><span class="grade-pill">[C+]</span></td><td>W</td></tr>
+        <tr><td>Donuts All Day 24/7</td><td>Jonathan Albarado</td><td>[XXX.X]</td><td>[XXX.X]</td><td class="diff-neg">[-X.X]</td><td><span class="grade-pill">[C]</span></td><td>L</td></tr>
+        <tr><td>Herbert's Heros</td><td>Kevin Guest</td><td>[XXX.X]</td><td>[XXX.X]</td><td class="diff-neg">[-X.X]</td><td><span class="grade-pill">[C-]</span></td><td>L</td></tr>
+        <tr><td>Lucas's Loud Team</td><td>Lucas McMahon</td><td>[XXX.X]</td><td>[XXX.X]</td><td class="diff-neg">[-X.X]</td><td><span class="grade-pill">[D]</span></td><td>W</td></tr>
+        <tr><td>Texas Determined Do...</td><td>Kolby Gilseth</td><td>[XXX.X]</td><td>[XXX.X]</td><td class="diff-neg">[-X.X]</td><td><span class="grade-pill">[F]</span></td><td>L</td></tr>
+      </tbody>
+    </table>
+    <p class="sub">Grade reflects performance vs. this team's own projection, not raw score — beating a low projection can outgrade a loss, and blowing a big one while still winning can still land a C.</p>
+  </div>
+
+  <div class="ffn-section">
+    <h2>Grade of the Week</h2>
+    <div class="ffn-highlight">
+      <div class="title-line">[Team Name]</div>
+      <div class="meta">Proj [XXX.X] → Actual [XXX.X] ([+X.X]) · Grade [A+/A]</div>
+      <p>[3-5 sentences on who went off — a waiver pickup that exploded, a bench call that would've won it, a stud who finally showed up.]</p>
+      <span class="ffn-gif">[GIF: search "overachiever" / "called it" / "ice in his veins"]</span>
+    </div>
+  </div>
+
+  <div class="ffn-section">
+    <h2>Grade of Shame</h2>
+    <div class="ffn-highlight shame">
+      <div class="title-line">[Team Name]</div>
+      <div class="meta">Proj [XXX.X] → Actual [XXX.X] ([-X.X]) · Grade [D/F]</div>
+      <p>[3-5 sentences on the collapse — studs who no-showed, a lineup mistake, a bye week benching, whatever tanked the week.]</p>
+      <span class="ffn-gif">[GIF: search "collapse" / "trainwreck" / "why did I do this"]</span>
+    </div>
+  </div>
+
+  <div class="ffn-section">
+    <h2>Matchup-by-Matchup</h2>
+    <p class="sub">10 teams = 5 games — one .ffn-matchup block per matchup below</p>
+
+    <div class="ffn-matchup">
+      <div class="score"><span class="win">AB's 3rd Quarter Uber [Score A]</span> — <span class="lose">[Score B] Covfefe is for Closers</span></div>
+      <div class="grades">Grades: [Grade A] / [Grade B]</div>
+      <p>[2-4 sentences recapping the game — who over/underperformed projections, the play that decided it, any bench regret.]</p>
+      <span class="ffn-gif">[GIF: fitting the outcome — blowout, nail-biter, upset]</span>
+    </div>
+
+    <div class="ffn-matchup">
+      <div class="score"><span class="win">Kenz VishusLicks [Score C]</span> — <span class="lose">[Score D] Joydip's Scary Team</span></div>
+      <div class="grades">Grades: [Grade C] / [Grade D]</div>
+      <p>[Recap]</p>
+      <span class="ffn-gif">[GIF: fitting the outcome]</span>
+    </div>
+
+    <div class="ffn-matchup">
+      <div class="score"><span class="win">Catchy Football Name [Score E]</span> — <span class="lose">[Score F] Nabers ate my Zomb...</span></div>
+      <div class="grades">Grades: [Grade E] / [Grade F]</div>
+      <p>[Recap]</p>
+      <span class="ffn-gif">[GIF: fitting the outcome]</span>
+    </div>
+
+    <div class="ffn-matchup">
+      <div class="score"><span class="win">Donuts All Day 24/7 [Score G]</span> — <span class="lose">[Score H] Herbert's Heros</span></div>
+      <div class="grades">Grades: [Grade G] / [Grade H]</div>
+      <p>[Recap]</p>
+      <span class="ffn-gif">[GIF: fitting the outcome]</span>
+    </div>
+
+    <div class="ffn-matchup">
+      <div class="score"><span class="win">Lucas's Loud Team [Score I]</span> — <span class="lose">[Score J] Texas Determined Do...</span></div>
+      <div class="grades">Grades: [Grade I] / [Grade J]</div>
+      <p>[Recap]</p>
+      <span class="ffn-gif">[GIF: fitting the outcome]</span>
+    </div>
+  </div>
+
+  <div class="ffn-section">
+    <h2>Weekly Superlatives</h2>
+    <ul class="ffn-awards">
+      <li><span class="tag">📈 Biggest Overachiever:</span>[Team] — beat projection by [X.X]</li>
+      <li><span class="tag">📉 Biggest Bust:</span>[Team] — missed projection by [X.X]</li>
+      <li><span class="tag">🎯 Most Accurate Projection:</span>[Team] — landed within [X.X] of projected</li>
+      <li><span class="tag">🚽 Toilet Bowl MVP:</span>[Manager who lost despite highest bench points]</li>
+      <li><span class="tag">🧠 Waiver Wire Genius:</span>[Best pickup start of the week]</li>
+      <li><span class="tag">🤡 Clown of the Week:</span>[Worst start/sit call]</li>
+      <li><span class="tag">😰 Heartbreak Hotel:</span>[Closest loss]</li>
+      <li><span class="tag">💰 Should've Bet On It:</span>[Biggest blowout]</li>
+    </ul>
+  </div>
+
+  <div class="ffn-section">
+    <h2>League Business</h2>
+    <ul class="ffn-awards">
+      <li><span class="tag">Standings update:</span>[link or brief note]</li>
+      <li><span class="tag">Waiver wire watch:</span>[names to grab this week]</li>
+      <li><span class="tag">Trade rumors:</span>[any deals brewing]</li>
+      <li><span class="tag">Reminder:</span>[lock times, dues, punishment tracker]</li>
+    </ul>
+  </div>
+
+  <div class="ffn-section">
+    <h2>Quote of the Week</h2>
+    <div class="ffn-quote">
+      "[Dumb group chat quote, screenshotted and immortalized]"
+      <cite>— [Manager name], regretting it already</cite>
+    </div>
+  </div>
+
+  <div class="ffn-footer">Grades are final. See you next week, you absolute clowns.</div>
+</div>
+
+</body>
+</html>
