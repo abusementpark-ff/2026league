@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fantasy Draft Tier Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #0f172a; color: #f8fafc; font-family: ui-sans-serif, system-ui, sans-serif; }
+    .nav-btn { transition: all 0.2s ease-in-out; }
+    .nav-btn.active { background-color: #0284c7; color: #ffffff; border-color: #38bdf8; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Sticky Dashboard Navigation -->
+  <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 px-6 py-4 shadow-lg">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="p-2 bg-sky-500/10 rounded-lg border border-sky-500/20">
+          <svg class="w-6 h-6 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+          </svg>
+        </div>
+        <h1 class="text-xl font-bold bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">
+          Boris Chen Draft Tiers
+        </h1>
+      </div>
+
+      <!-- Quick Nav Buttons & Dropdown -->
+      <div class="flex items-center gap-3">
+        <div class="hidden md:flex items-center gap-1 bg-slate-800/80 p-1 rounded-xl border border-slate-700/50">
+          <button onclick="switchPosition('WR')" id="btn-WR" class="nav-btn active px-3 py-1.5 rounded-lg text-sm font-semibold text-slate-300 hover:text-white">WR</button>
+          <button onclick="switchPosition('RB')" id="btn-RB" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-semibold text-slate-300 hover:text-white">RB</button>
+          <button onclick="switchPosition('QB')" id="btn-QB" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-semibold text-slate-300 hover:text-white">QB</button>
+          <button onclick="switchPosition('TE')" id="btn-TE" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-semibold text-slate-300 hover:text-white">TE</button>
+          <button onclick="switchPosition('DST')" id="btn-DST" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-semibold text-slate-300 hover:text-white">DST</button>
+        </div>
+
+        <!-- Dynamic Dropdown -->
+        <select id="posDropdown" onchange="switchPosition(this.value)" class="bg-slate-800 text-slate-200 border border-slate-700 rounded-lg px-3 py-1.5 text-sm font-medium focus:ring-2 focus:ring-sky-500 focus:outline-none cursor-pointer">
+          <option value="WR">Wide Receivers (WR)</option>
+          <option value="RB">Running Backs (RB)</option>
+          <option value="QB">Quarterbacks (QB)</option>
+          <option value="TE">Tight Ends (TE)</option>
+          <option value="DST">Defenses (DST)</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- Position Content Area -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-6 space-y-8">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-800/40 p-6 rounded-2xl border border-slate-800">
+      <div>
+        <span id="posBadge" class="text-xs font-bold uppercase tracking-wider text-sky-400 bg-sky-500/10 px-2.5 py-1 rounded-md border border-sky-500/20">Position Page</span>
+        <h2 id="posTitle" class="text-3xl font-extrabold text-white mt-2">Wide Receivers Tier Analysis</h2>
+        <p id="posDesc" class="text-slate-400 text-sm mt-1">Tier breakdowns based on Expert Consensus Rankings (ECR).</p>
+      </div>
+    </div>
+
+    <!-- Tier Gantt Visual -->
+    <div class="bg-slate-800/50 rounded-2xl border border-slate-800 p-4 shadow-xl overflow-hidden">
+      <div class="flex items-center justify-between mb-4 px-2">
+        <h3 class="text-lg font-bold text-slate-200">Consensus Range Chart</h3>
+        <span class="text-xs text-slate-400">Blue bar = Rank Spread | Red dot = Avg Rank</span>
+      </div>
+      <div class="w-full flex justify-center bg-slate-900 rounded-xl p-2 border border-slate-800/80">
+        <img id="posChart" src="gantt_wr.png" alt="Position Chart" class="max-w-full h-auto rounded-lg" />
+      </div>
+    </div>
+
+    <!-- Data Table -->
+    <div class="bg-slate-800/50 rounded-2xl border border-slate-800 p-6 shadow-xl">
+      <h3 class="text-lg font-bold text-slate-200 mb-4">Positional Rankings</h3>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-slate-700 text-xs text-slate-400 uppercase tracking-wider">
+              <th class="py-3 px-4">Tier</th>
+              <th class="py-3 px-4">Overall Rank</th>
+              <th class="py-3 px-4">Player Name</th>
+              <th class="py-3 px-4">Avg Rank</th>
+              <th class="py-3 px-4">Best / Worst</th>
+            </tr>
+          </thead>
+          <tbody id="posTableBody" class="divide-y divide-slate-800 text-sm">
+            <!-- Populated Dynamically -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const posData = {
+      WR: {
+        title: "Wide Receivers Tier Analysis",
+        desc: "Top wide receiver targets ordered by tier clustering and expert range.",
+        chart: "gantt_wr.png",
+        players: [
+          { tier: 1, rank: 1, name: "Ja'Marr Chase", avg: "1.2", range: "1 - 2" },
+          { tier: 1, rank: 3, name: "Puka Nacua", avg: "3.4", range: "3 - 5" },
+          { tier: 1, rank: 5, name: "Jaxon Smith-Njigba", avg: "5.1", range: "4 - 7" },
+          { tier: 2, rank: 7, name: "CeeDee Lamb", avg: "7.8", range: "5 - 12" },
+          { tier: 2, rank: 8, name: "Justin Jefferson", avg: "8.5", range: "6 - 15" }
+        ]
+      },
+      RB: {
+        title: "Running Backs Tier Analysis",
+        desc: "Consensus tiers for high-volume bellcows and high-upside committee backs.",
+        chart: "gantt_rb.png",
+        players: [
+          { tier: 1, rank: 2, name: "Jahmyr Gibbs", avg: "2.1", range: "1 - 3" },
+          { tier: 1, rank: 4, name: "Bijan Robinson", avg: "4.0", range: "2 - 5" },
+          { tier: 2, rank: 9, name: "Christian McCaffrey", avg: "9.2", range: "5 - 14" },
+          { tier: 2, rank: 10, name: "Jonathan Taylor", avg: "10.1", range: "7 - 18" },
+          { tier: 3, rank: 13, name: "James Cook III", avg: "13.5", range: "10 - 20" }
+        ]
+      },
+      QB: {
+        title: "Quarterbacks Tier Analysis",
+        desc: "Signal-callers tiered by dual-threat rushing upside and passing efficiency.",
+        chart: "gantt_qb.png",
+        players: [
+          { tier: 4, rank: 26, name: "Josh Allen", avg: "26.4", range: "21 - 35" },
+          { tier: 5, rank: 31, name: "Lamar Jackson", avg: "31.2", range: "25 - 42" },
+          { tier: 6, rank: 37, name: "Drake Maye", avg: "37.8", range: "28 - 55" },
+          { tier: 7, rank: 44, name: "Joe Burrow", avg: "44.1", range: "30 - 62" }
+        ]
+      },
+      TE: {
+        title: "Tight Ends Tier Analysis",
+        desc: "Positional advantage tiers separating elite target hogs from streamers.",
+        chart: "gantt_te.png",
+        players: [
+          { tier: 3, rank: 17, name: "Trey McBride", avg: "17.1", range: "12 - 25" },
+          { tier: 3, rank: 19, name: "Brock Bowers", avg: "19.3", range: "14 - 26" },
+          { tier: 6, rank: 35, name: "Colston Loveland", avg: "35.2", range: "22 - 58" },
+          { tier: 8, rank: 51, name: "Tyler Warren", avg: "51.0", range: "38 - 66" }
+        ]
+      },
+      DST: {
+        title: "Defenses (DST) Tier Analysis",
+        desc: "Defensive streams and elite team defense options.",
+        chart: "gantt_dst.png",
+        players: [
+          { tier: 19, rank: 154, name: "Houston Texans", avg: "154.2", range: "142 - 175" },
+          { tier: 20, rank: 162, name: "Denver Broncos", avg: "162.5", range: "150 - 210" },
+          { tier: 20, rank: 165, name: "Los Angeles Rams", avg: "165.1", range: "144 - 180" }
+        ]
+      }
+    };
+
+    function switchPosition(pos) {
+      // Update Active Navigation Button Styles
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById(`btn-${pos}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      // Update Dropdown Selection
+      document.getElementById('posDropdown').value = pos;
+
+      // Update Content Data & Visuals
+      const data = posData[pos];
+      document.getElementById('posTitle').textContent = data.title;
+      document.getElementById('posDesc').textContent = data.desc;
+      document.getElementById('posChart').src = data.chart;
+
+      // Render Dynamic Table Rows
+      const tbody = document.getElementById('posTableBody');
+      tbody.innerHTML = data.players.map(p => `
+        <tr class="hover:bg-slate-800/40 transition-colors">
+          <td class="py-3 px-4"><span class="bg-indigo-500/10 text-indigo-400 font-semibold px-2 py-0.5 rounded text-xs border border-indigo-500/20">Tier ${p.tier}</span></td>
+          <td class="py-3 px-4 font-medium text-slate-300">#${p.rank}</td>
+          <td class="py-3 px-4 font-bold text-white">${p.name}</td>
+          <td class="py-3 px-4 text-rose-400 font-semibold">${p.avg}</td>
+          <td class="py-3 px-4 text-slate-400">${p.range}</td>
+        </tr>
+      `).join('');
+    }
+
+    // Initialize Default View (WR)
+    switchPosition('WR');
+  </script>
+</body>
+</html>
