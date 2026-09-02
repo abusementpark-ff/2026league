@@ -2,35 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Abusement Park Draft Report Card — 2026</title>
+<title>Abusement Park — Draft Report Card</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   body { margin: 0; background: #14160f; }
-  .ffn-nav {
-    max-width: 760px;
-    margin: 0 auto;
-    display: flex;
-    gap: 4px;
-    padding: 16px 24px 0;
-  }
-  .ffn-nav a {
-    font-family: 'Oswald', sans-serif;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    color: #a79f8d;
-    padding: 8px 14px;
-    border: 1px solid #3a3d33;
-    border-radius: 3px 3px 0 0;
-    border-bottom: none;
-  }
-  .ffn-nav a.active {
-    color: #14160f;
-    background: #e0a72e;
-    border-color: #e0a72e;
-  }
   .ffn-wrap {
     --ink: #eee7d8;
     --ink-dim: #a79f8d;
@@ -61,10 +37,7 @@
     font-size: 12px;
     text-transform: uppercase;
   }
-  .ffn-header {
-    padding: 28px 24px 20px;
-    border-bottom: 4px solid var(--gold);
-  }
+  .ffn-header { padding: 28px 24px 20px; border-bottom: 4px solid var(--gold); }
   .ffn-header h1 {
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
@@ -73,12 +46,7 @@
     margin: 0 0 6px;
     color: var(--ink);
   }
-  .ffn-header p {
-    margin: 0;
-    color: var(--ink-dim);
-    font-style: italic;
-    font-size: 15px;
-  }
+  .ffn-header p { margin: 0; color: var(--ink-dim); font-style: italic; font-size: 15px; }
   .ffn-section { padding: 30px 24px 6px; }
   .ffn-section h2 {
     font-family: 'Oswald', sans-serif;
@@ -89,30 +57,25 @@
     padding-bottom: 10px;
     border-bottom: 1px solid var(--rule);
   }
-  .ffn-section .sub {
-    color: var(--ink-dim);
-    font-style: italic;
-    font-size: 14px;
-    margin: 10px 0 20px;
-  }
+  .ffn-section .sub { color: var(--ink-dim); font-style: italic; font-size: 14px; margin: 10px 0 20px; }
   table.ffn-standings {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 8px;
-    font-size: 14px;
+    font-size: 13.5px;
   }
   table.ffn-standings th {
     font-family: 'Oswald', sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    font-size: 12px;
+    font-size: 11px;
     text-align: left;
     color: var(--gold);
-    padding: 8px 10px;
+    padding: 8px 8px;
     border-bottom: 2px solid var(--gold);
   }
   table.ffn-standings td {
-    padding: 9px 10px;
+    padding: 8px 8px;
     border-bottom: 1px solid var(--rule);
     color: var(--ink);
   }
@@ -127,6 +90,8 @@
     background: var(--green);
     color: #0e0f0a;
   }
+  .grade-pill.mid { background: #b98a2e; }
+  .grade-pill.low { background: var(--crimson); }
   .ffn-highlight {
     background: var(--panel);
     border-left: 4px solid var(--gold);
@@ -135,72 +100,29 @@
     margin-bottom: 18px;
   }
   .ffn-highlight.shame { border-left-color: var(--crimson); }
-  .ffn-highlight .title-line {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
-    font-size: 19px;
-    margin-bottom: 6px;
+  .ffn-highlight.rico {
+    border-left-color: #7a4fb0;
+    background: linear-gradient(135deg, #241c2c, #1c1f1a);
   }
-  .ffn-highlight .meta {
-    color: var(--ink-dim);
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
+  .ffn-highlight .title-line { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 19px; margin-bottom: 6px; }
+  .ffn-highlight.rico .title-line { color: #c9a6ec; }
+  .ffn-highlight .meta { color: var(--ink-dim); font-size: 14px; margin-bottom: 10px; }
   .ffn-highlight p { margin: 8px 0 12px; }
-  .ffn-gif {
-    display: block;
-    background: #0e0f0a;
-    border: 1px dashed var(--rule);
-    color: var(--ink-dim);
-    font-size: 13px;
-    text-align: center;
-    padding: 26px 12px;
-    border-radius: 3px;
-    font-style: italic;
-  }
   .ffn-team-card {
     background: var(--panel-2);
     border-radius: 3px;
     padding: 16px 20px;
     margin-bottom: 14px;
   }
-  .ffn-team-card h3 {
-    font-family: 'Oswald', sans-serif;
-    font-size: 17px;
-    margin: 0 0 4px;
-    color: var(--ink);
-  }
-  .ffn-team-card .grade-line {
-    color: var(--gold);
-    font-family: 'Oswald', sans-serif;
-    font-size: 13px;
-    margin-bottom: 10px;
-  }
-  .ffn-team-card dl {
-    margin: 0 0 10px;
-    font-size: 14px;
-  }
-  .ffn-team-card dt {
-    color: var(--ink-dim);
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    margin-top: 8px;
-  }
+  .ffn-team-card h3 { font-family: 'Oswald', sans-serif; font-size: 17px; margin: 0 0 4px; color: var(--ink); }
+  .ffn-team-card .grade-line { color: var(--gold); font-family: 'Oswald', sans-serif; font-size: 13px; margin-bottom: 10px; }
+  .ffn-team-card dl { margin: 0 0 10px; font-size: 14px; }
+  .ffn-team-card dt { color: var(--ink-dim); font-size: 12px; text-transform: uppercase; letter-spacing: 0.03em; margin-top: 8px; }
   .ffn-team-card dd { margin: 2px 0 0; }
   .ffn-awards { list-style: none; margin: 0; padding: 0; }
-  .ffn-awards li {
-    padding: 10px 0;
-    border-bottom: 1px solid var(--rule);
-    font-size: 15px;
-  }
+  .ffn-awards li { padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 15px; }
   .ffn-awards li:last-child { border-bottom: none; }
-  .ffn-awards .tag {
-    font-family: 'Oswald', sans-serif;
-    color: var(--gold);
-    font-weight: 700;
-    margin-right: 6px;
-  }
+  .ffn-awards .tag { font-family: 'Oswald', sans-serif; color: var(--gold); font-weight: 700; margin-right: 6px; }
   .ffn-quote {
     background: var(--panel-2);
     border-left: 4px solid var(--crimson);
@@ -219,49 +141,37 @@
     color: var(--ink-dim);
     text-transform: uppercase;
   }
-  .ffn-footer {
-    text-align: center;
-    padding: 28px 24px 6px;
-    color: var(--ink-dim);
-    font-style: italic;
-    font-size: 14px;
-  }
+  .ffn-footer { text-align: center; padding: 28px 24px 6px; color: var(--ink-dim); font-style: italic; font-size: 14px; }
 </style>
 </head>
 <body>
 
-<nav class="ffn-nav">
-  <a href="index.html">Newsletter</a>
-  <a href="draft-report.html" class="active">Draft Report</a>
-  <a href="weekly-grades.html">Weekly Grades</a>
-</nav>
-
 <div class="ffn-wrap">
-  <div class="ffn-band">Abusement Park · Draft Report Card — 2026</div>
+  <div class="ffn-band">Abusement Park · Draft Report Card</div>
 
   <div class="ffn-header">
     <h1>Draft Report Card</h1>
-    <p>We watched. We judged. Some of you should be ashamed.</p>
+    <p>We watched. We judged. Several of you should feel genuinely bad.</p>
   </div>
 
   <div class="ffn-section">
     <h2>The Grades</h2>
-    <p class="sub">Sorted by projected points — or by grade, if you want to bury the lede on someone</p>
+    <p class="sub">Sorted by projected points — objective on the math, merciless on the roster construction</p>
     <table class="ffn-standings">
       <thead>
         <tr><th>Team</th><th>Manager</th><th>Proj. Pts</th><th>Grade</th><th>Verdict</th></tr>
       </thead>
       <tbody>
-        <tr><td>AB's 3rd Quarter Uber</td><td>Ryan Guest</td><td>[XXX.X]</td><td><span class="grade-pill">[A+]</span></td><td>[one-line roast/praise]</td></tr>
-        <tr><td>Covfefe is for Closers</td><td>David Pannell</td><td>[XXX.X]</td><td><span class="grade-pill">[A]</span></td><td>[one-liner]</td></tr>
-        <tr><td>Kenz VishusLicks</td><td>Ken Glover</td><td>[XXX.X]</td><td><span class="grade-pill">[A-]</span></td><td>[one-liner]</td></tr>
-        <tr><td>Joydip's Scary Team</td><td>Joydip Joy</td><td>[XXX.X]</td><td><span class="grade-pill">[B+]</span></td><td>[one-liner]</td></tr>
-        <tr><td>Catchy Football Name</td><td>Ryan McCarty</td><td>[XXX.X]</td><td><span class="grade-pill">[B]</span></td><td>[one-liner]</td></tr>
-        <tr><td>Nabers ate my Zomb...</td><td>Jonathan Jaramillo</td><td>[XXX.X]</td><td><span class="grade-pill">[B-]</span></td><td>[one-liner]</td></tr>
-        <tr><td>Donuts All Day 24/7</td><td>Jonathan Albarado</td><td>[XXX.X]</td><td><span class="grade-pill">[C+]</span></td><td>[one-liner]</td></tr>
-        <tr><td>Herbert's Heros</td><td>Kevin Guest</td><td>[XXX.X]</td><td><span class="grade-pill">[C]</span></td><td>[one-liner]</td></tr>
-        <tr><td>Lucas's Loud Team</td><td>Lucas McMahon</td><td>[XXX.X]</td><td><span class="grade-pill">[C-]</span></td><td>[one-liner]</td></tr>
-        <tr><td>Texas Determined Do...</td><td>Kolby Gilseth</td><td>[XXX.X]</td><td><span class="grade-pill">[D]</span></td><td>[one-line roast]</td></tr>
+        <tr><td>Catchy Football Name</td><td>Ryan McCarty</td><td>4968.7</td><td><span class="grade-pill">A</span></td><td>Best roster in the league, torched by the dumbest pick in it</td></tr>
+        <tr><td>Covfefe is for Closers</td><td>David Pannell</td><td>4914.8</td><td><span class="grade-pill">A+</span></td><td>Boringly, infuriatingly correct at every pick</td></tr>
+        <tr><td>Texas Determined Domination</td><td>Kolby Gilseth</td><td>4830.0</td><td><span class="grade-pill mid">A-</span></td><td>Great team, then panic-bought a Pop Warner two-way novelty act</td></tr>
+        <tr><td>Herbert's Heros</td><td>Kevin Guest</td><td>4817.0</td><td><span class="grade-pill mid">B+</span></td><td>Elite RBs, still legally required to change the team name</td></tr>
+        <tr><td>Joydip's Scary Team</td><td>Joydip Joy</td><td>4719.1</td><td><span class="grade-pill mid">B</span></td><td>Fine roster, joined the QB-hoarding support group anyway</td></tr>
+        <tr><td>Sutton My Face</td><td>Ryan Guest</td><td>4714.2</td><td><span class="grade-pill mid">B-</span></td><td>Drafted like wide receivers personally wronged him</td></tr>
+        <tr><td>Donuts All Day 24/7</td><td>Jonathan Albarado</td><td>4614.5</td><td><span class="grade-pill mid">C+</span></td><td>Owns the single dumbest pick of the entire draft, statistically speaking</td></tr>
+        <tr><td>Lucas's Loud Team</td><td>Lucas McMahon</td><td>4579.6</td><td><span class="grade-pill mid">C</span></td><td>Perfect pick #1, garbage decisions immediately after</td></tr>
+        <tr><td>Kenz VishusLicks</td><td>Ken Glover</td><td>4508.5</td><td><span class="grade-pill low">C-</span></td><td>Reached on everything, hoarded everything, learned nothing</td></tr>
+        <tr><td>Nabers ate my Zombies</td><td>Jonathan Jaramillo</td><td>4484.1</td><td><span class="grade-pill low">D</span></td><td>Finally drafted the guy his team is named after, still finished last</td></tr>
       </tbody>
     </table>
   </div>
@@ -269,20 +179,33 @@
   <div class="ffn-section">
     <h2>Best Draft</h2>
     <div class="ffn-highlight">
-      <div class="title-line">[Team Name]</div>
-      <div class="meta">Projected: [XXX.X] pts · Grade: [A+/A]</div>
-      <p>[3-5 sentences on why this draft worked — value picks, positional balance, a guy who fell to them in a spot they shouldn't have. Give real credit here, crude tone aside.]</p>
-      <span class="ffn-gif">[GIF: search "flawless victory" / "mic drop" / "genius"]</span>
+      <div class="title-line">Covfefe is for Closers — David Pannell</div>
+      <div class="meta">Projected: 4914.8 pts · Grade: A+</div>
+      <p>Ja'Marr Chase and Jaxon Smith-Njigba to open, then Saquon Barkley and Jeremiyah Love, because apparently David wanted a running back room good enough to make Barkley the backup plan. Also found Trevor Lawrence sitting untouched at pick 136 — the single best value pick of the entire draft — while everyone else was busy reaching for Matthew Stafford like it's still the Obama administration. The only real crime here is drafting two defenses, which, fine, is a crime everyone in this league apparently committed together. Second-highest point total in the league, and unlike the team that beat it, David doesn't have to explain a single pick to anyone at Thanksgiving.</p>
+      <span class="ffn-gif">[GIF: search "flawless victory" / "mic drop" / "still winning"]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="search 'flawless victory' / 'mic drop' / 'still winning'" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
     </div>
   </div>
 
   <div class="ffn-section">
     <h2>Worst Draft</h2>
     <div class="ffn-highlight shame">
-      <div class="title-line">[Team Name]</div>
-      <div class="meta">Projected: [XXX.X] pts · Grade: [D/F]</div>
-      <p>[3-5 sentences on what went wrong — reached picks, ignored RB early, drafted a kicker in round 9, etc. This is where the crude tone earns its keep.]</p>
-      <span class="ffn-gif">[GIF: search "dumpster fire" / "clown car" / "facepalm"]</span>
+      <div class="title-line">Nabers ate my Zombies — Jonathan Jaramillo</div>
+      <div class="meta">Projected: 4484.1 pts · Grade: D</div>
+      <p>Credit where it's due, briefly: Jonathan runs a team literally named after Malik Nabers, and he actually drafted Malik Nabers — landed at pick 47, right where he belonged. That's the last good decision on this roster. Everything after reads like he lost a bet: two backup-tier quarterbacks nobody needed even one of, a Tyrone Tracy Jr. reach 77 spots ahead of his value, a Rams Defense reach 86 spots ahead of its value, and — because two defenses apparently wasn't enough of a bit — a THIRD defense (Buccaneers) burned on a bench spot nobody will ever use. One correct pick, surrounded by a landfill.</p>
+      <span class="ffn-gif">[GIF: search "so close" / "well actually" / "still last place"]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="search 'so close' / 'well actually' / 'still last place'" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
+    </div>
+  </div>
+
+  <div class="ffn-section">
+    <h2>🏆 The Uncle Rico Award — Most Boneheaded Pick</h2>
+    <div class="ffn-highlight rico">
+      <div class="title-line">Catchy Football Name — Ryan McCarty</div>
+      <div class="meta">Jayden Daniels, Round 1, Pick 8 overall · Consensus rank: 55th</div>
+      <p>Pick 8 overall. Seven players had come off the board — Nacua, Walker, Bijan, Achane, Chase, Henry, Gibbs — a murderer's row of guys who actually win you fantasy games, and Ryan looked at all of it and threw deep for a quarterback ranked 55th overall. Jayden Daniels, by every projection in this dataset, was a round-5 or round-6 value — the kind of player you get for free while everyone else is still drafting real starters. Taking him at 1.8 means reaching 47 spots ahead of his actual worth, in the single most expensive round of the draft to be wrong in. If you coulda gone State, you coulda been a star — instead you spent the 8th pick of the entire draft throwing a spiral into the side of a moving minivan, and somehow you're still walking around with the highest point total in the league to show for it. That's not skill. That's the football gods taking pity on you.</p>
+      <span class="ffn-gif">[GIF: search "throwing a football" / "if only" / "glory days"]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="search 'throwing a football' / 'if only' / 'glory days'" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
     </div>
   </div>
 
@@ -290,152 +213,161 @@
     <h2>Team-by-Team Breakdown</h2>
 
     <div class="ffn-team-card">
-      <h3>AB's 3rd Quarter Uber</h3>
-      <div class="grade-line">Grade: [X] · [XXX.X] projected pts · Manager: Ryan Guest</div>
+      <h3>Sutton My Face</h3>
+      <div class="grade-line">Grade: B- · 4714.2 projected pts · Manager: Ryan Guest</div>
       <dl>
-        <dt>Best Pick</dt><dd>[Player, round] — [why]</dd>
-        <dt>Worst Pick</dt><dd>[Player, round] — [why]</dd>
-        <dt>Sleeper Bet</dt><dd>[Player they're banking on]</dd>
+        <dt>Best Pick</dt><dd>Derrick Henry, R1 — a legitimate workhorse anchor</dd>
+        <dt>Worst Pick</dt><dd>Sam Darnold, R16 — a reach 45 spots ahead of his value, for a QB3</dd>
+        <dt>Sleeper Bet</dt><dd>Jadarian Price, R5</dd>
       </dl>
-      <p>[2-3 sentence roast, as crude as you want.]</p>
+      <p>Derrick Henry, Chase Brown, Omarion Hampton, Javonte Williams, Jadarian Price — five straight running backs to start the draft. At what point does a pattern stop being a strategy and start being a cry for help? Ryan Guest apparently believes wide receivers are a myth invented by fantasy sites to sell content.</p>
       <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="reaction fitting this team's draft vibe" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
     </div>
 
     <div class="ffn-team-card">
       <h3>Covfefe is for Closers</h3>
-      <div class="grade-line">Grade: [X] · [XXX.X] projected pts · Manager: David Pannell</div>
+      <div class="grade-line">Grade: A+ · 4914.8 projected pts · Manager: David Pannell</div>
       <dl>
-        <dt>Best Pick</dt><dd>[Player, round] — [why]</dd>
-        <dt>Worst Pick</dt><dd>[Player, round] — [why]</dd>
-        <dt>Sleeper Bet</dt><dd>[Player they're banking on]</dd>
+        <dt>Best Pick</dt><dd>Trevor Lawrence, R14 — fell 54 spots past his rank, the steal of the draft</dd>
+        <dt>Worst Pick</dt><dd>Brenton Strange, R15 — a reach for a third tight end nobody was targeting</dd>
+        <dt>Sleeper Bet</dt><dd>Zay Flowers, R6</dd>
       </dl>
-      <p>[2-3 sentence roast, as crude as you want.]</p>
+      <p>Highest projected total in the entire league, built on Chase-JSN-Saquon-Love, a core good enough to make everyone else's roster look like it was drafted with a rock. Also rostered two full defenses (Vikings, Browns), because apparently no manager in this league has heard of a bye-week streaming strategy, or a waiver wire, or restraint.</p>
       <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
-    </div>
-
-    <div class="ffn-team-card">
-      <h3>Kenz VishusLicks</h3>
-      <div class="grade-line">Grade: [X] · [XXX.X] projected pts · Manager: Ken Glover</div>
-      <dl>
-        <dt>Best Pick</dt><dd>[Player, round] — [why]</dd>
-        <dt>Worst Pick</dt><dd>[Player, round] — [why]</dd>
-        <dt>Sleeper Bet</dt><dd>[Player they're banking on]</dd>
-      </dl>
-      <p>[2-3 sentence roast, as crude as you want.]</p>
-      <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
-    </div>
-
-    <div class="ffn-team-card">
-      <h3>Joydip's Scary Team</h3>
-      <div class="grade-line">Grade: [X] · [XXX.X] projected pts · Manager: Joydip Joy</div>
-      <dl>
-        <dt>Best Pick</dt><dd>[Player, round] — [why]</dd>
-        <dt>Worst Pick</dt><dd>[Player, round] — [why]</dd>
-        <dt>Sleeper Bet</dt><dd>[Player they're banking on]</dd>
-      </dl>
-      <p>[2-3 sentence roast, as crude as you want.]</p>
-      <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
-    </div>
-
-    <div class="ffn-team-card">
-      <h3>Catchy Football Name</h3>
-      <div class="grade-line">Grade: [X] · [XXX.X] projected pts · Manager: Ryan McCarty</div>
-      <dl>
-        <dt>Best Pick</dt><dd>[Player, round] — [why]</dd>
-        <dt>Worst Pick</dt><dd>[Player, round] — [why]</dd>
-        <dt>Sleeper Bet</dt><dd>[Player they're banking on]</dd>
-      </dl>
-      <p>[2-3 sentence roast, as crude as you want.]</p>
-      <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
-    </div>
-
-    <div class="ffn-team-card">
-      <h3>Nabers ate my Zomb...</h3>
-      <div class="grade-line">Grade: [X] · [XXX.X] projected pts · Manager: Jonathan Jaramillo</div>
-      <dl>
-        <dt>Best Pick</dt><dd>[Player, round] — [why]</dd>
-        <dt>Worst Pick</dt><dd>[Player, round] — [why]</dd>
-        <dt>Sleeper Bet</dt><dd>[Player they're banking on]</dd>
-      </dl>
-      <p>[2-3 sentence roast, as crude as you want.]</p>
-      <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="reaction fitting this team's draft vibe" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
     </div>
 
     <div class="ffn-team-card">
       <h3>Donuts All Day 24/7</h3>
-      <div class="grade-line">Grade: [X] · [XXX.X] projected pts · Manager: Jonathan Albarado</div>
+      <div class="grade-line">Grade: C+ · 4614.5 projected pts · Manager: Jonathan Albarado</div>
       <dl>
-        <dt>Best Pick</dt><dd>[Player, round] — [why]</dd>
-        <dt>Worst Pick</dt><dd>[Player, round] — [why]</dd>
-        <dt>Sleeper Bet</dt><dd>[Player they're banking on]</dd>
+        <dt>Best Pick</dt><dd>Justin Herbert, R6 — landed on a completely unrelated roster, twice in a row now</dd>
+        <dt>Worst Pick</dt><dd>Cowboys Defense, R16 — reached 145 spots ahead of value, the single worst pick of the entire draft</dd>
+        <dt>Sleeper Bet</dt><dd>Jameson Williams, R8</dd>
       </dl>
-      <p>[2-3 sentence roast, as crude as you want.]</p>
+      <p>Josh Allen and James Cook III at the top are genuinely strong, so naturally Jonathan had to balance the ledger. In round 16, this roster produced the statistically worst pick in the entire draft — Cowboys Defense, taken 145 spots ahead of where it should've gone, which isn't a reach so much as a hostage situation — and then, nine rounds later, decided one indefensible defense pick wasn't enough and grabbed a second (49ers). Someone hand this man a waiver wire and take away his draft board.</p>
       <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="reaction fitting this team's draft vibe" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
     </div>
 
     <div class="ffn-team-card">
       <h3>Herbert's Heros</h3>
-      <div class="grade-line">Grade: [X] · [XXX.X] projected pts · Manager: Kevin Guest</div>
+      <div class="grade-line">Grade: B+ · 4817.0 projected pts · Manager: Kevin Guest</div>
       <dl>
-        <dt>Best Pick</dt><dd>[Player, round] — [why]</dd>
-        <dt>Worst Pick</dt><dd>[Player, round] — [why]</dd>
-        <dt>Sleeper Bet</dt><dd>[Player they're banking on]</dd>
+        <dt>Best Pick</dt><dd>Christian McCaffrey + Jonathan Taylor, R1/R2 — the best RB1/RB1 combo in the league</dd>
+        <dt>Worst Pick</dt><dd>Khalil Shakir, R14 — reached 40 spots ahead of value</dd>
+        <dt>Sleeper Bet</dt><dd>Carnell Tate, R9</dd>
       </dl>
-      <p>[2-3 sentence roast, as crude as you want.]</p>
+      <p>CMC and Jonathan Taylor back to back is an elite RB core by any measure, genuinely one of the best backfields in the league. And yet — this team has not rostered Justin Herbert. Not once. Patrick Mahomes and Brock Purdy both made the roster instead, which means Kevin actively chose two different quarterbacks over the one his own team is named after. This isn't an oversight. This is a restraining order.</p>
       <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="reaction fitting this team's draft vibe" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
+    </div>
+
+    <div class="ffn-team-card">
+      <h3>Joydip's Scary Team</h3>
+      <div class="grade-line">Grade: B · 4719.1 projected pts · Manager: Joydip Joy</div>
+      <dl>
+        <dt>Best Pick</dt><dd>Bijan Robinson, R1 — correct, no notes</dd>
+        <dt>Worst Pick</dt><dd>Jared Goff, R10 — his second startable QB after already rostering Jalen Hurts</dd>
+        <dt>Sleeper Bet</dt><dd>Romeo Doubs, R16 — fell 29 spots past his value</dd>
+      </dl>
+      <p>Bijan and Amon-Ra to open is a genuinely strong foundation — the kind of start that makes you think this manager knows what he's doing. Then he drafted Jalen Hurts in round three and Jared Goff in round ten, joining basically every other team in this league in the completely unexplained group decision to draft two starting-caliber quarterbacks for a roster that starts exactly one. Nobody has offered a defense for this. Nobody can.</p>
+      <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="reaction fitting this team's draft vibe" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
+    </div>
+
+    <div class="ffn-team-card">
+      <h3>Kenz VishusLicks</h3>
+      <div class="grade-line">Grade: C- · 4508.5 projected pts · Manager: Ken Glover</div>
+      <dl>
+        <dt>Best Pick</dt><dd>Kenneth Walker III, R1 — solid floor at the position</dd>
+        <dt>Worst Pick</dt><dd>Matthew Stafford, R3 — reached 64 spots ahead of value, for a QB2 on a good day</dd>
+        <dt>Sleeper Bet</dt><dd>Rome Odunze, R7</dd>
+      </dl>
+      <p>This roster is a genuine museum of bad decisions, curated with real dedication: Matthew Stafford reached by 64 spots in round three like it's still 2015, RJ Harvey reached by 44, AJ Barner reached by 58, Isaac TeSlaa reached by 83 — an 83-spot reach on a player nobody else in this draft would've taken with their last pick, and Ken spent one of his first fourteen on him anyway. Also drafted a second quarterback (Kyler Murray) on top of Stafford, plus two separate defenses. This team didn't just reach and hoard at the same time — it turned reaching and hoarding into a full-time occupation.</p>
+      <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="reaction fitting this team's draft vibe" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
     </div>
 
     <div class="ffn-team-card">
       <h3>Lucas's Loud Team</h3>
-      <div class="grade-line">Grade: [X] · [XXX.X] projected pts · Manager: Lucas McMahon</div>
+      <div class="grade-line">Grade: C · 4579.6 projected pts · Manager: Lucas McMahon</div>
       <dl>
-        <dt>Best Pick</dt><dd>[Player, round] — [why]</dd>
-        <dt>Worst Pick</dt><dd>[Player, round] — [why]</dd>
-        <dt>Sleeper Bet</dt><dd>[Player they're banking on]</dd>
+        <dt>Best Pick</dt><dd>Puka Nacua, R1 (pick 1 overall) — the single best pick of the draft, dead on</dd>
+        <dt>Worst Pick</dt><dd>Dak Prescott, R3 — reached 62 spots ahead of value, on a roster already holding Lamar Jackson</dd>
+        <dt>Sleeper Bet</dt><dd>Jayden Reed, R13</dd>
       </dl>
-      <p>[2-3 sentence roast, as crude as you want.]</p>
+      <p>Nailed the actual 1.1 with Puka Nacua — genuinely, the single best pick anyone made all draft — and then, almost immediately, started making decisions like the concept of a fantasy roster was brand new to him. Reached hard for Dak Prescott after already owning Lamar Jackson, then rostered two entirely separate defenses (Broncos, Lions), as if one great pick bought him the right to stop trying for the other seventeen rounds.</p>
       <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="reaction fitting this team's draft vibe" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
     </div>
 
     <div class="ffn-team-card">
-      <h3>Texas Determined Do...</h3>
-      <div class="grade-line">Grade: [X] · [XXX.X] projected pts · Manager: Kolby Gilseth</div>
+      <h3>Catchy Football Name</h3>
+      <div class="grade-line">Grade: A · 4968.7 projected pts · Manager: Ryan McCarty</div>
       <dl>
-        <dt>Best Pick</dt><dd>[Player, round] — [why]</dd>
-        <dt>Worst Pick</dt><dd>[Player, round] — [why]</dd>
-        <dt>Sleeper Bet</dt><dd>[Player they're banking on]</dd>
+        <dt>Best Pick</dt><dd>Justin Jefferson, R3 — an elite WR1 falling right into value range</dd>
+        <dt>Worst Pick</dt><dd>Jayden Daniels, R1 (pick 8 overall) — see: the Uncle Rico Award, above</dd>
+        <dt>Sleeper Bet</dt><dd>Luther Burden III, R8</dd>
       </dl>
-      <p>[2-3 sentence roast, as crude as you want.]</p>
+      <p>Highest point total in the entire league — Justin Jefferson, Drake London, Brock Bowers, Garrett Wilson is a genuinely stacked supporting cast, the kind that should make everyone else nervous. Instead, everyone's talking about the 8th overall pick, where Ryan decided a quarterback ranked 55th was worth more than six actual difference-makers. Then, having learned nothing, drafted a second quarterback (Drake Maye) right behind him, because apparently one indefensible QB investment just wasn't enough commitment to the bit. The talent is undeniable. So is the stupidity.</p>
       <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="reaction fitting this team's draft vibe" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
+    </div>
+
+    <div class="ffn-team-card">
+      <h3>Nabers ate my Zombies</h3>
+      <div class="grade-line">Grade: D · 4484.1 projected pts · Manager: Jonathan Jaramillo</div>
+      <dl>
+        <dt>Best Pick</dt><dd>Jahmyr Gibbs, R1 (pick 1 overall talent) — the correct RB1 in this draft's rankings</dd>
+        <dt>Worst Pick</dt><dd>Rams Defense, R9 — reached 86 spots ahead of value</dd>
+        <dt>Sleeper Bet</dt><dd>Malik Nabers, R5 — at least he's on the roster</dd>
+      </dl>
+      <p>The good news: Jonathan runs a team named after Malik Nabers, and he actually drafted Malik Nabers, landing him right on schedule at pick 47. The bad news: he then proceeded to torch everything around it — two backup-caliber quarterbacks nobody needed either of, a Rams Defense reach 86 spots ahead of value, a Tyrone Tracy Jr. reach 77 spots ahead, and a third defense (Buccaneers) that will never see a start. Got the one pick everyone would've roasted him for right, and still finished dead last in the league anyway. Impressive, in its own way.</p>
+      <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="reaction fitting this team's draft vibe" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
+    </div>
+
+    <div class="ffn-team-card">
+      <h3>Texas Determined Domination</h3>
+      <div class="grade-line">Grade: A- · 4830.0 projected pts · Manager: Kolby Gilseth</div>
+      <dl>
+        <dt>Best Pick</dt><dd>CeeDee Lamb, R2 — an elite WR1 landing right in value range</dd>
+        <dt>Worst Pick</dt><dd>Travis Hunter, R11 — a two-way college gimmick prospect, reached 43 spots ahead of value</dd>
+        <dt>Sleeper Bet</dt><dd>Alec Pierce, R10 — fell 27 spots past value</dd>
+      </dl>
+      <p>CeeDee Lamb, Rashee Rice, Emeka Egbuka, Terry McLaurin is a legitimately loaded receiving corps, and Kyle Pitts gives this roster a real tight end advantage too — Kolby was one round away from being untouchable. Then, in round 11, he decided a two-way college prospect who hasn't proven he can hold down a single NFL position, let alone two, was worth reaching 43 spots for. A clean, well-built team, undone by one moment of main-character syndrome.</p>
+      <span class="ffn-gif">[GIF: reaction fitting this team's draft vibe]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="reaction fitting this team's draft vibe" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
     </div>
   </div>
 
   <div class="ffn-section">
     <h2>Superlatives</h2>
     <ul class="ffn-awards">
-      <li><span class="tag">📈 Best Value:</span>[Player] to [Team] in round [X]</li>
-      <li><span class="tag">🚩 Biggest Reach:</span>[Player] to [Team] in round [X]</li>
-      <li><span class="tag">🎯 Most Predictable Pick:</span>[Team] — saw it coming from a mile away</li>
-      <li><span class="tag">🎲 Biggest Gamble:</span>[Team] on [Player/strategy]</li>
-      <li><span class="tag">🧊 Coldest Draft Room Read:</span>[Team] — [what they misjudged]</li>
-      <li><span class="tag">⏰ Slowest Picker:</span>[Manager] — timer abuse award</li>
+      <li><span class="tag">📈 Best Value:</span>Trevor Lawrence to Covfefe is for Closers, falling 54 spots past his rank in round 14 while everyone else panic-drafted has-been arms</li>
+      <li><span class="tag">🚩 Second-Worst Reach:</span>Matthew Stafford to Kenz VishusLicks in round 3, reached 64 spots ahead of value for a QB whose best years are a Wikipedia entry</li>
+      <li><span class="tag">💀 Statistically Worst Pick, Any Round:</span>Cowboys Defense to Donuts All Day 24/7, reached 145 spots ahead of value — genuinely a top contender for worst pick in fantasy football history</li>
+      <li><span class="tag">🎲 Biggest Gamble:</span>Travis Hunter to Texas Determined Domination — a two-way college novelty act taken at pick 104 like it's a trading card, not a roster spot</li>
+      <li><span class="tag">🧊 Coldest Draft Room Read:</span>Herbert's Heros not rostering Justin Herbert — at this point it's not a joke, it's a diagnosis</li>
+      <li><span class="tag">🦠 League-Wide Epidemic:</span>Every single one of the ten teams drafted exactly two quarterbacks. Not one exception. This isn't a strategy, it's a support group that meets on draft day.</li>
+      <li><span class="tag">🛡️ Defense Hoarding:</span>Eight of ten teams rostered two separate defenses; only Catchy Football Name and Texas Determined Domination showed any restraint, and even that's probably an accident</li>
     </ul>
   </div>
 
   <div class="ffn-section">
     <h2>League Business</h2>
     <ul class="ffn-awards">
-      <li><span class="tag">Waiver priority set by:</span>[draft order / reverse standings / etc.]</li>
-      <li><span class="tag">Trade block forming:</span>[any deals being floated]</li>
-      <li><span class="tag">Next up:</span>Week 1 lineups lock [date] — get your act together</li>
+      <li><span class="tag">League PSA:</span>You only start one quarterback. Please pass this along to whoever needs to hear it, which is apparently everyone</li>
     </ul>
   </div>
 
   <div class="ffn-section">
     <h2>Quote of the Draft</h2>
     <div class="ffn-quote">
-      "[Something dumb someone said on the draft call, immortalized forever]"
-      <cite>— [Manager name], regretting it already</cite>
+      "I coulda gone State."
+      <cite>— Ryan McCarty, staring at pick 8, probably</cite>
     </div>
   </div>
 
