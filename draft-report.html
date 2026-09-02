@@ -6,6 +6,30 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+  .ffn-nav {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    gap: 4px;
+    padding: 16px 24px 0;
+  }
+  .ffn-nav a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    color: #a79f8d;
+    padding: 8px 14px;
+    border: 1px solid #3a3d33;
+    border-radius: 3px 3px 0 0;
+    border-bottom: none;
+  }
+  .ffn-nav a.active {
+    color: #14160f;
+    background: #e0a72e;
+    border-color: #e0a72e;
+  }
   body { margin: 0; background: #14160f; }
   .ffn-wrap {
     --ink: #eee7d8;
@@ -145,6 +169,13 @@
 </style>
 </head>
 <body>
+
+<nav class="ffn-nav">
+  <a href="index.html">Newsletter</a>
+  <a href="draft-report.html" class="active">Draft Report</a>
+  <a href="weekly-grades.html">Weekly Grades</a>
+</nav>
+
 
 <div class="ffn-wrap">
   <div class="ffn-band">Abusement Park · Draft Report Card</div>
