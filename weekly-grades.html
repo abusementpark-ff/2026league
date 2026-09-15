@@ -31,35 +31,6 @@
     background: #e0a72e;
     border-color: #e0a72e;
   }
-  .ffn-week-select {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 12px 24px 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .ffn-week-select label {
-    font-family: 'Oswald', sans-serif;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #e0a72e;
-  }
-  .ffn-week-select select {
-    background: #1c1f1a;
-    color: #eee7d8;
-    border: 1px solid #3a3d33;
-    padding: 6px 12px;
-    font-family: 'Barlow', sans-serif;
-    font-size: 14px;
-    border-radius: 3px;
-    cursor: pointer;
-    outline: none;
-  }
-  .ffn-week-select select:focus {
-    border-color: #e0a72e;
-  }
   .ffn-wrap {
     --ink: #eee7d8;
     --ink-dim: #a79f8d;
@@ -210,26 +181,6 @@
   <a href="weekly-grades.html" class="active">Weekly Grades</a>
 </nav>
 
-<div class="ffn-week-select">
-  <label for="week-dropdown">Select Week:</label>
-  <select id="week-dropdown" onchange="if (this.value) window.location.href=this.value;">
-    <option value="weekly-grades.html" selected>Week 1</option>
-    <option value="weekly-grades-2.html">Week 2</option>
-    <option value="weekly-grades-3.html">Week 3</option>
-    <option value="weekly-grades-4.html">Week 4</option>
-    <option value="weekly-grades-5.html">Week 5</option>
-    <option value="weekly-grades-6.html">Week 6</option>
-    <option value="weekly-grades-7.html">Week 7</option>
-    <option value="weekly-grades-8.html">Week 8</option>
-    <option value="weekly-grades-9.html">Week 9</option>
-    <option value="weekly-grades-10.html">Week 10</option>
-    <option value="weekly-grades-11.html">Week 11</option>
-    <option value="weekly-grades-12.html">Week 12</option>
-    <option value="weekly-grades-13.html">Week 13</option>
-    <option value="weekly-grades-14.html">Week 14</option>
-  </select>
-</div>
-
 <div class="ffn-wrap">
   <div class="ffn-band">Abusement Park · Week 1 Grades</div>
 
@@ -246,16 +197,16 @@
         <tr><th>Team</th><th>Manager</th><th>Proj</th><th>Actual</th><th>Diff</th><th>Grade</th><th>Res</th></tr>
       </thead>
       <tbody>
-        <tr><td>AB's 3rd Quarter Uber</td><td>Ryan Guest</td><td>[XXX.X]</td><td>[XXX.X]</td><td class="diff-pos">[+X.X]</td><td><span class="grade-pill">[A]</span></td><td>W</td></tr>
-        <tr><td>Covfefe is for Closers</td><td>David Pannell</td><td>[XXX.X]</td><td>[XXX.X]</td><td class="diff-pos">[+X.X]</td><td><span class="grade-pill">[A-]</span></td><td>W</td></tr>
-        <tr><td>Kenz VishusLicks</td><td>Ken Glover</td><td>[XXX.X]</td><td>[XXX.X]</td><td class="diff-pos">[+X.X]</td><td><span class="grade-pill">[B+]</span></td><td>L</td></tr>
-        <tr><td>Joydip's Scary Team</td><td>Joydip Joy</td><td>[XXX.X]</td><td>[XXX.X]</td><td class="diff-pos">[+X.X]</td><td><span class="grade-pill">[B]</span></td><td>W</td></tr>
-        <tr><td>Catchy Football Name</td><td>Ryan McCarty</td><td>[XXX.X]</td><td>[XXX.X]</td><td class="diff-pos">[+X.X]</td><td><span class="grade-pill">[B-]</span></td><td>L</td></tr>
-        <tr><td>Nabers ate my Zomb...</td><td>Jonathan Jaramillo</td><td>[XXX.X]</td><td>[XXX.X]</td><td class="diff-neg">[-X.X]</td><td><span class="grade-pill">[C+]</span></td><td>W</td></tr>
-        <tr><td>Donuts All Day 24/7</td><td>Jonathan Albarado</td><td>[XXX.X]</td><td>[XXX.X]</td><td class="diff-neg">[-X.X]</td><td><span class="grade-pill">[C]</span></td><td>L</td></tr>
-        <tr><td>Herbert's Heros</td><td>Kevin Guest</td><td>[XXX.X]</td><td>[XXX.X]</td><td class="diff-neg">[-X.X]</td><td><span class="grade-pill">[C-]</span></td><td>L</td></tr>
-        <tr><td>Lucas's Loud Team</td><td>Lucas McMahon</td><td>[XXX.X]</td><td>[XXX.X]</td><td class="diff-neg">[-X.X]</td><td><span class="grade-pill">[D]</span></td><td>W</td></tr>
-        <tr><td>Texas Determined Do...</td><td>Kolby Gilseth</td><td>[XXX.X]</td><td>[XXX.X]</td><td class="diff-neg">[-X.X]</td><td><span class="grade-pill">[F]</span></td><td>L</td></tr>
+        <tr><td>Covfefe is for Closers</td><td>David Pannell</td><td>236.6</td><td>318.7</td><td class="diff-pos">+82.1</td><td><span class="grade-pill">A+</span></td><td>W</td></tr>
+        <tr><td>Hurt Me Moore</td><td>Joydip Joy</td><td>253.9</td><td>305.5</td><td class="diff-pos">+51.6</td><td><span class="grade-pill">A-</span></td><td>L</td></tr>
+        <tr><td>MaHOMELANDER</td><td>Kevin Guest</td><td>249.8</td><td>282.5</td><td class="diff-pos">+32.7</td><td><span class="grade-pill">A-</span></td><td>W</td></tr>
+        <tr><td>Nabers ate my Zombies</td><td>JJ</td><td>231.8</td><td>259.1</td><td class="diff-pos">+27.3</td><td><span class="grade-pill">B+</span></td><td>W</td></tr>
+        <tr><td>Catchy Football Name</td><td>McCarty</td><td>225.2</td><td>227.7</td><td class="diff-pos">+2.5</td><td><span class="grade-pill mid">B</span></td><td>W</td></tr>
+        <tr><td>Donuts All Day 24/7</td><td>Alby</td><td>226.3</td><td>219.8</td><td class="diff-neg">-6.6</td><td><span class="grade-pill mid">B-</span></td><td>L</td></tr>
+        <tr><td>Waddle On Deez Nuts</td><td>Lucas McMahon</td><td>232.7</td><td>207.6</td><td class="diff-neg">-25.2</td><td><span class="grade-pill mid">C+</span></td><td>L</td></tr>
+        <tr><td>Texas Determined Domination</td><td>Kolby Gilseth</td><td>231.4</td><td>203.0</td><td class="diff-neg">-28.4</td><td><span class="grade-pill mid">C</span></td><td>W</td></tr>
+        <tr><td>Kenz VishusLicks</td><td>Ken Glover</td><td>232.0</td><td>187.2</td><td class="diff-neg">-44.8</td><td><span class="grade-pill low">D+</span></td><td>L</td></tr>
+        <tr><td>Sutton My Face</td><td>Ryan Guest</td><td>247.8</td><td>197.3</td><td class="diff-neg">-50.5</td><td><span class="grade-pill low">D</span></td><td>L</td></tr>
       </tbody>
     </table>
     <p class="sub">Grade reflects performance vs. this team's own projection, not raw score — beating a low projection can outgrade a loss, and blowing a big one while still winning can still land a C.</p>
@@ -264,53 +215,45 @@
   <div class="ffn-section">
     <h2>Grade of the Week</h2>
     <div class="ffn-highlight">
-      <div class="title-line">[Team Name]</div>
-      <div class="meta">Proj [XXX.X] → Actual [XXX.X] ([+X.X]) · Grade [A+/A]</div>
-      <p>[3-5 sentences on who went off — a waiver pickup that exploded, a bench call that would've won it, a stud who finally showed up.]</p>
-      <span class="ffn-gif">[GIF: search "overachiever" / "called it" / "ice in his veins"]</span>
+      <div class="title-line">Covfefe is for Closers</div>
+      <div class="meta">Proj 236.6 → Actual 318.7 (+82.1) · Grade A+</div>
+      <p>The biggest overachievement in the league by a mile — and yes, we're required to mention the asterisk: David burned his one-time-a-year lineup optimizer to get here, so this A+ comes with an "assisted" tag. Even accounting for that, Tyler Shough dropping 54.9 points at OP and Christian Watson turning into a WR1 for one Sunday (41.2 off a projected 13.7) are real, and real good. Just know the machine helped.</p>
+      <img src="iceman.gif" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;">
     </div>
   </div>
 
   <div class="ffn-section">
     <h2>Grade of Shame</h2>
     <div class="ffn-highlight shame">
-      <div class="title-line">[Team Name]</div>
-      <div class="meta">Proj [XXX.X] → Actual [XXX.X] ([-X.X]) · Grade [D/F]</div>
-      <p>[3-5 sentences on the collapse — studs who no-showed, a lineup mistake, a bye week benching, whatever tanked the week.]</p>
-      <span class="ffn-gif">[GIF: search "collapse" / "trainwreck" / "why did I do this"]</span>
+      <div class="title-line">Sutton My Face</div>
+      <div class="meta">Proj 247.8 → Actual 197.3 (-50.5) · Grade D</div>
+      <p>Favored by 16 points and still lost, mostly because Sam Darnold decided to contribute a season-defining 0.7 points from the QB slot. The team's own namesake, Courtland Sutton, chipped in a humiliating 4.35. Meanwhile D'Andre Swift dropped 41.15 points on the bench — more than three of this team's actual starters combined — while sitting there doing nothing. Book smart, lineup dumb, now 0-1.</p>
+      <img src="shame.gif" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;">
     </div>
   </div>
 
   <div class="ffn-section">
     <h2>Weekly Superlatives</h2>
     <ul class="ffn-awards">
-      <li><span class="tag">📈 Biggest Overachiever:</span>[Team] — beat projection by [X.X]</li>
-      <li><span class="tag">📉 Biggest Bust:</span>[Team] — missed projection by [X.X]</li>
-      <li><span class="tag">🎯 Most Accurate Projection:</span>[Team] — landed within [X.X] of projected</li>
-      <li><span class="tag">🚽 Toilet Bowl MVP:</span>[Manager who lost despite highest bench points]</li>
-      <li><span class="tag">🧠 Waiver Wire Genius:</span>[Best pickup start of the week]</li>
-      <li><span class="tag">🤡 Clown of the Week:</span>[Worst start/sit call]</li>
-      <li><span class="tag">😰 Heartbreak Hotel:</span>[Closest loss]</li>
-      <li><span class="tag">💰 Should've Bet On It:</span>[Biggest blowout]</li>
+      <li><span class="tag">📈 Biggest Overachiever:</span>Covfefe is for Closers — beat projection by +82.1 (helped along by the one-time optimizer, see below)</li>
+      <li><span class="tag">📉 Biggest Bust:</span>Sutton My Face — missed projection by -50.5, thanks largely to Sam Darnold's 0.7-point no-show</li>
+      <li><span class="tag">🎯 Most Accurate Projection:</span>Catchy Football Name — landed within 2.5 points of projected (225.2 proj, 227.7 actual)</li>
+      <li><span class="tag">🚽 Toilet Bowl MVP:</span>Hurt Me Moore — lost despite a 105.85-point bench, led by Deebo Samuel's unused 22.0</li>
+      <li><span class="tag">🧠 Waiver Wire Genius:</span>N/A this week — it's Week 1, nobody's added anything yet. Check back once the wire starts turning over.</li>
+      <li><span class="tag">🤡 Clown of the Week:</span>Texas Determined Domination — started Kyle Pitts Sr. (0.25 pts) over both Isaiah Likely (32.8) and Dalton Kincaid (22.5) on the bench. Won anyway. Somehow.</li>
+      <li><span class="tag">😰 Heartbreak Hotel:</span>Sutton My Face — lost by just 5.7 points despite being favored by 16 on paper</li>
+      <li><span class="tag">💰 Should've Bet On It:</span>MaHOMELANDER over Kenz VishusLicks — a 95.3-point blowout</li>
     </ul>
   </div>
 
   <div class="ffn-section">
     <h2>League Business</h2>
     <ul class="ffn-awards">
-      <li><span class="tag">Standings update:</span>[link or brief note]</li>
-      <li><span class="tag">Waiver wire watch:</span>[names to grab this week]</li>
-      <li><span class="tag">Trade rumors:</span>[any deals brewing]</li>
-      <li><span class="tag">Reminder:</span>[lock times, dues, punishment tracker]</li>
+      <li><span class="tag">Standings update:</span>5 teams now sit 1-0, 5 sit 0-1 — full records and PF on the Newsletter page</li>
+      <li><span class="tag">Waiver wire watch:</span>Full free agent board is on the Newsletter page — Baker Mayfield, Jordan Love, Aaron Rodgers, and Kirk Cousins are all still sitting unclaimed as 30+ point QB options</li>
+      <li><span class="tag">Trade rumors:</span>No deals on the board yet, but Kenz VishusLicks, Sutton My Face, Waddle On Deez Nuts, and Donuts All Day 24/7 are sitting dead last in the standings after Week 1 — if any of them aren't at least checking the trade block right now, that's on them</li>
+      <li><span class="tag">Reminder:</span>Covfefe is for Closers has burned their one-time-a-year lineup optimizer — it's gone for the rest of the season. Hurt Me Moore walks away with $100 FAAB as the consolation prize.</li>
     </ul>
-  </div>
-
-  <div class="ffn-section">
-    <h2>Quote of the Week</h2>
-    <div class="ffn-quote">
-      "[Dumb group chat quote, screenshotted and immortalized]"
-      <cite>— [Manager name], regretting it already</cite>
-    </div>
   </div>
 
   <div class="ffn-footer">Grades are final. See you next week, you absolute clowns.</div>
