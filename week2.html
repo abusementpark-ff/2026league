@@ -192,24 +192,6 @@
     font-weight: 700;
     margin-right: 6px;
   }
-  .ffn-quote {
-    background: var(--panel-2);
-    border-left: 4px solid var(--crimson);
-    padding: 16px 20px;
-    font-style: italic;
-    font-size: 15px;
-    margin: 10px 0 6px;
-  }
-  .ffn-quote cite {
-    display: block;
-    margin-top: 8px;
-    font-style: normal;
-    font-family: 'Oswald', sans-serif;
-    font-size: 12px;
-    letter-spacing: 0.05em;
-    color: var(--ink-dim);
-    text-transform: uppercase;
-  }
   .ffn-footer {
     text-align: center;
     padding: 28px 24px 6px;
@@ -222,7 +204,7 @@
 <body>
 
 <nav class="ffn-nav">
-  <a href="index.html" class="active">Newsletter</a>
+  <a href="index.html">Newsletter</a>
   <a href="draft-report.html">Draft Report</a>
   <a href="weekly-grades.html">Weekly Grades</a>
 </nav>
@@ -254,125 +236,131 @@
     <h1>Weekly Debrief</h1>
     <p>Published every Tuesday because Monday you're all still crying</p>
   </div>
-
   <div class="ffn-section">
-    <h2>The Standings</h2>
-    <p class="sub">aka the Hall of Shame</p>
+    <h2>Week 2 Standings</h2>
+    <p class="sub">Straight from the league's own standings page — AFC and NFC divisions, with playoff odds attached</p>
     <table class="ffn-standings">
       <thead>
-        <tr><th>Rank</th><th>Team</th><th>Record</th><th>PF</th><th>Vibe</th></tr>
+        <tr><th>Rk</th><th>AFC</th><th>Record</th><th>Streak</th><th>Playoff %</th></tr>
       </thead>
       <tbody>
-        <tr><td>1</td><td>AB's 3rd Quarter Uber</td><td>[X-X]</td><td>[XXX.X]</td><td>🔥</td></tr>
-        <tr><td>2</td><td>Covfefe is for Closers</td><td>[X-X]</td><td>[XXX.X]</td><td>🔥</td></tr>
-        <tr><td>3</td><td>Kenz VishusLicks</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
-        <tr><td>4</td><td>Joydip's Scary Team</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
-        <tr><td>5</td><td>Catchy Football Name</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
-        <tr><td>6</td><td>Nabers ate my Zomb...</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
-        <tr><td>7</td><td>Donuts All Day 24/7</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
-        <tr><td>8</td><td>Herbert's Heros</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
-        <tr><td>9</td><td>Lucas's Loud Team</td><td>[X-X]</td><td>[XXX.X]</td><td>💀</td></tr>
-        <tr><td>10</td><td>Texas Determined Do...</td><td>[X-X]</td><td>[XXX.X]</td><td>💀</td></tr>
+        <tr><td>1</td><td>MaHOMELANDER</td><td>2-0-0</td><td>W2</td><td>86%</td></tr>
+        <tr><td>2</td><td>Covfefe is for Closers</td><td>2-0-0</td><td>W2</td><td>86%</td></tr>
+        <tr><td>3</td><td>Hurt Me Moore</td><td>1-1-0</td><td>W1</td><td>68%</td></tr>
+        <tr><td>4</td><td>Nabers ate my Zombies</td><td>1-1-0</td><td>L1</td><td>62%</td></tr>
+        <tr><td>5</td><td>Waddle On Deez Nuts</td><td>0-2-0</td><td>L2</td><td>35%</td></tr>
       </tbody>
     </table>
-  </div>
+    <table class="ffn-standings">
+      <thead>
+        <tr><th>Rk</th><th>NFC</th><th>Record</th><th>Streak</th><th>Playoff %</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Kenz VishusLicks</td><td>1-1-0</td><td>W1</td><td>50%</td></tr>
+        <tr><td>2</td><td>Sutton My Face</td><td>1-1-0</td><td>W1</td><td>62%</td></tr>
+        <tr><td>3</td><td>Texas Determined Domination</td><td>1-1-0</td><td>L1</td><td>61%</td></tr>
+        <tr><td>4</td><td>Catchy Football Name</td><td>1-1-0</td><td>L1</td><td>54%</td></tr>
+        <tr><td>5</td><td>Donuts All Day 24/7</td><td>0-2-0</td><td>L2</td><td>37%</td></tr>
+      </tbody>
+    </table>
+    <p class="sub">Playoff odds courtesy of the platform's own model, not ours. MaHOMELANDER and Covfefe are both sitting at 86% two weeks in — everyone else has real work to do. Sutton My Face leads the league in waiver moves with 5 already; Hurt Me Moore isn't far behind at 4. MaHOMELANDER and Catchy Football Name are the only teams that haven't touched the wire at all.</p>
 
+    <table class="ffn-standings">
+      <thead>
+        <tr><th>Team</th><th>PF</th><th>PA</th><th>Home</th><th>Away</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>MaHOMELANDER</td><td>559.9</td><td>444.9</td><td>1-0-0</td><td>1-0-0</td></tr>
+        <tr><td>Hurt Me Moore</td><td>566.9</td><td>527.0</td><td>0-0-0</td><td>1-1-0</td></tr>
+        <tr><td>Covfefe is for Closers</td><td>546.1</td><td>530.3</td><td>1-0-0</td><td>1-0-0</td></tr>
+        <tr><td>Kenz VishusLicks</td><td>456.3</td><td>485.8</td><td>0-0-0</td><td>1-1-0</td></tr>
+        <tr><td>Nabers ate my Zombies</td><td>467.4</td><td>469.0</td><td>1-0-0</td><td>0-1-0</td></tr>
+        <tr><td>Sutton My Face</td><td>421.4</td><td>365.5</td><td>0-0-0</td><td>1-1-0</td></tr>
+        <tr><td>Texas Determined Domination</td><td>406.8</td><td>466.4</td><td>1-1-0</td><td>0-0-0</td></tr>
+        <tr><td>Catchy Football Name</td><td>389.9</td><td>443.8</td><td>0-1-0</td><td>1-0-0</td></tr>
+        <tr><td>Waddle On Deez Nuts</td><td>465.2</td><td>536.4</td><td>0-2-0</td><td>0-0-0</td></tr>
+        <tr><td>Donuts All Day 24/7</td><td>444.6</td><td>455.3</td><td>0-1-0</td><td>0-1-0</td></tr>
+      </tbody>
+    </table>
+    <p class="sub">Waddle On Deez Nuts has allowed the most points against in the league (536.4) despite scoring plenty themselves — that's not bad luck, that's a defense-optional roster. Sutton My Face has given up the fewest (365.5), for whatever that's worth on a 1-1 team.</p>
+  </div>
   <div class="ffn-section">
-    <h2>Last Week's Recap</h2>
-    <p class="sub">Here's what happened while you were pretending to work</p>
+    <h2>Week 2 Recap</h2>
+    <p class="sub">The rematch of the optimizer game, and it was somehow even closer</p>
 
     <div class="ffn-matchup">
-      <div class="score"><span class="win">Catchy Football Name [Score]</span> — <span class="lose">[Score] Donuts All Day 24/7</span></div>
-      <p>[Recap of Week 1 game]</p>
-      <span class="ffn-gif">[GIF: search a reaction fitting this game's outcome]</span>
+      <div class="score"><span class="lose">Donuts All Day 24/7 224.8</span> — <span class="win">227.4 Covfefe is for Closers</span></div>
+      <p>Josh Allen dropped 69 points — sixty-nine — and Alby STILL lost. That's back-to-back weeks now where his QB goes nuclear and it isn't enough, and this time the culprit was the other quarterback: Justin Herbert managed just 19.15 against a 38.9 projection, nearly cutting his number in half. Add a bench Dalton Schultz sitting on 33.5 unused points while Jameson Williams started and bricked for 7.3, and Alby basically hand-delivered this loss. Covfefe, meanwhile, needed Jaxon Smith-Njigba (53.25) and Tyler Shough (44.45) to bail out a Trevor Lawrence bust (16.5) and a full Saquon Barkley no-show (5.0) — David's 2-0 now, but this roster is held together by duct tape and whoever happens to go off that week, not by whoever he actually started to win with. Maybe it's time for Alby to detach his mouth from Josh Allen's cock and trade him for some skill positions to help his pitiful team.</p>
+      <img src="thisclose.gif" class="ffn-gif-img" style="display:block;width: 650px;border-radius:3px;margin-top:8px;">
     </div>
 
     <div class="ffn-matchup">
-      <div class="score"><span class="win">Covfefe is for Closers [Score]</span> — <span class="lose">[Score] Joydip's Scary Team</span></div>
-      <p>[Recap of Week 1 game]</p>
-      <span class="ffn-gif">[GIF: search a reaction fitting this game's outcome]</span>
+      <div class="score"><span class="lose">Nabers ate my Zombies 208.3</span> — <span class="win">261.45 Hurt Me Moore</span></div>
+      <p>A team named after Malik Nabers just watched Malik Nabers put up 2.1 points, and Caleb Williams' hamstring blew up, landing him only 16.8 against a 37.9 projection. JJ never had a chance. On the other side, Jared Goff went off for an absurd 59.5 points at OP, Amon-Ra St. Brown added 42.95, and Jalen Hurts chipped in 39.8 — Hurt Me Moore hit their own projection to the decimal (261.5 proj, 261.45 actual) and it still looked like a massacre. Second-highest score in the league last week in a loss, and one of the highest scores in the league this week in a win — Joydip's team finally cashed in. Perhaps spending 55$ in FAAB for a guy (who also had NOBODY bidding on him) that gets outscored by your dropped QB isn't the best way to manage your team, but what do I know.</p>
+      <img src="blowout.gif" class="ffn-gif-img" style="display:block;width: 650px;border-radius:3px;margin-top:8px;">
     </div>
 
     <div class="ffn-matchup">
-      <div class="score"><span class="win">AB's 3rd Quarter Uber [Score]</span> — <span class="lose">[Score] Texas Determined Domination</span></div>
-      <p>[Recap of Week 1 game]</p>
-      <span class="ffn-gif">[GIF: search a reaction fitting this game's outcome]</span>
+      <div class="score"><span class="win">Sutton My Face 224.05</span> — <span class="lose">162.0 Catchy Football Name</span></div>
+      <p>This wasn't close. McCarty's entire roster collapsed at once — Jayden Daniels went flamingo-armed again (25.85 on a 39.9 projection), Justin Jefferson (11.0 on 23.3), and worst of all Drake Maye, who put up 17.9 points at OP against a 37.7 projection. Less than half. The only things that showed up were Garrett Wilson, Tyler Warren, and a Steelers D/ST that outscored Maye by himself. Sutton My Face didn't need to be great to win this by 62 — Ryan just needed to not implode, and even with Courtland Sutton busting again for 7.0 points (the man's own tribute team can't catch a break), it was academic by the second quarter.</p>
+      <img src="explosion.gif" class="ffn-gif-img" style="display:block;width: 650px;border-radius:3px;margin-top:8px;">
     </div>
 
     <div class="ffn-matchup">
-      <div class="score"><span class="win">Kenz VishusLicks [Score]</span> — <span class="lose">[Score] Herbert's Heros</span></div>
-      <p>[Recap of Week 1 game]</p>
-      <span class="ffn-gif">[GIF: search a reaction fitting this game's outcome]</span>
+      <div class="score"><span class="win">MaHOMELANDER 277.35</span> — <span class="lose">257.65 Waddle On Deez Nuts</span></div>
+      <p>Both quarterbacks in Kevin's stack went off at the same time — Patrick Mahomes for 58.9, Brock Purdy for 51.7, a combined 110.6 points from two guys who are only ever going to start one game at a time for most teams. That's absurd enough to win most weeks by itself. What's almost funnier is that Lucas actually beat his own projection by 46 points on the other side — Dak Prescott dropped 58.7, and Waddle, Olave, Kittle, and Kelce all overperformed across the board — and it still wasn't enough. Two teams combined for over 535 points in one matchup and one of them still walked away 0-2.</p>
+      <img src="doitagain.gif" class="ffn-gif-img" style="display:block;width: 650px;border-radius:3px;margin-top:8px;">
     </div>
 
     <div class="ffn-matchup">
-      <div class="score"><span class="win">Lucas's Loud Team [Score]</span> — <span class="lose">[Score] Nabers ate my Zombies</span></div>
-      <p>[Recap of Week 1 game]</p>
-      <span class="ffn-gif">[GIF: search a reaction fitting this game's outcome]</span>
+      <div class="score"><span class="win">Kenz VishusLicks 269.05</span> — <span class="lose">203.3 Texas Determined Domination</span></div>
+      <p>Remember Ken's "museum of bad value" reputation from the draft? Matthew Stafford just dropped 54.0 points and Bryce Young — the waiver pickup that replaced Kyler Murray's 0.65-point disaster two weeks ago — added 45.2 more. Throw in a 46.5-point Davante Adams game and this roster finally cashed every check it wrote on draft day. Kolby's side lost its best asset for real reasons this time: Jaxson Dart, who bailed him out of a near-loss in Week 1 with 53.55 points, left this game early with a sprained left MCL and finished with just 1.75. Not a bust — an injury, and reportedly one that'll cost him multiple weeks. Lowest score of Texas Determined Domination's season, and the reach-happy team everyone made fun of just posted the league's best week.</p>
+      <img src="davante.gif" class="ffn-gif-img" style="display:block;width: 650px;border-radius:3px;margin-top:8px;">
     </div>
   </div>
-
   <div class="ffn-section">
-    <h2>Weekly Awards</h2>
-    <ul class="ffn-awards">
-      <li><span class="tag">🚽 Toilet Bowl MVP:</span>[Manager who lost despite highest bench points]</li>
-      <li><span class="tag">🧠 Big Brain Move:</span>[Best waiver pickup or start/sit call]</li>
-      <li><span class="tag">🤡 Clown of the Week:</span>[Worst decision — started a bye week guy, etc.]</li>
-      <li><span class="tag">💰 Should've Bet On It:</span>[Biggest blowout]</li>
-      <li><span class="tag">😰 Heartbreak Hotel:</span>[Closest loss]</li>
-    </ul>
-  </div>
-
-  <div class="ffn-section">
-    <h2>This Week's Preview</h2>
-    <p class="sub">Predictions nobody asked for, delivered anyway</p>
+    <h2>Week 3 Preview</h2>
+    <p class="sub">Early projections — subject to change as we get closer to Thursday kickoff</p>
 
     <div class="ffn-matchup">
-      <div class="score">Donuts All Day 24/7 <span style="color:var(--ink-dim)">vs</span> Covfefe is for Closers</div>
-      <p><strong>Projected:</strong> [Donuts All Day 24/7 proj] – [Covfefe is for Closers proj]<br>[Preview]</p>
+      <div class="score">Catchy Football Name <span style="color:var(--ink-dim)">vs</span> Nabers ate my Zombies</div>
+      <p><strong>Projected:</strong> 187.1 – 210.2<br>McCarty's still digging out from that 162-point disaster last week, and now there's a real complication: Jayden Daniels dislocated his left elbow late in the first half against Dallas and was ruled out for the rest of the game. Washington's turning to Marcus Mariota with no firm return timeline for Daniels yet — worth confirming his roster status before lineups lock, though Drake Maye (39.89 proj) is still projected as McCarty's lead QB either way. JJ's favored by 23, with Jahmyr Gibbs (36.63) and Jordan Love (35.07) both projecting big — the Jordan Love pickup keeps paying off.</p>
       <span class="ffn-gif">[GIF: search a reaction fitting the storyline]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="search a reaction fitting the storyline" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
     </div>
-
     <div class="ffn-matchup">
-      <div class="score">Nabers ate my Zombies <span style="color:var(--ink-dim)">vs</span> Joydip's Scary Team</div>
-      <p><strong>Projected:</strong> [Nabers ate my Zombies proj] – [Joydip's Scary Team proj]<br>[Preview]</p>
+      <div class="score">Covfefe is for Closers <span style="color:var(--ink-dim)">vs</span> MaHOMELANDER</div>
+      <p><strong>Projected:</strong> 246.4 – 269.9<br>The only unbeaten teams in the league, finally colliding. David's leaning on Tyler Shough (38.24) and Trevor Lawrence (35.92) again — a combined 74 points projected from two guys sharing one roster spot's worth of value most weeks. Kevin's Purdy-Mahomes stack (41.76 + 39.28) is favored again, and after back-to-back weeks of both QBs actually delivering, there's no reason to bet against it yet.</p>
       <span class="ffn-gif">[GIF: search a reaction fitting the storyline]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="search a reaction fitting the storyline" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
     </div>
-
     <div class="ffn-matchup">
-      <div class="score">AB's 3rd Quarter Uber <span style="color:var(--ink-dim)">vs</span> Catchy Football Name</div>
-      <p><strong>Projected:</strong> [AB's 3rd Quarter Uber proj] – [Catchy Football Name proj]<br>[Preview]</p>
+      <div class="score">Texas Determined Domination <span style="color:var(--ink-dim)">vs</span> Donuts All Day 24/7</div>
+      <p><strong>Projected:</strong> 214.6 – 239.0<br>Kolby's dealing with a real problem this week, not just a bad game: Jaxson Dart is out with a sprained left MCL and expected to miss multiple weeks, with Jameis Winston taking over for the Giants. Joe Burrow (36.92 proj) is still the anchor here, but the Dart injury is worth a lineup check before Thursday. Alby brings back Josh Allen (43.75) and Justin Herbert (36.05) — the exact pairing that put up 88 combined points last week and still lost. If both hit again and Donuts still finds a way to blow this, it might be time to admit the problem isn't the quarterbacks.</p>
       <span class="ffn-gif">[GIF: search a reaction fitting the storyline]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="search a reaction fitting the storyline" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
     </div>
-
     <div class="ffn-matchup">
-      <div class="score">Herbert's Heros <span style="color:var(--ink-dim)">vs</span> Lucas's Loud Team</div>
-      <p><strong>Projected:</strong> [Herbert's Heros proj] – [Lucas's Loud Team proj]<br>[Preview]</p>
+      <div class="score">Sutton My Face <span style="color:var(--ink-dim)">vs</span> Kenz VishusLicks</div>
+      <p><strong>Projected:</strong> 244.9 – 228.5<br>A rematch of the "who dumped their Week 1 QB disaster the fastest" storyline — Ryan's gone from Darnold to Bo Nix (35.91 proj) as his OP, while Ken's Bryce Young (34.96) is still riding the high of last week's 45.2-point outburst. Both teams sit 1-1 and division rivals; this one's basically a coin flip on paper, 16 points apart.</p>
       <span class="ffn-gif">[GIF: search a reaction fitting the storyline]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="search a reaction fitting the storyline" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
     </div>
-
     <div class="ffn-matchup">
-      <div class="score">Kenz VishusLicks <span style="color:var(--ink-dim)">vs</span> Texas Determined Domination</div>
-      <p><strong>Projected:</strong> [Kenz VishusLicks proj] – [Texas Determined Domination proj]<br>[Preview]</p>
+      <div class="score">Hurt Me Moore <span style="color:var(--ink-dim)">vs</span> Waddle On Deez Nuts</div>
+      <p><strong>Projected:</strong> 254.4 – 213.3<br>Joydip's coming off the highest score in the league last week (Jalen Hurts + Jared Goff combined for nearly 100) and is favored by 41 here. Lucas is stuck in an odd spot — his roster has now beaten its own projection twice in a row and still sits 0-2, and even Lamar Jackson (40.67) leading the projections again might not be enough to break the streak.</p>
       <span class="ffn-gif">[GIF: search a reaction fitting the storyline]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="search a reaction fitting the storyline" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
     </div>
   </div>
-
   <div class="ffn-section">
     <h2>League Business</h2>
     <ul class="ffn-awards">
-      <li><span class="tag">Waiver wire watch:</span>[Names to grab]</li>
-      <li><span class="tag">Trade rumors:</span>[Any brewing deals]</li>
-      <li><span class="tag">Reminder:</span>[Lineup lock times, dues owed, punishment tracker]</li>
+      <li><span class="tag">Standings update:</span>MaHOMELANDER and Covfefe are the only 2-0 teams. Full table above.</li>
+      <li><span class="tag">Injury watch:</span>A.J. Brown (MaHOMELANDER) remains on IR. Isiah Pacheco (Nabers ate my Zombies) and Nico Collins (Hurt Me Moore) both landed on IR this week too — worth a bench check for both rosters. Jayden Daniels (Catchy Football Name) dislocated his left elbow against Dallas and is out indefinitely; Marcus Mariota starts for Washington until further notice. Jaxson Dart (Texas Determined Domination) suffered a sprained left MCL against the Rams and is expected to miss multiple weeks; Jameis Winston takes over for the Giants.</li>
+      <li><span class="tag">Trade rumors:</span>Bottom of the standings now reads Texas Determined Domination, Catchy Football Name, Waddle On Deez Nuts, and Donuts All Day 24/7 — if any of those four aren't working the phones after this week, that's on them.</li>
+      <li><span class="tag">Reminder:</span>[lock times, dues, punishment tracker]</li>
     </ul>
-  </div>
-
-  <div class="ffn-section">
-    <h2>Quote of the Week</h2>
-    <div class="ffn-quote">
-      "[Something dumb someone said in the group chat, screenshotted and immortalized]"
-      <cite>— [Manager name], probably drunk</cite>
-    </div>
   </div>
 
   <div class="ffn-footer">See you next week. Set your lineups, you absolute clowns.</div>
