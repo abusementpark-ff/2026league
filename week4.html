@@ -192,24 +192,6 @@
     font-weight: 700;
     margin-right: 6px;
   }
-  .ffn-quote {
-    background: var(--panel-2);
-    border-left: 4px solid var(--crimson);
-    padding: 16px 20px;
-    font-style: italic;
-    font-size: 15px;
-    margin: 10px 0 6px;
-  }
-  .ffn-quote cite {
-    display: block;
-    margin-top: 8px;
-    font-style: normal;
-    font-family: 'Oswald', sans-serif;
-    font-size: 12px;
-    letter-spacing: 0.05em;
-    color: var(--ink-dim);
-    text-transform: uppercase;
-  }
   .ffn-footer {
     text-align: center;
     padding: 28px 24px 6px;
@@ -222,7 +204,7 @@
 <body>
 
 <nav class="ffn-nav">
-  <a href="index.html" class="active">Newsletter</a>
+  <a href="index.html">Newsletter</a>
   <a href="draft-report.html">Draft Report</a>
   <a href="weekly-grades.html">Weekly Grades</a>
 </nav>
@@ -254,125 +236,110 @@
     <h1>Weekly Debrief</h1>
     <p>Published every Tuesday because Monday you're all still crying</p>
   </div>
-
   <div class="ffn-section">
-    <h2>The Standings</h2>
-    <p class="sub">aka the Hall of Shame</p>
+    <h2>Week 4 Standings</h2>
+    <p class="sub">Pulled from the league API: AFC and NFC divisions, in the order ESPN ranks them. Playoff odds aren't part of that feed, so they're off the board for now.</p>
     <table class="ffn-standings">
       <thead>
-        <tr><th>Rank</th><th>Team</th><th>Record</th><th>PF</th><th>Vibe</th></tr>
+        <tr><th>Rk</th><th>AFC</th><th>Record</th><th>PF</th><th>PA</th><th>Streak</th><th>Moves</th></tr>
       </thead>
       <tbody>
-        <tr><td>1</td><td>AB's 3rd Quarter Uber</td><td>[X-X]</td><td>[XXX.X]</td><td>🔥</td></tr>
-        <tr><td>2</td><td>Covfefe is for Closers</td><td>[X-X]</td><td>[XXX.X]</td><td>🔥</td></tr>
-        <tr><td>3</td><td>Kenz VishusLicks</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
-        <tr><td>4</td><td>Joydip's Scary Team</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
-        <tr><td>5</td><td>Catchy Football Name</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
-        <tr><td>6</td><td>Nabers ate my Zomb...</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
-        <tr><td>7</td><td>Donuts All Day 24/7</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
-        <tr><td>8</td><td>Herbert's Heros</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
-        <tr><td>9</td><td>Lucas's Loud Team</td><td>[X-X]</td><td>[XXX.X]</td><td>💀</td></tr>
-        <tr><td>10</td><td>Texas Determined Do...</td><td>[X-X]</td><td>[XXX.X]</td><td>💀</td></tr>
+        <tr><td>1</td><td>Nabers ate my Zombies</td><td>3-1-0</td><td>946.1</td><td>863.9</td><td>W2</td><td>5</td></tr>
+        <tr><td>2</td><td>MaHOMELANDER</td><td>2-2-0</td><td>1130.4</td><td>1064.3</td><td>L2</td><td>1</td></tr>
+        <tr><td>3</td><td>Hurt Me Moore</td><td>2-2-0</td><td>1095.6</td><td>1070.3</td><td>W1</td><td>9</td></tr>
+        <tr><td>4</td><td>Covfefe is for Closers</td><td>2-2-0</td><td>1055.8</td><td>1031.8</td><td>L1</td><td>4</td></tr>
+        <tr><td>5</td><td>Waddle On Deez Nuts</td><td>2-2-0</td><td>966.6</td><td>993.1</td><td>W2</td><td>1</td></tr>
       </tbody>
     </table>
+    <table class="ffn-standings">
+      <thead>
+        <tr><th>Rk</th><th>NFC</th><th>Record</th><th>PF</th><th>PA</th><th>Streak</th><th>Moves</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Kenz VishusLicks</td><td>3-1-0</td><td>972.6</td><td>953.0</td><td>W3</td><td>5</td></tr>
+        <tr><td>2</td><td>Texas Determined Domination</td><td>2-2-0</td><td>876.0</td><td>933.4</td><td>L1</td><td>7</td></tr>
+        <tr><td>3</td><td>Big PeNIX Envy</td><td>2-2-0</td><td>861.7</td><td>795.9</td><td>W1</td><td>12</td></tr>
+        <tr><td>4</td><td>Catchy Football Name</td><td>1-3-0</td><td>850.9</td><td>978.3</td><td>L3</td><td>2</td></tr>
+        <tr><td>5</td><td>Donuts All Day 24/7</td><td>1-3-0</td><td>852.0</td><td>923.9</td><td>L2</td><td>2</td></tr>
+      </tbody>
+    </table>
+    <p class="sub">Two teams are 3-1, six are 2-2, and two are 1-3. Kenz has won three straight. MaHOMELANDER leads the league in points scored (1,130.4) and has lost two in a row. Big PeNIX Envy has made 12 waiver moves, the most in the league, and has allowed the fewest points (795.9).</p>
   </div>
-
   <div class="ffn-section">
-    <h2>Last Week's Recap</h2>
-    <p class="sub">Here's what happened while you were pretending to work</p>
+    <h2>Week 4 Recap</h2>
+    <p class="sub">Three games came down to a bench decision. A fourth came down to two optimizers canceling each other out.</p>
 
     <div class="ffn-matchup">
-      <div class="score"><span class="win">Catchy Football Name [Score]</span> — <span class="lose">[Score] Nabers ate my Zombies</span></div>
-      <p>[Recap of Week 3 game]</p>
-      <span class="ffn-gif">[GIF: search a reaction fitting this game's outcome]</span>
+      <div class="score"><span class="win">Nabers ate my Zombies 224.4</span> — <span class="lose">190.8 Covfefe is for Closers</span></div>
+      <p><strong>Projected:</strong> 242.4 – 259.2<br>David's five best-projected starters (Chase, Barkley, Love, Smith-Njigba, and Watson) were supposed to produce 117.2 points. They produced 46.5. That's the whole game and then some: Covfefe finished 68.4 under its own projection, the worst miss in the league this week by 31 points. Some of that is not David's fault: Saquon Barkley (2.75) pulled a hamstring and Ja'Marr Chase (6.95) got a concussion after a facemask, both early in their games, so his two biggest names left before the first commercial break. Love (11.75) is currently listed questionable, and the backfield behind them is a mess. Of the seven running backs on David's roster, three are on injured reserve (Brooks, Mason, and Jadarian Price, who cost $26 in FAAB last week), one is doubtful (Hall), and two are questionable. Romeo Doubs sat on the bench and scored 28.55. JJ barely had to try: C.J. Stroud, a $1 pickup, went for 44.3, and Malik Nabers finally remembered whose name is on the team with 27.95. David is 2-2 and the optimizer is already spent.</p>
+      <img src="oprahinjury.gif" class="ffn-gif-img" style="display:block;width: 650px;border-radius:3px;margin-top:8px;">
     </div>
-
     <div class="ffn-matchup">
-      <div class="score"><span class="win">Covfefe is for Closers [Score]</span> — <span class="lose">[Score] Herbert's Heros</span></div>
-      <p>[Recap of Week 3 game]</p>
-      <span class="ffn-gif">[GIF: search a reaction fitting this game's outcome]</span>
+      <div class="score"><span class="win">Big PeNIX Envy 227.9</span> — <span class="lose">196.1 Donuts All Day 24/7</span></div>
+      <p><strong>Projected:</strong> 240.6 – 233.2<br>Kyren Williams scored 48.45 on a 19.1 projection and Alby still lost by 31.8, which takes real effort. Parker Washington (3.0) and Ladd McConkey (0.5, currently listed questionable) combined for 3.5 points out of two starting spots while Jameson Williams (22.2) and Rashid Shaheed (14.55) sat on the bench. Make just those two swaps and Donuts wins 229.35–227.9. It was also Jacoby Brissett's first start in place of the Justin Herbert that Alby cut on Sept. 30: 27.55 on a 35.0 projection. Big PeNIX Envy mostly won by being the less broken roster. Sam LaPorta beat his projection by 14, and Michael Penix Jr., the name on the door, put up 25.3 at OP. Twelve waiver moves and a trade in, Ryan is 2-2 and finally winning ugly.</p>
+      <img src="golfclap.gif" class="ffn-gif-img" style="display:block;width: 650px;border-radius:3px;margin-top:8px;">
     </div>
-
     <div class="ffn-matchup">
-      <div class="score"><span class="win">Texas Determined Domination [Score]</span> — <span class="lose">[Score] Donuts All Day 24/7</span></div>
-      <p>[Recap of Week 3 game]</p>
-      <span class="ffn-gif">[GIF: search a reaction fitting this game's outcome]</span>
+      <div class="score"><span class="lose">Texas Determined Domination 227.55</span> — <span class="win">256.45 Waddle On Deez Nuts</span></div>
+      <p><strong>Projected:</strong> 235.6 – 235.9<br>Joe Burrow (55.5) and CeeDee Lamb (53.3) combined for 108.8 points and Kolby still lost by 28.9, which is almost an accomplishment. The rest of the lineup gave him a Rashee Rice zero (listed questionable), 1.95 from Jaylen Wright, 4.8 from Emeka Egbuka, and 2.2 from Dalton Kincaid, while Brian Robinson Jr. (32.95) and Keaton Mitchell (16.8) watched from the bench. Swap Robinson in for Wright and it's 258.55–256.45, Kolby wins. He left 68.95 points on his bench, 22.2 more than anyone else in the league. Lucas's side just stacked up points: Dak Prescott 42.2, Puka Nacua 34.95, Alvin Kamara 28.3, Chris Olave 26.1, and Rhamondre Stevenson 24.9. Jaylen Waddle, the namesake, scored 16.5 on the bench. Waddle On Deez Nuts is 2-2 after starting 0-2.</p>
+      <img src="boo.gif" class="ffn-gif-img" style="display:block;width: 650px;border-radius:3px;margin-top:8px;">
     </div>
-
     <div class="ffn-matchup">
-      <div class="score"><span class="win">AB's 3rd Quarter Uber [Score]</span> — <span class="lose">[Score] Kenz VishusLicks</span></div>
-      <p>[Recap of Week 3 game]</p>
-      <span class="ffn-gif">[GIF: search a reaction fitting this game's outcome]</span>
+      <div class="score"><span class="lose">Catchy Football Name 254.95</span> — <span class="win">279.85 Kenz VishusLicks</span></div>
+      <p><strong>Projected:</strong> 234.7 – 224.2<br>McCarty put up a season-high 254.95, beat his own projection by 20.25, and lost by 24.9. The part that'll sting: Kyle Monangai scored 40.75 on his bench while Garrett Wilson (7.2) started at flex. Swap them and McCarty wins 288.5–279.85. (Monangai was listed questionable, which at least explains the caution.) Ken had every skill player on the roster show up at once: Tetairoa McMillan scored 54.2 on a 19.8 projection, Bryce Young added 47.65 at OP, Kenneth Walker III had 40.65, and Tee Higgins had 35.7. That's a season-high 279.85 and three straight wins for a team this newsletter graded a C- on draft day. McCarty at least won the trade he made with Ryan on Oct. 1: the two players he got, Javonte Williams (40.3) and DK Metcalf (22.25), scored 62.55 between them, while Drake London, the one he gave up, scored 18.6.</p>
+      <img src="tet.gif" class="ffn-gif-img" style="display:block;width: 650px;border-radius:3px;margin-top:8px;">
     </div>
-
     <div class="ffn-matchup">
-      <div class="score"><span class="win">Joydip's Scary Team [Score]</span> — <span class="lose">[Score] Lucas's Loud Team</span></div>
-      <p>[Recap of Week 3 game]</p>
-      <span class="ffn-gif">[GIF: search a reaction fitting this game's outcome]</span>
+      <div class="score"><span class="lose">MaHOMELANDER 297.4</span> — <span class="win">300.6 Hurt Me Moore</span></div>
+      <p><strong>Projected:</strong> 264.5 – 260.6<br>This one was settled by optimizers. Kevin's original lineup would have lost, so he spent his one-time optimizer to buy the win, which is why MaHOMELANDER's lineup came out perfect (there wasn't one more point available anywhere on his roster). Joydip had already lost a game to an optimizer this season, David's in Week 1, and wasn't about to lose a second one, so he spent his own to buy it back. That's the 20.0 in Hurt Me Moore's total that isn't tied to any player, and it's the entire reason this finished 300.6–297.4 instead of 297.4–280.6. Kevin bought the win, Joydip bought it right back, and the only lasting change is that both of them have now used their optimizer for the year. Brock Purdy (40.9), T.J. Hockenson (33.15), and Carnell Tate (28.5) all beat their projections for Kevin, who has now lost two straight while leading the league in points scored. Between Kevin, Joydip, and David's Week 1 use, that's three optimizers gone in four weeks.</p>
+      <img src="wrong.gif" class="ffn-gif-img" style="display:block;width: 650px;border-radius:3px;margin-top:8px;">
     </div>
   </div>
-
   <div class="ffn-section">
-    <h2>Weekly Awards</h2>
-    <ul class="ffn-awards">
-      <li><span class="tag">🚽 Toilet Bowl MVP:</span>[Manager who lost despite highest bench points]</li>
-      <li><span class="tag">🧠 Big Brain Move:</span>[Best waiver pickup or start/sit call]</li>
-      <li><span class="tag">🤡 Clown of the Week:</span>[Worst decision — started a bye week guy, etc.]</li>
-      <li><span class="tag">💰 Should've Bet On It:</span>[Biggest blowout]</li>
-      <li><span class="tag">😰 Heartbreak Hotel:</span>[Closest loss]</li>
-    </ul>
-  </div>
-
-  <div class="ffn-section">
-    <h2>This Week's Preview</h2>
-    <p class="sub">Predictions nobody asked for, delivered anyway</p>
+    <h2>Week 5 Preview</h2>
+    <p class="sub">Matchups are set — projections and trash talk go here once we're closer to kickoff</p>
 
     <div class="ffn-matchup">
-      <div class="score">Nabers ate my Zombies <span style="color:var(--ink-dim)">vs</span> Covfefe is for Closers</div>
-      <p><strong>Projected:</strong> [Nabers ate my Zombies proj] – [Covfefe is for Closers proj]<br>[Preview]</p>
+      <div class="score">Waddle On Deez Nuts <span style="color:var(--ink-dim)">vs</span> Covfefe is for Closers</div>
+      <p><strong>Projected:</strong> [Waddle On Deez Nuts proj] – [Covfefe is for Closers proj]<br>[Preview once Week 5 projections are available.]</p>
       <span class="ffn-gif">[GIF: search a reaction fitting the storyline]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="search a reaction fitting the storyline" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
     </div>
-
     <div class="ffn-matchup">
-      <div class="score">AB's 3rd Quarter Uber <span style="color:var(--ink-dim)">vs</span> Donuts All Day 24/7</div>
-      <p><strong>Projected:</strong> [AB's 3rd Quarter Uber proj] – [Donuts All Day 24/7 proj]<br>[Preview]</p>
+      <div class="score">Kenz VishusLicks <span style="color:var(--ink-dim)">vs</span> Donuts All Day 24/7</div>
+      <p><strong>Projected:</strong> [Kenz VishusLicks proj] – [Donuts All Day 24/7 proj]<br>[Preview once Week 5 projections are available.]</p>
       <span class="ffn-gif">[GIF: search a reaction fitting the storyline]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="search a reaction fitting the storyline" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
     </div>
-
     <div class="ffn-matchup">
-      <div class="score">Texas Determined Domination <span style="color:var(--ink-dim)">vs</span> Lucas's Loud Team</div>
-      <p><strong>Projected:</strong> [Texas Determined Domination proj] – [Lucas's Loud Team proj]<br>[Preview]</p>
+      <div class="score">Texas Determined Domination <span style="color:var(--ink-dim)">vs</span> Catchy Football Name</div>
+      <p><strong>Projected:</strong> [Texas Determined Domination proj] – [Catchy Football Name proj]<br>[Preview once Week 5 projections are available.]</p>
       <span class="ffn-gif">[GIF: search a reaction fitting the storyline]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="search a reaction fitting the storyline" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
     </div>
-
     <div class="ffn-matchup">
-      <div class="score">Catchy Football Name <span style="color:var(--ink-dim)">vs</span> Kenz VishusLicks</div>
-      <p><strong>Projected:</strong> [Catchy Football Name proj] – [Kenz VishusLicks proj]<br>[Preview]</p>
+      <div class="score">Hurt Me Moore <span style="color:var(--ink-dim)">vs</span> Big PeNIX Envy</div>
+      <p><strong>Projected:</strong> [Hurt Me Moore proj] – [Big PeNIX Envy proj]<br>[Preview once Week 5 projections are available.]</p>
       <span class="ffn-gif">[GIF: search a reaction fitting the storyline]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="search a reaction fitting the storyline" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
     </div>
-
     <div class="ffn-matchup">
-      <div class="score">Herbert's Heros <span style="color:var(--ink-dim)">vs</span> Joydip's Scary Team</div>
-      <p><strong>Projected:</strong> [Herbert's Heros proj] – [Joydip's Scary Team proj]<br>[Preview]</p>
+      <div class="score">Nabers ate my Zombies <span style="color:var(--ink-dim)">vs</span> MaHOMELANDER</div>
+      <p><strong>Projected:</strong> [Nabers ate my Zombies proj] – [MaHOMELANDER proj]<br>[Preview once Week 5 projections are available.]</p>
       <span class="ffn-gif">[GIF: search a reaction fitting the storyline]</span>
+      <!-- <img src="PASTE_GIF_URL_HERE.gif" alt="search a reaction fitting the storyline" class="ffn-gif-img" style="display:block;max-width:100%;border-radius:3px;margin-top:8px;"> -->
     </div>
   </div>
-
   <div class="ffn-section">
     <h2>League Business</h2>
     <ul class="ffn-awards">
-      <li><span class="tag">Waiver wire watch:</span>[Names to grab]</li>
-      <li><span class="tag">Trade rumors:</span>[Any brewing deals]</li>
-      <li><span class="tag">Reminder:</span>[Lineup lock times, dues owed, punishment tracker]</li>
+      <li><span class="tag">Standings update:</span>Kenz and JJ lead at 3-1, six teams are 2-2, and Catchy Football Name and Donuts All Day 24/7 are 1-3. Full AFC/NFC tables above.</li>
+      <li><span class="tag">Waiver wire watch:</span>JJ was the busiest manager this week: he picked up C.J. Stroud ($1), Makai Lemon ($1), and Najee Harris ($2), and has cut Kirk Cousins, Chris Godwin Jr., Tyrone Tracy Jr., and Tank Bigsby since Week 3. Kenz dropped Bryce Young for the Kirk Cousins JJ cut ($5). Carolina is on a bye in Week 5, which likely explains that one. Big PeNIX Envy added Ty Johnson and Dontayvion Wicks ($1 each). Jayden Daniels is a free agent in this league right now.</li>
+      <li><span class="tag">Trade report:</span>The Oct. 1 trade has its first results: Catchy Football Name sent Drake London to Big PeNIX Envy for Javonte Williams and DK Metcalf. The two McCarty received scored 62.55 in Week 4. London scored 18.6. Catchy and Donuts are the two 1-3 teams, if anyone else is thinking about a deal.</li>
+      <li><span class="tag">Injury watch:</span>Jayden Daniels missed a second straight game with his dislocated elbow but practiced this week, and the Commanders say he could return as soon as Week 5 against the Giants. Jaxson Dart (torn meniscus) and De'Von Achane (torn ACL) remain out for the season. Per ESPN's current designations: Covfefe has Jonathon Brooks, Jordan Mason, and Jadarian Price on IR with Breece Hall doubtful. MaHOMELANDER still has A.J. Brown on IR. Kenz has Travis Etienne Jr. on IR and Dallas Goedert doubtful. Saquon Barkley (hamstring) and Ja'Marr Chase (concussion after a facemask) were both injured early in their Week 4 games, so check their status before lineups lock. Rashee Rice and Jeremiyah Love are listed questionable.</li>
+      <li><span class="tag">Optimizer watch:</span>Three one-time optimizers are now spent: David's in Week 1, and Kevin's and Joydip's in Week 4. Kevin used his to take the lead over Joydip, and Joydip used his to take it right back.</li>
+      <li><span class="tag">Reminder:</span>[lock times, dues, punishment tracker]</li>
     </ul>
-  </div>
-
-  <div class="ffn-section">
-    <h2>Quote of the Week</h2>
-    <div class="ffn-quote">
-      "[Something dumb someone said in the group chat, screenshotted and immortalized]"
-      <cite>— [Manager name], probably drunk</cite>
-    </div>
   </div>
 
   <div class="ffn-footer">See you next week. Set your lineups, you absolute clowns.</div>
