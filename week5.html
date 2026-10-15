@@ -192,24 +192,6 @@
     font-weight: 700;
     margin-right: 6px;
   }
-  .ffn-quote {
-    background: var(--panel-2);
-    border-left: 4px solid var(--crimson);
-    padding: 16px 20px;
-    font-style: italic;
-    font-size: 15px;
-    margin: 10px 0 6px;
-  }
-  .ffn-quote cite {
-    display: block;
-    margin-top: 8px;
-    font-style: normal;
-    font-family: 'Oswald', sans-serif;
-    font-size: 12px;
-    letter-spacing: 0.05em;
-    color: var(--ink-dim);
-    text-transform: uppercase;
-  }
   .ffn-footer {
     text-align: center;
     padding: 28px 24px 6px;
@@ -222,7 +204,7 @@
 <body>
 
 <nav class="ffn-nav">
-  <a href="index.html" class="active">Newsletter</a>
+  <a href="index.html">Newsletter</a>
   <a href="draft-report.html">Draft Report</a>
   <a href="weekly-grades.html">Weekly Grades</a>
 </nav>
@@ -254,125 +236,105 @@
     <h1>Weekly Debrief</h1>
     <p>Published every Tuesday because Monday you're all still crying</p>
   </div>
-
   <div class="ffn-section">
-    <h2>The Standings</h2>
-    <p class="sub">aka the Hall of Shame</p>
+    <h2>Week 5 Standings</h2>
+    <p class="sub">Pulled from the league API: AFC and NFC divisions, in the order ESPN ranks them. Playoff odds aren't part of that feed, so they're off the board for now.</p>
     <table class="ffn-standings">
       <thead>
-        <tr><th>Rank</th><th>Team</th><th>Record</th><th>PF</th><th>Vibe</th></tr>
+        <tr><th>Rk</th><th>AFC</th><th>Record</th><th>PF</th><th>PA</th><th>Streak</th><th>Moves</th></tr>
       </thead>
       <tbody>
-        <tr><td>1</td><td>AB's 3rd Quarter Uber</td><td>[X-X]</td><td>[XXX.X]</td><td>🔥</td></tr>
-        <tr><td>2</td><td>Covfefe is for Closers</td><td>[X-X]</td><td>[XXX.X]</td><td>🔥</td></tr>
-        <tr><td>3</td><td>Kenz VishusLicks</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
-        <tr><td>4</td><td>Joydip's Scary Team</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
-        <tr><td>5</td><td>Catchy Football Name</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
-        <tr><td>6</td><td>Nabers ate my Zomb...</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
-        <tr><td>7</td><td>Donuts All Day 24/7</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
-        <tr><td>8</td><td>Herbert's Heros</td><td>[X-X]</td><td>[XXX.X]</td><td></td></tr>
-        <tr><td>9</td><td>Lucas's Loud Team</td><td>[X-X]</td><td>[XXX.X]</td><td>💀</td></tr>
-        <tr><td>10</td><td>Texas Determined Do...</td><td>[X-X]</td><td>[XXX.X]</td><td>💀</td></tr>
+        <tr><td>1</td><td>Nabers ate my Zombies</td><td>4-1-0</td><td>1272.7</td><td>1111.2</td><td>W3</td><td>8</td></tr>
+        <tr><td>2</td><td>Covfefe is for Closers</td><td>3-2-0</td><td>1302.6</td><td>1265.1</td><td>W1</td><td>7</td></tr>
+        <tr><td>3</td><td>MaHOMELANDER</td><td>2-3-0</td><td>1377.7</td><td>1390.9</td><td>L3</td><td>1</td></tr>
+        <tr><td>4</td><td>Hurt Me Moore</td><td>2-3-0</td><td>1310.6</td><td>1328.1</td><td>L1</td><td>10</td></tr>
+        <tr><td>5</td><td>Waddle On Deez Nuts</td><td>2-3-0</td><td>1199.9</td><td>1239.9</td><td>L1</td><td>2</td></tr>
       </tbody>
     </table>
+    <table class="ffn-standings">
+      <thead>
+        <tr><th>Rk</th><th>NFC</th><th>Record</th><th>PF</th><th>PA</th><th>Streak</th><th>Moves</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Kenz VishusLicks</td><td>3-2-0</td><td>1158.6</td><td>1266.9</td><td>L1</td><td>6</td></tr>
+        <tr><td>2</td><td>Hellen Keller's Dodgeball Squad</td><td>3-2-0</td><td>1119.5</td><td>1010.9</td><td>W2</td><td>13</td></tr>
+        <tr><td>3</td><td>Catchy Football Name</td><td>2-3-0</td><td>1149.3</td><td>1203.1</td><td>W1</td><td>2</td></tr>
+        <tr><td>4</td><td>Texas Determined Domination</td><td>2-3-0</td><td>1100.3</td><td>1231.7</td><td>L2</td><td>7</td></tr>
+        <tr><td>5</td><td>Donuts All Day 24/7</td><td>2-3-0</td><td>1165.9</td><td>1109.3</td><td>W1</td><td>2</td></tr>
+      </tbody>
+    </table>
+    <p class="sub">JJ is the only team with four wins. Kenz, Covfefe, and Hellen Keller's Dodgeball Squad are 3-2, and the other six teams are all 2-3, so nobody is more than a game behind the 3-2 pack. MaHOMELANDER leads the league in points scored (1,377.7) and in points allowed (1,390.9), and has lost three straight. Hellen Keller's has made 13 waiver moves, the most in the league.</p>
   </div>
-
   <div class="ffn-section">
-    <h2>Last Week's Recap</h2>
-    <p class="sub">Here's what happened while you were pretending to work</p>
+    <h2>Week 5 Recap</h2>
+    <p class="sub">Four of five games were decided by more than 40 points, and the biggest was 128.5. The fifth was won by a quarterback David picked up for $1 after JJ cut him.</p>
 
     <div class="ffn-matchup">
-      <div class="score"><span class="win">Nabers ate my Zombies [Score]</span> — <span class="lose">[Score] Covfefe is for Closers</span></div>
-      <p>[Recap of Week 4 game]</p>
-      <span class="ffn-gif">[GIF: search a reaction fitting this game's outcome]</span>
+      <div class="score"><span class="win">Covfefe is for Closers 246.85</span> — <span class="lose">233.3 Waddle On Deez Nuts</span></div>
+      <p><strong>Projected:</strong> 248.3 – 244.7<br>David won by 13.55 with a quarterback who scored 7.5. Tyler Shough was projected for 35.3, Jeremiyah Love scored 5.45 on a 21.39 projection, and Colston Loveland added 5.65, so the lineup David built around them was mostly decoration. What won it: Jordan Love, the Packers quarterback JJ cut on Thursday and David claimed for $1, scored 50.7 at OP (33.64 projected), and Christian Watson scored 40.8 on a 17.56 projection. That's 91.5 points from two Green Bay players on a team that spent the week shipping out Saquon Barkley's hamstring. Derrick Henry, the main thing David got back for it, scored 30.5, and Ja'Marr Chase scored 24.7 in his first game after the concussion. Waddle On Deez Nuts got 50.2 from Puka Nacua and 37.5 from the Broncos D/ST and then 3.85 from Alvin Kamara, 6.8 from the Jaylen Waddle the team is named after, and 23.55 from the Deshaun Watson Lucas paid $5 for (36.77 projected). Keenan Allen scored 13.25 on the bench. Swap him in for Kamara and Lucas still loses by 4.15. Lucas tried to do a diving catch with Deshaun Watson and was properly molested for his efforts. Bitch you thought...</p>
+      <img src="love.gif" class="ffn-gif-img" style="display:block;width: 650px;border-radius:3px;margin-top:8px;">
     </div>
-
     <div class="ffn-matchup">
-      <div class="score"><span class="win">AB's 3rd Quarter Uber [Score]</span> — <span class="lose">[Score] Donuts All Day 24/7</span></div>
-      <p>[Recap of Week 4 game]</p>
-      <span class="ffn-gif">[GIF: search a reaction fitting this game's outcome]</span>
+      <div class="score"><span class="win">Donuts All Day 24/7 313.95</span> — <span class="lose">185.45 Kenz VishusLicks</span></div>
+      <p><strong>Projected:</strong> 237.7 – 209.8<br>The biggest margin of the week by 49.45 points, 128.5, and a very simple explanation: Alby's team went off and Kenz's didn't. Alby beat his own projection by 76.27. Jacoby Brissett scored 51.05 at OP and outscored Josh Allen (47.75), Parker Washington scored 38.15 on a 17.69 projection, George Pickens scored 35.25 on 16.63, and the 49ers D/ST scored 34.0 (no stat correction this time, as far as we know). Alby also won the Rams-Bills game he was playing both sides of: Allen, James Cook (33.8), and Kyren Williams (28.1) combined for 109.65, while Kenz's Matthew Stafford (61.15) and Davante Adams (25.85) added up to 87.0. Stafford's 61.15 was Kenz's entire lineup. The other 124.3 points came from ten players, including RJ Harvey (2.2), Harold Fannin Jr. (2.4), and Tyler Allgeier (4.85). Kenz finished with the lowest score in the league and the three-game win streak is over. On Sunday morning, he spent $22 of FAAB on Marvin Harrison Jr., who scored 0.0 on his bench. Alby gets a victory lap over a trash squad - this was an epic beatdown. Ken should explore the trade market before his season is out of reach.</p>
+      <img src="trash.gif" class="ffn-gif-img" style="display:block;width: 650px;border-radius:3px;margin-top:8px;">
     </div>
-
     <div class="ffn-matchup">
-      <div class="score"><span class="win">Texas Determined Domination [Score]</span> — <span class="lose">[Score] Lucas's Loud Team</span></div>
-      <p>[Recap of Week 4 game]</p>
-      <span class="ffn-gif">[GIF: search a reaction fitting this game's outcome]</span>
+      <div class="score"><span class="win">Catchy Football Name 298.35</span> — <span class="lose">224.3 Texas Determined Domination</span></div>
+      <p><strong>Projected:</strong> 249.7 – 214.4<br>McCarty's three-game losing streak ended with the highest individual score of the week: Drake Maye put up 69.65 at OP on a 37.59 projection. Kyler Murray added 38.85, Garrett Wilson scored 29.15 in the same flex spot that cost him 33.55 points last week, and Brock Bowers (listed questionable on Thursday) scored 29.0. Braelon Allen scored 29.1. The Oct. 1 trade pair, Javonte Williams (19.95) and DK Metcalf (7.55), scored 27.5, a point and a half more than Drake London's 26.05. Texas Determined Domination actually beat its projection by 9.94 and still lost by 74.05, which is a special kind of consolation prize. Joe Burrow scored 49.45 and Isaiah Likely scored 38.65 on a 16.43 projection, but CeeDee Lamb scored 4.15 on a 24.08 projection, Brian Robinson Jr. scored 3.6, and Jordan Addison, who was listed questionable and projected for nothing, scored 0.0 in a flex spot while Kyle Pitts Sr. (17.7) sat on the bench. Make that swap and Kolby still loses by 56.35. A live look at Drake Maye after not playing like absolute ass:</p>
+      <img src="imhim.gif" class="ffn-gif-img" style="display:block;width: 650px;border-radius:3px;margin-top:8px;">
     </div>
-
     <div class="ffn-matchup">
-      <div class="score"><span class="win">Catchy Football Name [Score]</span> — <span class="lose">[Score] Kenz VishusLicks</span></div>
-      <p>[Recap of Week 4 game]</p>
-      <span class="ffn-gif">[GIF: search a reaction fitting this game's outcome]</span>
+      <div class="score"><span class="win">Hellen Keller's Dodgeball Squad 257.75</span> — <span class="lose">215.0 Hurt Me Moore</span></div>
+      <p><strong>Projected:</strong> 252.0 – 254.9<br>Ryan has now won two in a row and the trade he made with David on Wednesday looks better by the day. Trevor Lawrence scored 46.15 at QB, Zay Flowers added 19.1, and Romeo Doubs scored 3.85, for 69.1 points from the three players he got. David's starters from the same deal (Henry and Devaughn Vele) scored 39.6. Saquon Barkley is on Ryan's IR spot and scored nothing. Jayden Daniels, the $3 waiver claim and the other half of that QB room, scored 48.55 at OP on a 39.64 projection in his first game back from the elbow. Joydip's 300.6 last week included a 20.0-point optimizer. This week's 215.0 didn't have one: Bijan Robinson, Amon-Ra St. Brown, Jalen Hurts, Quinshon Judkins, and Nico Collins all missed their projections, by a combined 36.11, and Deebo Samuel Sr. scored 3.75 in a flex spot (he's now listed out). The Packers D/ST scored 37.0 on his bench while the Patriots D/ST scored 20.5 in the lineup. Make that swap and the Kendre Miller-for-Deebo one and Joydip still loses by 17.5.</p>
+      <img src="bite.gif" class="ffn-gif-img" style="display:block;width: 650px;border-radius:3px;margin-top:8px;">
     </div>
-
     <div class="ffn-matchup">
-      <div class="score"><span class="win">Herbert's Heros [Score]</span> — <span class="lose">[Score] Joydip's Scary Team</span></div>
-      <p>[Recap of Week 4 game]</p>
-      <span class="ffn-gif">[GIF: search a reaction fitting this game's outcome]</span>
+      <div class="score"><span class="win">Nabers ate my Zombies 326.55</span> — <span class="lose">247.3 MaHOMELANDER</span></div>
+      <p><strong>Projected:</strong> 241.0 – 257.8<br>JJ beat his projection by 85.55 and scored 326.55, the highest total in the league by 12.6. Three pickups that cost him $7 combined did 126.35 of it: Aaron Rodgers ($5) scored 43.95 at QB, C.J. Stroud ($1) scored 41.9 at OP, and the Jets D/ST ($1) scored 40.5 on an 18.57 projection. Jahmyr Gibbs scored 51.95, Malik Nabers (listed questionable on Thursday) scored 38.6 on a 17.23 projection, and Mike Evans scored 32.8 on 16.13. The Jordan Love he cut to make room for Rodgers scored 50.7 for David, and JJ won by 79.25 anyway. Kevin leads the league in points scored and in points allowed, which is the profile of a team that is good, unlucky, and occasionally just bad. This week was the third one: Jaylen Warren (51.55) and Bucky Irving (42.0) hit, but Jonathan Taylor scored 17.45 on a 28.33 projection, Ashton Jeanty scored 16.2 on 26.36, Tony Pollard scored 10.45, and Carnell Tate scored 2.85 on a 17.27 projection. That's three straight losses for the team with the most points in the league. Kevin picked a fight and got kicked in the fucking chest.</p>
+      <img src="chest.gif" class="ffn-gif-img" style="display:block;width: 650px;border-radius:3px;margin-top:8px;">
     </div>
   </div>
-
   <div class="ffn-section">
-    <h2>Weekly Awards</h2>
-    <ul class="ffn-awards">
-      <li><span class="tag">🚽 Toilet Bowl MVP:</span>[Manager who lost despite highest bench points]</li>
-      <li><span class="tag">🧠 Big Brain Move:</span>[Best waiver pickup or start/sit call]</li>
-      <li><span class="tag">🤡 Clown of the Week:</span>[Worst decision — started a bye week guy, etc.]</li>
-      <li><span class="tag">💰 Should've Bet On It:</span>[Biggest blowout]</li>
-      <li><span class="tag">😰 Heartbreak Hotel:</span>[Closest loss]</li>
-    </ul>
-  </div>
-
-  <div class="ffn-section">
-    <h2>This Week's Preview</h2>
-    <p class="sub">Predictions nobody asked for, delivered anyway</p>
+    <h2>Week 6 Preview</h2>
+    <p class="sub">Projections as of Thursday afternoon, per ESPN. The Bengals, Lions, Dolphins, and Vikings are on a bye, and several of you have noticed. Check your lineups before kickoff.</p>
 
     <div class="ffn-matchup">
-      <div class="score">Lucas's Loud Team <span style="color:var(--ink-dim)">vs</span> Covfefe is for Closers</div>
-      <p><strong>Projected:</strong> [Lucas's Loud Team proj] – [Covfefe is for Closers proj]<br>[Preview]</p>
-      <span class="ffn-gif">[GIF: search a reaction fitting the storyline]</span>
+      <div class="score">Donuts All Day 24/7 <span style="color:var(--ink-dim)">vs</span> Waddle On Deez Nuts</div>
+      <p><strong>Projected:</strong> 241.53 – 246.37<br>The closest game of the week, 4.84 points, and Lucas is the favorite. Alby has the highest-projected player in the league in Josh Allen (46.41) and Jacoby Brissett (34.2) at OP, and a 313.95 week to live up to. His weak spot is the flex: Jacory Croskey-Merritt (11.07), Dalton Schultz (9.64), and Blake Corum (13.15) are starting while Ladd McConkey (13.03, questionable) sits on the bench. Lucas has Dak Prescott (36.65) at QB and Deshaun Watson (35.62) at OP, and Lamar Jackson, projected for 37.27 and listed questionable, is sitting in an IR slot where he can't score. Chris Olave, Alvin Kamara, and Denzel Boston are all questionable, 51.95 projected points between them. Alby beat his projection by 76.3 last week, so a 4.8-point gap isn't telling you much. Lean: Waddle On Deez Nuts, narrowly.</p>
+      <img src="allen.gif" class="ffn-gif-img" style="display:block;width: 650px;border-radius:3px;margin-top:8px;">
     </div>
-
     <div class="ffn-matchup">
-      <div class="score">Kenz VishusLicks <span style="color:var(--ink-dim)">vs</span> Donuts All Day 24/7</div>
-      <p><strong>Projected:</strong> [Kenz VishusLicks proj] – [Donuts All Day 24/7 proj]<br>[Preview]</p>
-      <span class="ffn-gif">[GIF: search a reaction fitting the storyline]</span>
+      <div class="score">Kenz VishusLicks <span style="color:var(--ink-dim)">vs</span> Nabers ate my Zombies</div>
+      <p><strong>Projected:</strong> 228.5 – 218.23<br>Kenz is a 10.3-point favorite after his 185.45 disaster, and the lineup looks a lot healthier: Matthew Stafford (41.38) and Kirk Cousins (39.59) hold the QB and OP spots, Kenneth Walker III is back from his bye at 33.16, and Tetairoa McMillan is back at 20.14. Marvin Harrison Jr., the $22 pickup who scored 0.0 on the bench, is now listed with Houston and starting in a flex spot at 4.35. JJ's projection dropped 22.8 points from last week to 218.23 because Jahmyr Gibbs is on a bye, which puts Najee Harris (8.04) in his place at RB. DeVonta Smith, Mike Evans, and Stefon Diggs are all questionable, 52.75 projected points combined. The Rams-Cardinals game is a three-way proxy war: JJ owns Trey McBride and the Rams D/ST, Kenz owns Stafford and Davante Adams, and Alby owns Kyren Williams, Corum, Brissett, and Michael Wilson. JJ beat his projection by 85.55 last week, so the 10.3 isn't worth much. Lean: Kenz, if JJ's pickups cool off, either way this matchup is boring me.</p>
+      <img src="bored.gif" class="ffn-gif-img" style="display:block;width: 650px;border-radius:3px;margin-top:8px;">
     </div>
-
     <div class="ffn-matchup">
-      <div class="score">Texas Determined Domination <span style="color:var(--ink-dim)">vs</span> Catchy Football Name</div>
-      <p><strong>Projected:</strong> [Texas Determined Domination proj] – [Catchy Football Name proj]<br>[Preview]</p>
-      <span class="ffn-gif">[GIF: search a reaction fitting the storyline]</span>
+      <div class="score">MaHOMELANDER <span style="color:var(--ink-dim)">vs</span> Texas Determined Domination</div>
+      <p><strong>Projected:</strong> 259.42 – 187.08<br>The widest gap of the week, 72.3 points. Kolby has the lowest projection in the league at 187.08, because four of his players are on a bye: Joe Burrow, Aaron Jones Sr., Jordan Addison, and Jaylen Wright. That leaves Sam Darnold (30.27) at QB and Dalton Kincaid, a tight end, at OP (10.17), and Rashee Rice (17.87) is questionable. Kevin has the highest projection (259.42) and is starting six running backs again, with Brock Purdy (42.48) at QB and Bucky Irving (22.79) at OP while Patrick Mahomes (37.49) sits on his bench, 14.7 projected points left there. The Chiefs D/ST (18.79) is on the bench behind the Bears D/ST (14.75). Kevin has lost three straight while leading the league in points scored, so no one is allowed to call this one over. Lean: MaHOMELANDER, by a lot... in fact this might be classified as felonious battery when it's all said and done.</p>
+      <img src="babypunch.gif" class="ffn-gif-img" style="display:block;width: 650px;border-radius:3px;margin-top:8px;">
     </div>
-
     <div class="ffn-matchup">
-      <div class="score">Joydip's Scary Team <span style="color:var(--ink-dim)">vs</span> AB's 3rd Quarter Uber</div>
-      <p><strong>Projected:</strong> [Joydip's Scary Team proj] – [AB's 3rd Quarter Uber proj]<br>[Preview]</p>
-      <span class="ffn-gif">[GIF: search a reaction fitting the storyline]</span>
+      <div class="score">Covfefe is for Closers <span style="color:var(--ink-dim)">vs</span> Hellen Keller's Dodgeball Squad</div>
+      <p><strong>Projected:</strong> 245.21 – 220.77<br>David is a 24.4-point favorite, built mostly on Jordan Love, the $1 claim JJ dropped, who is projected at 43.65 at OP (the second-highest projection in the league). Tyler Shough (36.66) and Derrick Henry (30.7) are next, Germie Bernard, the $17 pickup, is starting at WR at 13.4, and Ja'Marr Chase is on a bye. Ryan's lineup has Jayden Daniels (39.84) and Trevor Lawrence (35.53) in the QB spots, Zay Flowers at 20.94, and Romeo Doubs at 13.78. The trade is still lopsided on paper: Lawrence, Flowers, and Doubs are projected for 70.25, and Henry and Devaughn Vele for 44.77, a 25.5-point edge for Ryan's side. Saquon Barkley (22.35, questionable) is in Ryan's IR slot, and Chase Brown, Sam LaPorta, and Ollie Gordon II are all on a bye. Ryan has made 17 waiver moves, four more than the next team. Lean: Covfefe, by about what David gave away.</p>
+      <img src="henry.gif" class="ffn-gif-img" style="display:block;width: 650px;border-radius:3px;margin-top:8px;">
     </div>
-
     <div class="ffn-matchup">
-      <div class="score">Nabers ate my Zombies <span style="color:var(--ink-dim)">vs</span> Herbert's Heros</div>
-      <p><strong>Projected:</strong> [Nabers ate my Zombies proj] – [Herbert's Heros proj]<br>[Preview]</p>
-      <span class="ffn-gif">[GIF: search a reaction fitting the storyline]</span>
+      <div class="score">Hurt Me Moore <span style="color:var(--ink-dim)">vs</span> Catchy Football Name</div>
+      <p><strong>Projected:</strong> 236.65 – 197.39<br>Joydip is favored by 39.3, with five players on a bye: Amon-Ra St. Brown, Jared Goff, Malik Washington, Mike Gesicki, and Tyreek Hill, whom ESPN currently lists with no team and a 0.0 projection. He cut Jalen Hurts, who is listed out, and now has Bryce Young (38.15), the quarterback Kenz cut last week, at QB and wide receiver Jalen Coker (17.35) at OP. Deebo Samuel Sr. is out. McCarty's lineup has two zeros in it as of Thursday afternoon: Justin Jefferson and Kyler Murray are both on a bye, and Murray is sitting in his QB slot with Drake Maye (41.64) at OP. Tucker Kraft (15.19), Kyle Monangai (15.18, questionable), and Woody Marks (17.18) are on his bench. McCarty needs a quarterback. Lean: Hurt Me Moore, if Joydip's bye-week roster is set by Sunday.</p>
+      <img src="confused.gif" class="ffn-gif-img" style="display:block;width: 650px;border-radius:3px;margin-top:8px;">
     </div>
   </div>
-
   <div class="ffn-section">
     <h2>League Business</h2>
     <ul class="ffn-awards">
-      <li><span class="tag">Waiver wire watch:</span>[Names to grab]</li>
-      <li><span class="tag">Trade rumors:</span>[Any brewing deals]</li>
-      <li><span class="tag">Reminder:</span>[Lineup lock times, dues owed, punishment tracker]</li>
+      <li><span class="tag">Standings update:</span>JJ leads at 4-1 and is the only team with four wins. Kenz, Covfefe, and Hellen Keller's Dodgeball Squad are 3-2, and six teams are 2-3. Full AFC/NFC tables above.</li>
+      <li><span class="tag">Waiver wire watch:</span>Best $1 of the week: David's Jordan Love, who scored 50.7. Hellen Keller's paid $3 for Jayden Daniels and got 48.55, and JJ's Rodgers ($5), Stroud ($1), and Jets D/ST ($1) scored 126.35 together. Worst: Kenz paid $22 for Marvin Harrison Jr. (dropping Tre Tucker), and Harrison scored 0.0 on his bench. Lucas paid $5 for Deshaun Watson (dropping Hunter Henry), who scored 23.55 on a 36.77 projection, and Joydip picked up Mike Gesicki ($1) for Pat Freiermuth. Since Tuesday: Joydip cut Jalen Hurts, who scored 29.2 for him last week and is now listed out, along with Adonai Mitchell and David Montgomery, and added Tyreek Hill ($2), Kimani Vidal ($2), and Bryce Young ($3). Ryan, now at 17 moves, claimed Montgomery ($1), Pat Freiermuth ($2), the Ravens D/ST ($2), and Tre Tucker ($3, the player Kenz dropped for Harrison). David spent $17 on Germie Bernard, dropping Dohnte Meyers.</li>
+      <li><span class="tag">Trade report:</span>Early scorecard on Wednesday's David-Ryan trade: Ryan's three starters (Lawrence, Flowers, Doubs) scored 69.1 and David's two (Henry, Vele) scored 39.6, with Barkley on Ryan's IR. The Oct. 1 trade: Javonte Williams and DK Metcalf scored 27.5 for McCarty, and Drake London scored 26.05 for Ryan.</li>
+      <li><span class="tag">Injury watch:</span>Per ESPN's designations on Thursday: Deebo Samuel Sr., Jalen Hurts, and Zach Charbonnet are listed out, and Michael Pittman Jr. is on IR. Breece Hall, David Montgomery, Will Shipley, and Adonai Mitchell are listed doubtful. Saquon Barkley, Jeremiyah Love, Mike Evans, Brock Bowers, TreVeyon Henderson, Rashee Rice, Lamar Jackson, Caleb Williams, Chris Olave, Alvin Kamara, and Denzel Boston are listed questionable. Jayden Daniels is listed active.</li>
+      <li><span class="tag">Optimizer watch:</span>No new optimizers this week: every team's total matches its starters to the decimal. Three are still spent (David in Week 1, Kevin and Joydip in Week 4).</li>
+      <li><span class="tag">Reminder:</span>[lock times, dues, punishment tracker]</li>
     </ul>
-  </div>
-
-  <div class="ffn-section">
-    <h2>Quote of the Week</h2>
-    <div class="ffn-quote">
-      "[Something dumb someone said in the group chat, screenshotted and immortalized]"
-      <cite>— [Manager name], probably drunk</cite>
-    </div>
   </div>
 
   <div class="ffn-footer">See you next week. Set your lineups, you absolute clowns.</div>
